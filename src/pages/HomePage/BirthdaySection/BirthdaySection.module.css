@@ -1,0 +1,157 @@
+.birthday {
+	background-color: #faf9f8;
+	padding: 30px;
+	border-radius: 16px;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08);
+}
+
+.birthday_search {
+	position: relative;
+	margin-top: 30px;
+	margin-left: 20px;
+}
+.birthday_search input {
+	font-size: 14px;
+	width: 300px;
+	height: 46px;
+
+	padding-left: 64px;
+
+	border-radius: 50px;
+	background-color: #ebebeb;
+
+	transition: all 0.2s ease 0s;
+}
+.birthday_search input::placeholder {
+	color: #7d7d7d;
+}
+.birthday_search input:focus {
+	box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2) inset;
+}
+.birthday_search button {
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	transform: translate(0, -50%);
+
+	width: 32px;
+	height: 32px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background-color: #ebebeb;
+	border-radius: 50%;
+
+	transition: all 0.2s ease 0s;
+}
+.birthday_search button:hover {
+	background-color: #ffffff;
+	/* box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.119) inset; */
+}
+.birthday_search button img {
+	width: 17.5px;
+	height: 18px;
+}
+
+.birthday_list {
+	margin-top: 20px;
+	padding: 0 20px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.birthday_item {
+	width: 100%;
+	min-height: 65px;
+	padding: 12px 15px;
+	padding-left: 20px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08);
+	border-radius: 8px;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.birthday_item__user {
+	width: 55%;
+
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.birthday_item__user img {
+	width: 42px;
+	height: 42px;
+	min-width: 42px;
+	min-height: 42px;
+	border-radius: 50%;
+	background-color: rgb(202, 202, 202);
+}
+.birthday_item__user div p:nth-child(2) {
+	font-size: 12px;
+	color: #959595;
+
+	margin-top: 3px;
+}
+.birthday_item__date {
+	text-align: center;
+
+	display: block;
+	padding: 0 10px;
+	flex: 1 1;
+}
+
+.birthday_item__buttons {
+	display: flex;
+	justify-content: flex-end;
+	gap: 2px;
+
+	padding-left: 10px;
+
+	border-left: 1px solid #e3e3e3;
+}
+.birthday_item__buttons button,
+.birthday_item__buttons a {
+	width: 36px;
+	height: 36px;
+
+	border-radius: 6px;
+	background-color: transparent;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	transition: all 0.3s ease 0s;
+}
+.birthday_item__buttons button:hover,
+.birthday_item__buttons a:hover {
+	background-color: #eeeeee;
+}
+
+.birthday_item__buttons img {
+	width: 16px;
+}
+
+.birthday_no_item {
+	color: #7d7d7d;
+	padding: 20px 0;
+}
+
+@media (max-width: 1550px) {
+	.birthday_search input {
+		height: 40px;
+	}
+	.birthday_search button {
+		width: 26px;
+		height: 26px;
+	}
+	.birthday_search button img {
+		width: 16px;
+		height: 16px;
+	}
+}
