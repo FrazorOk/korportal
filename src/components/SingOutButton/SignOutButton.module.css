@@ -1,0 +1,83 @@
+.out_button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 100%;
+	height: 90px;
+	padding: 0 30px;
+
+	transition: all 0.3s ease 0s;
+}
+
+.out_button button {
+	width: 100%;
+	max-width: 112px;
+
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 2px;
+
+	background-color: transparent;
+	border-radius: 26px;
+
+	transition: all 0.3s ease 0s;
+}
+.out_button button::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #ebebeb;
+
+	transition: all 0.3s ease 0s;
+}
+
+.out_button button:hover::after {
+	width: 100%;
+	border-radius: 26px;
+}
+
+.out_button p {
+	font-size: 16px;
+	font-weight: 500;
+	white-space: nowrap;
+	color: #7d7d7d;
+
+	display: block;
+	position: absolute;
+	z-index: 1;
+	left: 52px;
+	transform: translate(-70%, -2px);
+
+	opacity: 0;
+
+	transition: all 0.3s ease 0s;
+}
+
+.out_button.active p {
+	transform: translate(0, -2px);
+	opacity: 1;
+}
+
+.out_button .out_button__img {
+	position: relative;
+	z-index: 2;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #ebebeb;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.out_button__img img {
+	width: 16px;
+}

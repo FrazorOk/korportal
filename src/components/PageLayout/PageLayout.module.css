@@ -1,0 +1,46 @@
+.page_container {
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+
+	overflow: hidden;
+}
+.page_container__left_column {
+	position: relative;
+	z-index: 2;
+	background-color: #ffffff;
+
+	border-right: 1px solid #c3c3c3;
+	/* box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1); */
+	max-width: 100px;
+	width: 100%;
+	flex: 1 1;
+
+	transition: all 0.3s ease 0s;
+}
+.page_container__left_column:hover {
+	max-width: 300px;
+}
+.page_container__right_column {
+	position: relative;
+	z-index: 1;
+	flex: 1 1;
+	padding-top: 80px;
+
+	overflow: hidden;
+}
+
+.overflow_container {
+	display: block;
+	margin: 0 auto;
+	height: 100%;
+	overflow-y: auto;
+	padding: 50px;
+}
+
+@media (max-width: 1550px) {
+	.page_container__right_column {
+		padding-top: 70px;
+	}
+}
