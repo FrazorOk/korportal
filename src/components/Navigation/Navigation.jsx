@@ -1,3 +1,4 @@
+import { Link, NavLink } from 'react-router-dom';
 import s from './Navigation.module.css';
 import { navigationsLinks } from './NavigationLinks';
 
@@ -9,10 +10,10 @@ const Navigation = ({ status }) => {
 				{navigationsLinks.map((link, index) => {
 					return (
 						<li key={`navigation${index}`}>
-							<a href={`${link.path}`}>
+							<NavLink className={({ isActive }) => isActive && s.active} to={`${link.path}`}>
 								<img src={link.icon} alt="icon" />
 								<p>{link.name}</p>
-							</a>
+							</NavLink>
 						</li>
 					);
 				})}

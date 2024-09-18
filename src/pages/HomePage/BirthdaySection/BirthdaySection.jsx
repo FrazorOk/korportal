@@ -184,7 +184,7 @@ const BirthdaySection = () => {
 			<ul className={s.birthday_list}>
 				{visibleUsers.length > 0 ? (
 					visibleUsers.map((user) => (
-						<li className={s.birthday_item}>
+						<li className={`${s.birthday_item} ${user.index == 0 ? s.active : ''}`}>
 							<div className={s.birthday_item__user}>
 								<img src={user.urlImg && user.urlImg} alt="user" />
 								<div>
