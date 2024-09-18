@@ -1,3 +1,8 @@
+h1 {
+	font-size: 28px;
+	font-weight: 500;
+}
+
 h3 {
 	width: 100%;
 	font-size: 20px;
@@ -5,49 +10,6 @@ h3 {
 	border-bottom: 1px solid #cecece;
 }
 
-.login-page {
-	width: 100%;
-	height: 100vh;
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-/* comit */
-.login-page__container {
-	max-width: 500px;
-	padding: 40px;
-	width: 100%;
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-
-	background: #0a367a;
-	box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.3);
-	border-radius: 20px;
-
-	color: white;
-}
-.login-page__container h1 {
-	font-size: 64px;
-	font-weight: 600;
-	margin-bottom: 40px;
-}
-.login-page__container h2 {
-	font-size: 32px;
-	font-weight: 400;
-	margin-bottom: 20px;
-}
-.login-page__container p {
-	font-size: 14px;
-	font-weight: 400;
-	text-align: center;
-	margin-bottom: 20px;
-	max-width: 300px;
-}
 .content-container {
 	max-width: 1400px;
 	height: fit-content;

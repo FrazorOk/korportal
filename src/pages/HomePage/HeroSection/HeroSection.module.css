@@ -1,7 +1,7 @@
 .hero_section {
 	position: relative;
 	overflow: hidden;
-	border-radius: 16px;
+	/* border-radius: 16px; */
 
 	transition: all 0.3s ease 0s;
 }
@@ -18,10 +18,7 @@
 
 	background-color: #004795;
 } */
-.hero_section h1 {
-	font-size: 28px;
-	font-weight: 500;
-}
+
 .hero_section h2 {
 	font-size: 28px;
 	color: white;
@@ -34,7 +31,7 @@
 	display: flex;
 
 	background-color: #004795;
-	background-image: url('../../../assets/img/bg-hero.svg');
+	/* background-image: url('../../../assets/img/bg-hero.svg'); */
 	border-radius: 16px;
 
 	transition: all 0.3s ease 0s;
@@ -68,7 +65,7 @@
 	transform: translate(-50%, -50%);
 	border-radius: 50%;
 	border: 40px solid #004795;
-	outline: 1px solid #ffffff1e;
+	/* outline: 1px solid #ffffff1e; */
 
 	transition: all 0.3s ease 0s;
 }

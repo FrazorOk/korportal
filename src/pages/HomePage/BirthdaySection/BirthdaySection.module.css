@@ -76,6 +76,9 @@
 	justify-content: space-between;
 	align-items: center;
 }
+.birthday_item.active {
+	background-color: #fff4d7;
+}
 .birthday_item__user {
 	width: 55%;
 
@@ -114,6 +117,9 @@
 
 	border-left: 1px solid #e3e3e3;
 }
+.birthday_item.active .birthday_item__buttons {
+	border-left: 1px solid #ffffff;
+}
 .birthday_item__buttons button,
 .birthday_item__buttons a {
 	width: 36px;
@@ -130,7 +136,10 @@
 }
 .birthday_item__buttons button:hover,
 .birthday_item__buttons a:hover {
-	background-color: #eeeeee;
+	background-color: #f1f1f1;
+}
+.birthday_item.active .birthday_item__buttons a:hover {
+	background-color: #f0e6cc;
 }
 
 .birthday_item__buttons img {
