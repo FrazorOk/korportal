@@ -63,4 +63,41 @@
 
 .side_bar__menus {
 	flex: 1 1;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+@media (hover: hover) {
+	.header_mobile__button {
+		display: flex;
+	}
+}
+
+@media (max-width: 1200px), (hover: none) {
+	.side_bar {
+		padding: 0px 30px 20px;
+	}
+	nav {
+		padding-top: 20px;
+	}
+	.side_bar__logo {
+		height: 60px;
+		display: none;
+	}
+	.side_bar__logo img {
+		width: 30px;
+	}
+	.side_bar__logo p {
+		/* font-size: 18px; */
+		position: relative;
+		left: 6px;
+		transform: translate(0, 0);
+		opacity: 1;
+	}
+
+	.side_bar__menus {
+		max-width: 100%;
+		width: 100%;
+		margin: 0 auto;
+	}
 }

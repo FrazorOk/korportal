@@ -3,7 +3,7 @@ import logo from '../../assets/img/Frame 40.png';
 import Navigation from '../Navigation/Navigation';
 import { SignOutButton } from '../SingOutButton/SignOutButton';
 
-const SideBar = ({ status }) => {
+const SideBar = ({ status, toggleMobileMode }) => {
 	return (
 		<div className={`${s.side_bar} ${status && s.active}`}>
 			<div className={s.side_bar__logo}>
@@ -13,7 +13,7 @@ const SideBar = ({ status }) => {
 				</a>
 			</div>
 			<div className={s.side_bar__menus}>
-				<Navigation status={status} />
+				<Navigation status={status} toggleMobileMode={toggleMobileMode} />
 			</div>
 			<div className={s.side_bar__exit}>
 				<SignOutButton status={status} />

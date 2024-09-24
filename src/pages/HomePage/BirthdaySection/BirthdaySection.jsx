@@ -2,10 +2,12 @@ import s from './BirthdaySection.module.css';
 import searchIcon from '../../../assets/img/icons/search-icon.svg';
 import mailIcon from '../../../assets/img/icons/mail-icon.svg';
 import calendarIcon from '../../../assets/img/icons/calendar-icon.svg';
+import profileIcon from '../../../assets/img/icons/profile-icon.svg';
 import { getAllUsers, getPhotoUser } from '../../../api/graph';
 import { useMsal } from '@azure/msal-react';
 import { loginRequest } from '../../../authConfig';
 import { useEffect, useRef, useState } from 'react';
+import { dateConverter } from '../../../helpers/dateConverter';
 
 const dateToYMD = (date, year) => {
 	let d = date.getDate();
@@ -52,6 +54,9 @@ const BirthdaySection = () => {
 
 						// Створення індексу сортування та дат (для додавання у календар)
 						let filteredArray = filterResult.map((item) => {
+							// Форматування для ЮА дати
+							let formatedDate = dateConverter(item.onPremisesExtensionAttributes.extensionAttribute2);
+
 							// днів до сьогодні
 							let daysToday = Math.ceil(Math.abs(dateToYMD(today, year).getTime() - nulledDay.getTime()) / (1000 * 3600 * 24));
 							let allDaysInYear = Math.ceil(Math.abs(new Date(`${year}-12-31`).getTime() - nulledDay.getTime()) / (1000 * 3600 * 24));
@@ -78,6 +83,7 @@ const BirthdaySection = () => {
 									...item,
 									index: allDaysInYear + 1 + daysA - daysToday,
 									dateForCalendar: { befor: dateForCalendarBefor, after: dateForCalendarAfter },
+									uaDate: formatedDate,
 								};
 							}
 
@@ -95,10 +101,12 @@ const BirthdaySection = () => {
 								...item,
 								index: daysA - daysToday,
 								dateForCalendar: { befor: dateForCalendarBefor, after: dateForCalendarAfter },
+								uaDate: formatedDate,
 							};
 						});
 
 						filteredArray.sort((a, b) => a.index - b.index);
+
 						setUsers(filteredArray);
 					});
 			});
@@ -115,6 +123,10 @@ const BirthdaySection = () => {
 					.then((result) => {
 						const url = window.URL || window.webkitURL;
 						const blobUrl = url.createObjectURL(result);
+
+						if (result.type === 'application/json') {
+							return '';
+						}
 
 						return blobUrl;
 					});
@@ -183,16 +195,16 @@ const BirthdaySection = () => {
 
 			<ul className={s.birthday_list}>
 				{visibleUsers.length > 0 ? (
-					visibleUsers.map((user) => (
-						<li className={s.birthday_item}>
+					visibleUsers.map((user, index) => (
+						<li key={`birthday user ${index}`} className={`${s.birthday_item} ${user.index == 0 ? s.active : ''}`}>
 							<div className={s.birthday_item__user}>
-								<img src={user.urlImg && user.urlImg} alt="user" />
+								<img src={user.urlImg ? user.urlImg : profileIcon} alt={profileIcon} />
 								<div>
 									<p>{user.displayName}</p>
 									<p>{user.jobTitle}</p>
 								</div>
 							</div>
-							<p className={s.birthday_item__date}>{user.onPremisesExtensionAttributes.extensionAttribute2}</p>
+							<p className={s.birthday_item__date}>{user.uaDate}</p>
 							<div className={s.birthday_item__buttons}>
 								<a target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
 									<img src={mailIcon} alt="" />

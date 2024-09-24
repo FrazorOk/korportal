@@ -1,20 +1,19 @@
 import React from 'react';
 
-import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
 import './App.css';
-import LoginPage from './pages/LoginPage';
-import HomePage from './pages/HomePage/HomePage';
+import LoginPage from './pages/LoginPage/LoginPage';
 import PageLayout from './components/PageLayout/PageLayout';
+import { Outlet } from 'react-router-dom';
 
 export default function App() {
 	return (
 		<div className="App">
 			<AuthenticatedTemplate>
 				<PageLayout>
-					<HomePage />
+					<Outlet />
 				</PageLayout>
 			</AuthenticatedTemplate>
-
 			<UnauthenticatedTemplate>
 				<LoginPage />
 			</UnauthenticatedTemplate>

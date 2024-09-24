@@ -7,13 +7,6 @@
 	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08);
 }
 
-.chat h3 {
-	width: 100%;
-	font-size: 20px;
-	padding: 20px 25px 30px;
-	border-bottom: 1px solid #cecece;
-}
-
 .chat iframe {
 	width: 600px;
 	height: 80vh;
@@ -51,12 +44,26 @@
 		width: 340px;
 	}
 }
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
 	.chat {
 		width: 100%;
 	}
 
 	.chat iframe {
 		width: 500px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.chat {
+		padding: 20px 20px;
+	}
+}
+@media (max-width: 768px) {
+	.chat {
+		padding: 15px 15px;
+	}
+	.chat iframe {
+		width: 100%;
 	}
 }

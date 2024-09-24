@@ -42,17 +42,13 @@
 	transition: all 0.2s ease 0s;
 }
 
-.navigation a:hover {
-	background-color: #ebebeb;
-}
-
-.navigation li:nth-child(1) a {
+.navigation a.active {
 	background-color: #004795;
 }
-.navigation li:nth-child(1) p {
+.navigation a.active p {
 	color: white;
 }
-.navigation li:nth-child(1) img {
+.navigation a.active img {
 	filter: brightness(0) invert(1);
 }
 
@@ -78,4 +74,47 @@
 .navigation.active p {
 	left: 50px;
 	opacity: 1;
+}
+
+@media (hover: hover) {
+	.navigation a:hover {
+		background-color: #ebebeb;
+	}
+	.navigation a.active:hover {
+		background-color: #004795;
+	}
+}
+
+@media (max-width: 1200px), (hover: none) {
+	nav {
+		max-width: 450px;
+		margin: 0 auto;
+	}
+
+	.navigation a {
+		padding: 10px 20px;
+	}
+
+	.navigation a.active {
+		background-color: #004795;
+	}
+	.navigation a.active p {
+		color: white;
+	}
+	.navigation a.active img {
+		filter: brightness(0) invert(1);
+	}
+	.navigation.active p {
+		left: 0px;
+		opacity: 1;
+	}
+	.navigation p {
+		width: 100%;
+		text-align: center;
+		left: 0px;
+		opacity: 1;
+	}
+	.navigation a {
+		background-color: #ebebeb;
+	}
 }

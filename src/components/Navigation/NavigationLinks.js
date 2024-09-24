@@ -13,27 +13,27 @@ export const navigationsLinks = [
 	},
 	{
 		name: 'Команда',
-		path: '/team',
+		path: 'team',
 		icon: teamIcon,
 	},
 	{
 		name: 'Навчальний курс',
-		path: '/team',
+		path: 'learn',
 		icon: teachIcon,
 	},
 	{
 		name: 'Зображення',
-		path: '/team',
+		path: 'images',
 		icon: imgIcon,
 	},
 	{
 		name: 'Відео',
-		path: '/team',
+		path: 'movies',
 		icon: videoIcon,
 	},
 	{
 		name: 'Ще',
-		path: '/team',
+		path: 'more',
 		icon: arrowIcon,
 	},
 ];
