@@ -5,17 +5,18 @@ import Header from '../Header/Header';
 
 const PageLayout = (props) => {
 	let [sideBarStatus, setSideBarStatus] = useState(false);
+	let [mobileMode, toggleMobileMode] = useState(false);
 
 	return (
 		<div className={s.page_container}>
 			<div
-				className={s.page_container__left_column}
+				className={`${s.page_container__left_column} ${mobileMode && s.visible}`}
 				onMouseLeave={() => setSideBarStatus(false)}
 				onMouseEnter={() => setSideBarStatus(true)}>
-				<SideBar status={sideBarStatus} />
+				<SideBar status={sideBarStatus} toggleMobileMode={toggleMobileMode} />
 			</div>
 			<div className={s.page_container__right_column}>
-				<Header />
+				<Header toggleMobileMode={toggleMobileMode} mobileMode={mobileMode} />
 				<div className={s.overflow_container}>
 					<div className="content-container">{props.children}</div>
 				</div>

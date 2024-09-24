@@ -38,11 +38,6 @@
 	transition: all 0.3s ease 0s;
 }
 
-.out_button button:hover::after {
-	width: 100%;
-	border-radius: 26px;
-}
-
 .out_button p {
 	font-size: 16px;
 	font-weight: 500;
@@ -80,4 +75,21 @@
 
 .out_button__img img {
 	width: 16px;
+}
+@media (hover: hover) {
+	.out_button button:hover::after {
+		width: 100%;
+		border-radius: 26px;
+	}
+}
+
+@media (max-width: 1200px), (hover: none) {
+	.out_button p {
+		transform: translate(0, -2px);
+		opacity: 1;
+	}
+	.out_button button::after {
+		width: 100%;
+		border-radius: 26px;
+	}
 }
