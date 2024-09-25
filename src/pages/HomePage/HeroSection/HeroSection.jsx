@@ -1,5 +1,7 @@
 import s from './HeroSection.module.css';
-import heroImg from '../../../assets/img/hero-img.webp';
+import heroImg from '../../../assets/img/hero-img.jpg';
+import heroImg2 from '../../../assets/img/hero-img2.jpg';
+import heroImg3 from '../../../assets/img/hero-img3.jpg';
 
 const HeroSection = () => {
 	return (
@@ -15,7 +17,27 @@ const HeroSection = () => {
 					</p>
 				</div>
 				<div className={s.hero_section__img}>
-					<img src={heroImg} alt="" />
+					<div className={s.hero_section__list}>
+						<div className={s.hero_section__item}>
+							<img src={heroImg} alt="" />
+						</div>
+						<div className={s.hero_section__item}>
+							<img src={heroImg2} alt="" />
+						</div>
+						<div className={s.hero_section__item}>
+							<img src={heroImg3} alt="" />
+						</div>
+						{/* -- */}
+						<div className={s.hero_section__item}>
+							<img src={heroImg} alt="" />
+						</div>
+						<div className={s.hero_section__item}>
+							<img src={heroImg2} alt="" />
+						</div>
+						<div className={s.hero_section__item}>
+							<img src={heroImg3} alt="" />
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
