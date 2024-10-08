@@ -1,6 +1,7 @@
 .page_container {
 	width: 100vw;
-	height: 100vh;
+	height: 100%;
+	min-height: 100%;
 
 	display: flex;
 
@@ -26,7 +27,7 @@
 	position: relative;
 	z-index: 1;
 	flex: 1 1;
-	padding-top: 80px;
+	padding-top: 70px;
 
 	overflow: hidden;
 }
@@ -42,7 +43,7 @@
 
 @media (max-width: 1550px) {
 	.page_container__right_column {
-		padding-top: 70px;
+		padding-top: 65px;
 	}
 }
 
@@ -70,11 +71,11 @@
 @media (max-width: 1200px), (hover: none) {
 	.page_container__left_column {
 		position: absolute;
-		top: 70px;
+		top: 65px;
 		left: 0;
 
 		max-width: 100%;
-		height: calc(100% - 70px);
+		height: calc(100% - 65px);
 
 		opacity: 0;
 		overflow: hidden;
@@ -97,5 +98,12 @@
 @media (max-width: 768px) {
 	.overflow_container {
 		padding: 20px 0;
+	}
+	.page_container__right_column {
+		padding-top: 55px;
+	}
+	.page_container__left_column {
+		top: 55px;
+		height: calc(100% - 55px);
 	}
 }

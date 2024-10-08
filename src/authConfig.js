@@ -15,7 +15,7 @@ export const msalConfig = {
 	auth: {
 		clientId: '9d43453d-bd68-4236-8daf-f98e1b4d4bb7',
 		authority: 'https://login.microsoftonline.com/d9d76ed5-5244-48cb-9206-288e80b06a84',
-		redirectUri: 'http://localhost:3000',
+		redirectUri: 'https://portal.softcom.ua/',
 	},
 	cache: {
 		cacheLocation: 'localStorage', // This configures where your cache will be stored
@@ -55,7 +55,7 @@ export const msalConfig = {
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-	scopes: ['User.Read'],
+	scopes: ['User.Read', 'User.Read.All'],
 };
 
 /**

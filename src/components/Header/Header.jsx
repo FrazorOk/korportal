@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import s from './Header.module.css';
 import { useMsal } from '@azure/msal-react';
-import { callMe, callPhoto, getAllUsers, getStructureCompany } from '../../api/graph';
+import { callMe, callPhoto, getStructureCompany } from '../../api/graph';
 import { loginRequest } from '../../authConfig';
 import settingIcon from '../../assets/img/icons/settings-icon.svg';
 import bellIcon from '../../assets/img/icons/bell-icon.svg';
@@ -68,7 +68,6 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 				<div className={s.header_column}>
 					<NavLink to="/" className={s.header_logo}>
 						<img src={logo} alt="" />
-						<p>СОФТКОМ</p>
 					</NavLink>
 
 					{/* Панель ПОШУКУ */}
