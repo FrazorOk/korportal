@@ -19,8 +19,7 @@ h2 {
 h3 {
 	width: 100%;
 	font-size: 20px;
-	padding: 20px 20px 30px;
-	border-bottom: 1px solid #cecece;
+	padding: 20px 20px 10px;
 }
 
 .content-container {
@@ -29,11 +28,18 @@ h3 {
 	margin: 0 auto;
 	padding: 0 50px;
 }
+.section-container {
+	padding: 10px 30px 30px;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08);
+	background-color: #faf9f8;
+	border-radius: 16px;
+}
 
 .row {
 	display: flex;
-	gap: 3%;
-	margin-top: 3%;
+	align-items: stretch;
+	gap: 30px;
+	margin-top: 30px;
 }
 .column-60 {
 	width: 60%;
@@ -55,8 +61,12 @@ h3 {
 	.row {
 		flex-direction: column;
 		align-items: center;
-		gap: 40px;
-		margin-top: 40px;
+		gap: 30px;
+		margin-top: 30px;
+	}
+	.row.no-wrap {
+		flex-direction: row;
+		align-items: stretch;
 	}
 	.column-60,
 	.column-55,
@@ -71,16 +81,20 @@ h3 {
 	.content-container {
 		padding: 0 30px;
 	}
+	.section-container {
+		padding: 20px 20px 20px;
+		border-radius: 10px;
+	}
 	.row {
-		gap: 30px;
-		margin-top: 30px;
+		gap: 20px;
+		margin-top: 20px;
 	}
 	h2 {
 		font-size: 22px;
 	}
 	h3 {
 		font-size: 18px;
-		padding: 5px 10px 20px;
+		padding: 5px 10px 10px;
 	}
 }
 @media (max-width: 768px) {
@@ -94,8 +108,22 @@ h3 {
 	.content-container {
 		padding: 0 15px;
 	}
+	.section-container {
+		padding: 15px 15px 15px;
+		border-radius: 8px;
+	}
 	.row {
 		gap: 20px;
 		margin-top: 20px;
+	}
+}
+
+@media (max-width: 550px) {
+	h3 {
+		font-size: 16px;
+		padding: 5px 10px 0px;
+	}
+	.row {
+		column-gap: 10px;
 	}
 }

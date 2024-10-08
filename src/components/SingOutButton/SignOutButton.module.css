@@ -93,3 +93,10 @@
 		border-radius: 26px;
 	}
 }
+
+@media (max-width: 768px) {
+	.out_button {
+		height: 50px;
+		padding-top: 10px;
+	}
+}

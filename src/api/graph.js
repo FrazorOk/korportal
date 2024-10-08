@@ -90,7 +90,6 @@ export async function getStructureCompany(accessToken) {
 	};
 
 	// 4af0fe36-d384-4634-a344-f706b61c1158  --- ID Бобровского Сергія
-
 	// /users/{id | userPrincipalName}/manager  --- Дізнатися керівника юзера
 
 	return fetch('https://graph.microsoft.com/v1.0/users/4af0fe36-d384-4634-a344-f706b61c1158/directReports', options)
