@@ -32,7 +32,7 @@ const BirthdaySection = () => {
 	function RequestUsersData() {
 		instance
 			.acquireTokenSilent({
-				...loginRequest,
+				scopes: ['User.Read.All'],
 				account: accounts[0],
 			})
 			.then((response) => {
@@ -40,11 +40,13 @@ const BirthdaySection = () => {
 					.then((response) => response.json())
 					.then((result) => {
 						// Фільтрування активних юзерів
+						console.log(result);
+
 						let filterResult = result.value.filter(
 							(user) =>
 								user.accountEnabled &&
 								user.onPremisesExtensionAttributes.extensionAttribute2 &&
-								user.onPremisesExtensionAttributes.extensionAttribute2 != 'День народження'
+								user.onPremisesExtensionAttributes.extensionAttribute2 !== 'День народження'
 						);
 
 						// Константи для дат
@@ -158,9 +160,10 @@ const BirthdaySection = () => {
 			let found = users.filter((el) => {
 				let elText = el.displayName.toUpperCase();
 
-				if (elText.slice(0, inputValue.length) == inputValue) {
+				if (elText.slice(0, inputValue.length) === inputValue) {
 					return el;
 				}
+				return 0;
 			});
 
 			findVisibleUsers(found);
@@ -178,14 +181,14 @@ const BirthdaySection = () => {
 	}, [users]);
 
 	return (
-		<div className={s.birthday}>
+		<div className={`${s.birthday} section-container`}>
 			<h3>Майбутні дні народження</h3>
 			<div className={s.birthday_search}>
 				<button onClick={searchHandler}>
 					<img src={searchIcon} alt="bell icon" />
 				</button>
 				<input
-					onChange={(e) => e.target.value == '' && setVisibleUsers(nulledUsers)}
+					onChange={(e) => e.target.value === '' && setVisibleUsers(nulledUsers)}
 					onKeyDown={(e) => e.key === 'Enter' && searchHandler()}
 					ref={ref}
 					type="text"
@@ -196,7 +199,7 @@ const BirthdaySection = () => {
 			<ul className={s.birthday_list}>
 				{visibleUsers.length > 0 ? (
 					visibleUsers.map((user, index) => (
-						<li key={`birthday user ${index}`} className={`${s.birthday_item} ${user.index == 0 ? s.active : ''}`}>
+						<li key={`birthday user ${index}`} className={`${s.birthday_item} ${user.index === 0 ? s.active : ''}`}>
 							<div className={s.birthday_item__user}>
 								<img src={user.urlImg ? user.urlImg : profileIcon} alt={profileIcon} />
 								<div>

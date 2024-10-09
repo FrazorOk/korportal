@@ -9,6 +9,7 @@ import { MsalProvider } from '@azure/msal-react';
 import { msalConfig } from './authConfig';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import TeamPage from './pages/TeamPage/TeamPage';
+import ImagesPage from './pages/ImagesPage/ImagesPage';
 
 const router = createBrowserRouter([
 	{
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
 					{ path: 'company-structure/', element: <div>company-structure</div> },
 					{ path: 'my-holidays/', element: <div>holidays</div> },
 				],
+			},
+			{
+				path: 'images/',
+				element: <ImagesPage />,
 			},
 		],
 	},
