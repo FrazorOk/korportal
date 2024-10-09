@@ -1,0 +1,137 @@
+.today_section {
+	position: relative;
+	width: 23%;
+	/* min-width: 200px; */
+	min-height: 100%;
+	overflow: hidden;
+}
+.bg_img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.today_section::after {
+	content: '';
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.35);
+	border-radius: 16px;
+}
+.today_content {
+	position: relative;
+	min-height: 100%;
+	z-index: 2;
+	color: white;
+	padding-top: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.today_content p {
+	font-size: 18px;
+}
+.today_content p:nth-child(3) {
+	font-size: 16px;
+	font-weight: 300;
+	text-decoration: underline;
+}
+.today_content h2 {
+	font-size: 24px;
+	font-weight: 600;
+	padding: 0;
+	margin-bottom: 25px;
+}
+.today_content h2 b {
+	font-size: 32px;
+	font-weight: 600;
+}
+.today_content span {
+	font-size: 16px;
+}
+@media (max-width: 1024px) {
+	.today_section::after {
+		border-radius: 10px;
+	}
+	.today_content p {
+		font-size: 16px;
+	}
+	.today_content h2 {
+		font-size: 22px;
+	}
+	.today_content h2 b {
+		font-size: 24px;
+		font-weight: 600;
+	}
+	.today_content p:nth-child(3) {
+		font-size: 14px;
+	}
+}
+@media (max-width: 768px) {
+	.today_section::after {
+		border-radius: 8px;
+	}
+	.today_content {
+		padding-top: 0;
+	}
+	.today_content h2 {
+		font-size: 20px;
+		font-weight: 600;
+		padding: 0;
+		margin-bottom: 25px;
+	}
+	.today_content h2 b {
+		font-size: 22px;
+		font-weight: 600;
+	}
+	.today_content span {
+		font-size: 14px;
+	}
+}
+@media (max-width: 650px) {
+	.today_content p {
+		font-size: 12px;
+	}
+	.today_content h2 {
+		font-size: 16px;
+		margin-bottom: 25px;
+	}
+	.today_content span {
+		font-size: 14px;
+	}
+	.today_content p:nth-child(3) {
+		font-size: 12px;
+	}
+}
+@media (max-width: 500px) {
+	.today_section {
+		width: 20%;
+		min-width: 100px;
+		height: auto;
+	}
+	.today_content p {
+		font-size: 14px;
+	}
+	.today_content h2 {
+		font-size: 18px;
+		margin-bottom: auto;
+		margin-top: 25px;
+	}
+	.today_content span {
+		font-size: 14px;
+	}
+	.today_content p:nth-child(3) {
+		font-size: 12px;
+	}
+}
+@media (max-width: 450px) {
+	.today_content h2 {
+		margin-top: 30px;
+	}
+}

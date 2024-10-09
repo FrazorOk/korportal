@@ -60,6 +60,7 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 	useEffect(() => {
 		RequestProfileData();
 		RequestProfilePhoto();
+		console.log(instance, accounts);
 	}, []);
 
 	return (
@@ -68,7 +69,6 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 				<div className={s.header_column}>
 					<NavLink to="/" className={s.header_logo}>
 						<img src={logo} alt="" />
-						<p>СОФТКОМ</p>
 					</NavLink>
 
 					{/* Панель ПОШУКУ */}
