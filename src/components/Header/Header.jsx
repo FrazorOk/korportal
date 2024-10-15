@@ -8,6 +8,7 @@ import bellIcon from '../../assets/img/icons/bell-icon.svg';
 import searchIcon from '../../assets/img/icons/search-icon.svg';
 import logo from '../../assets/img/Frame 40.png';
 import { NavLink } from 'react-router-dom';
+import { getNews, sendUserProfile } from '../../api/api';
 
 const Header = ({ toggleMobileMode, mobileMode }) => {
 	const { instance, accounts } = useMsal();
@@ -60,8 +61,14 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 	useEffect(() => {
 		RequestProfileData();
 		RequestProfilePhoto();
-		console.log(instance, accounts);
 	}, []);
+
+	useEffect(() => {
+		if (accounts.length > 0 && graphData) {
+			// sendUserProfile(graphData);
+			// getNews();
+		}
+	}, [graphData]);
 
 	return (
 		<header>

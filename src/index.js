@@ -15,7 +15,6 @@ const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <App />,
-
 		children: [
 			{
 				path: '/',
@@ -36,6 +35,10 @@ const router = createBrowserRouter([
 				element: <ImagesPage />,
 			},
 		],
+	},
+	{
+		path: '*',
+		element: <App />,
 	},
 ]);
 
