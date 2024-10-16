@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import HomePage from './pages/HomePage/HomePage';
-
 import { PublicClientApplication } from '@azure/msal-browser';
 import { MsalProvider } from '@azure/msal-react';
 import { msalConfig } from './authConfig';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import TeamPage from './pages/TeamPage/TeamPage';
 import ImagesPage from './pages/ImagesPage/ImagesPage';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 const router = createBrowserRouter([
 	{
@@ -48,7 +49,9 @@ msalInstance.initialize();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-	<MsalProvider instance={msalInstance}>
-		<RouterProvider router={router} />
-	</MsalProvider>
+	<Provider store={store}>
+		<MsalProvider instance={msalInstance}>
+			<RouterProvider router={router} />
+		</MsalProvider>
+	</Provider>
 );

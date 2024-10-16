@@ -80,6 +80,9 @@ h5 {
 		flex-direction: row;
 		align-items: stretch;
 	}
+	.row.mobile-revers {
+		flex-direction: column-reverse;
+	}
 	.column-60,
 	.column-55,
 	.column-50,
