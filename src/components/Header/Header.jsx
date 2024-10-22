@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import s from './Header.module.css';
 import { useMsal } from '@azure/msal-react';
 import { callMe, callPhoto, getStructureCompany } from '../../api/graph';
@@ -8,9 +8,12 @@ import bellIcon from '../../assets/img/icons/bell-icon.svg';
 import searchIcon from '../../assets/img/icons/search-icon.svg';
 import logo from '../../assets/img/Frame 40.png';
 import { NavLink } from 'react-router-dom';
-import { getNews, sendUserProfile } from '../../api/api';
+import { sendUserProfile } from '../../api/api';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../store/userSlice';
 
 const Header = ({ toggleMobileMode, mobileMode }) => {
+	const dispatch = useDispatch();
 	const { instance, accounts } = useMsal();
 	let [urlImg, setUrlImg] = useState(null);
 	let [graphData, setGraphData] = useState(null);
@@ -65,8 +68,9 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 
 	useEffect(() => {
 		if (accounts.length > 0 && graphData) {
-			// sendUserProfile(graphData);
-			// getNews();
+			dispatch(setUser(graphData));
+			sendUserProfile(graphData);
+			console.log(graphData);
 		}
 	}, [graphData]);
 

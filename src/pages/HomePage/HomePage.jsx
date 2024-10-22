@@ -16,7 +16,7 @@ const HomePage = () => {
 			<div className="row">
 				<EventSection />
 			</div>
-			<div className="row">
+			<div className="row mobile-revers">
 				<VivoChatSection />
 				<div className="column-50">
 					<NewsSection />

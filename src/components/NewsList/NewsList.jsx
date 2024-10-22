@@ -16,12 +16,18 @@ const NewsList = ({ data }) => {
 	}, [news]);
 
 	return (
-		<div className={s.news}>
-			{news.map((item, index) => {
-				if (index < news.length - 1 && news.length > 0) {
-					return <NewsItem item={item} key={index} />;
-				}
-			})}
+		<div className={s.news_container}>
+			<div className={s.news}>
+				{news.length > 0 ? (
+					news.map((item, index) => {
+						if (index < news.length - 1 && news.length > 0) {
+							return <NewsItem item={item} key={index} />;
+						}
+					})
+				) : (
+					<p>Нічого не знайдено</p>
+				)}
+			</div>
 		</div>
 	);
 };
