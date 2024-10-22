@@ -1,21 +1,42 @@
 .birthday {
 	width: 100%;
 }
-.birthday_search {
-	position: relative;
+.birthday_filters {
+	display: flex;
+	gap: 10px;
 	margin-top: 30px;
+}
+.birthday_filters button {
+	font-weight: 500;
+	color: #7d7d7d;
+	background-color: #ebebeb;
+	padding: 5px 16px;
+	border-radius: 50px;
+	transition: all 0.3s ease 0s;
+}
+.birthday_filters button.active {
+	color: white;
+	background: #004795;
+}
+
+.birthday_search {
+	width: 100%;
+	max-width: 300px;
+	position: relative;
 	padding: 0px 7px;
+	padding-right: 0;
+}
+.birthday_search button {
+	padding: 0;
 }
 .birthday_search input {
 	font-size: 14px;
-	width: 300px;
+	width: 100%;
 	height: 40px;
-
 	padding-left: 64px;
-
+	padding-right: 10px;
 	border-radius: 50px;
 	background-color: #ebebeb;
-
 	transition: all 0.2s ease 0s;
 }
 .birthday_search input::placeholder {
@@ -62,11 +83,12 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	position: relative;
 }
 .birthday_item {
 	width: 100%;
 	min-height: 65px;
-	padding: 10px 15px;
+	padding: 14px 15px;
 	padding-left: 20px;
 	background-color: #ffffff;
 	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
@@ -84,6 +106,13 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
+}
+.birthday_item__user a {
+	color: black;
+}
+.birthday_item.active .birthday_item__user a {
+	color: white;
+	font-weight: 600;
 }
 .birthday_item__user img {
 	width: 42px;
@@ -203,7 +232,7 @@
 	}
 }
 @media (max-width: 768px) {
-	.birthday_search {
+	.birthday_filters {
 		margin-top: 20px;
 	}
 	.birthday_search input {
@@ -216,6 +245,7 @@
 		left: 15px;
 
 		width: 24px;
+		max-width: 24px;
 		height: 24px;
 
 		background-color: #ffffff;
@@ -235,7 +265,16 @@
 		height: 265px;
 		margin-top: 15px;
 	}
-
+	.birthday_filters {
+		width: 100%;
+		flex-wrap: wrap;
+	}
+	.birthday_search {
+		width: 100%;
+		min-width: 100%;
+		max-width: 100%;
+		padding-right: 7px;
+	}
 	.birthday_search input {
 		max-width: 100%;
 		min-width: 100%;
@@ -258,8 +297,8 @@
 
 	.birthday_item {
 		width: 100%;
-		min-height: 55px;
-		padding: 10px 10px;
+		min-height: 60px;
+		padding: 14px 10px;
 	}
 
 	.birthday_item__user {

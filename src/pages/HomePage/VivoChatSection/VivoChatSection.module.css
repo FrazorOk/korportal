@@ -1,7 +1,6 @@
 .chat {
 	flex: 1 1 50%;
-	height: auto;
-	min-height: 100%;
+	/* padding-right: 10px !important ; */
 }
 
 .chat iframe {

@@ -75,8 +75,14 @@ export async function getPhotoUser(accessToken, id) {
 	};
 
 	return fetch(`https://graph.microsoft.com/v1.0/users/${id}/photo/$value`, options)
-		.then((response) => response)
-		.catch((error) => console.log(error));
+		.then((response) => {
+			if (response) {
+				return response;
+			}
+		})
+		.catch((error) => {
+			console.log(error);
+		});
 }
 export async function getStructureCompany(accessToken) {
 	// Отримує людей які підпорядковуються цій людині ІД

@@ -8,6 +8,7 @@ import { useMsal } from '@azure/msal-react';
 import { loginRequest } from '../../../authConfig';
 import { useEffect, useRef, useState } from 'react';
 import { dateConverter } from '../../../helpers/dateConverter';
+import Loader from '../../../components/Loader/Loader';
 
 const dateToYMD = (date, year) => {
 	let d = date.getDate();
@@ -27,6 +28,8 @@ const BirthdaySection = () => {
 	let [users, setUsers] = useState([]);
 	let [nulledUsers, setNulledUsers] = useState([]);
 	let [visibleUsers, setVisibleUsers] = useState([]);
+	let [activeButtonFilter, setActiveButtonFilter] = useState(1);
+	let [isLoading, setIsLoading] = useState(false);
 
 	// fetches
 	function RequestUsersData() {
@@ -121,7 +124,13 @@ const BirthdaySection = () => {
 			})
 			.then((response) => {
 				return getPhotoUser(response.accessToken, id)
-					.then((response) => response.blob())
+					.then((response) => {
+						if (response) {
+							return response.blob();
+						} else {
+							return '';
+						}
+					})
 					.then((result) => {
 						const url = window.URL || window.webkitURL;
 						const blobUrl = url.createObjectURL(result);
@@ -131,32 +140,40 @@ const BirthdaySection = () => {
 						}
 
 						return blobUrl;
-					});
+					})
+					.catch((error) => console.log(error));
 			});
 	}
 
 	// Функція формування items у списку
 	let findVisibleUsers = async (array, status) => {
-		let data = await Promise.all(
-			array.map(async (item) => {
-				let imgUrl = await RequestProfilePhoto(item.id);
+		setIsLoading(true);
 
+		let data = await Promise.all(
+			array.map(async (item, index) => {
+				let imgUrl = await RequestProfilePhoto(item.id);
+				if (index === array.length - 1) {
+					setIsLoading(false);
+				}
 				return { ...item, urlImg: imgUrl };
 			})
 		);
-
 		if (status === 'first') {
 			setNulledUsers(data);
 		}
 
 		setVisibleUsers(data);
 	};
-
+	let nulledUsersAfterSearch = () => {
+		setVisibleUsers(nulledUsers);
+		setActiveButtonFilter(1);
+	};
 	// Handler
 	let searchHandler = () => {
 		let inputValue = ref.current.value.toUpperCase();
 
 		if (inputValue) {
+			setActiveButtonFilter(0);
 			let found = users.filter((el) => {
 				let elText = el.displayName.toUpperCase();
 
@@ -166,8 +183,22 @@ const BirthdaySection = () => {
 				return 0;
 			});
 
-			findVisibleUsers(found);
+			if (found.length > 0) {
+				findVisibleUsers(found);
+			} else {
+				setVisibleUsers([]);
+			}
 		}
+	};
+	let onclickClosestUsersFilterButton = () => {
+		ref.current.value = '';
+		findVisibleUsers(nulledUsers);
+		setActiveButtonFilter(1);
+	};
+	let onclickAllUsersFilterButton = () => {
+		ref.current.value = '';
+		findVisibleUsers(users);
+		setActiveButtonFilter(2);
 	};
 
 	useEffect(() => {
@@ -183,36 +214,52 @@ const BirthdaySection = () => {
 	return (
 		<div className={`${s.birthday} section-container`}>
 			<h3>Майбутні дні народження</h3>
-			<div className={s.birthday_search}>
-				<button onClick={searchHandler}>
-					<img src={searchIcon} alt="bell icon" />
+			<div className={s.birthday_filters}>
+				<div className={s.birthday_search}>
+					<button disabled={isLoading} onClick={searchHandler}>
+						<img src={searchIcon} alt="bell icon" />
+					</button>
+					<input
+						disabled={isLoading}
+						onChange={(e) => e.target.value === '' && nulledUsersAfterSearch()}
+						onKeyDown={(e) => e.key === 'Enter' && searchHandler()}
+						ref={ref}
+						type="text"
+						placeholder="Пошук тут..."
+					/>
+				</div>
+				<button disabled={isLoading} onClick={onclickClosestUsersFilterButton} className={`${activeButtonFilter === 1 && s.active}`}>
+					Найближчі
 				</button>
-				<input
-					onChange={(e) => e.target.value === '' && setVisibleUsers(nulledUsers)}
-					onKeyDown={(e) => e.key === 'Enter' && searchHandler()}
-					ref={ref}
-					type="text"
-					placeholder="Пошук тут..."
-				/>
+				<button disabled={isLoading} onClick={onclickAllUsersFilterButton} className={`${activeButtonFilter === 2 && s.active}`}>
+					Усі
+				</button>
 			</div>
 
 			<ul className={s.birthday_list}>
-				{visibleUsers.length > 0 ? (
+				{isLoading ? (
+					<Loader />
+				) : visibleUsers.length > 0 ? (
 					visibleUsers.map((user, index) => (
 						<li key={`birthday user ${index}`} className={`${s.birthday_item} ${user.index === 0 ? s.active : ''}`}>
 							<div className={s.birthday_item__user}>
-								<img src={user.urlImg ? user.urlImg : profileIcon} alt={profileIcon} />
+								<a title={'Відкрити чат'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
+									<img src={user.urlImg ? user.urlImg : profileIcon} alt={profileIcon} />
+								</a>
 								<div>
-									<p>{user.displayName}</p>
+									<a title={'Відкрити чат'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
+										{user.displayName}
+									</a>
 									<p>{user.jobTitle}</p>
 								</div>
 							</div>
 							<p className={s.birthday_item__date}>{user.uaDate}</p>
 							<div className={s.birthday_item__buttons}>
-								<a target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
+								<a title={'Привітати'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
 									<img src={mailIcon} alt="" />
 								</a>
 								<a
+									title={'Додати до календаря'}
 									target="_blank"
 									href={`https://outlook.office.com/calendar/action/compose?allday=true&body=${encodeURI(
 										'Посада: ' + user.jobTitle

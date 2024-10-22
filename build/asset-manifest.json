@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.78b63994.css",
-    "main.js": "/static/js/main.c405990e.js",
+    "main.css": "/static/css/main.17336d12.css",
+    "main.js": "/static/js/main.b9c709e6.js",
     "static/media/photo_2024-1.jpg": "/static/media/photo_2024-1.0a3ce663f35ce74d5648.jpg",
     "static/media/photo_2024-4.jpg": "/static/media/photo_2024-4.5c3067a1853f935a6ec5.jpg",
     "static/media/photo_2024-3.jpg": "/static/media/photo_2024-3.dfd5fad001d048aba295.jpg",
@@ -19,9 +19,12 @@
     "static/media/bell-icon.svg": "/static/media/bell-icon.82477892690473e36e21731fafa82333.svg",
     "static/media/img-icon.svg": "/static/media/img-icon.145b514750037887282bca37e52c6fe8.svg",
     "static/media/profile-icon.svg": "/static/media/profile-icon.176b4b87fce2e3b70b7586994347a158.svg",
+    "static/media/comments-icon.svg": "/static/media/comments-icon.519787aa9c08444c4de44afe0fd8c7cc.svg",
+    "static/media/heart-icon.svg": "/static/media/heart-icon.102c25784782604809a41127a1a48cd9.svg",
     "static/media/calendar-icon.svg": "/static/media/calendar-icon.c19ef04cfdac71f14eefc87c757a9b7a.svg",
     "static/media/home-icon.svg": "/static/media/home-icon.38f958994d7f4c0e9eb3b2341b4b390d.svg",
     "static/media/mail-icon.svg": "/static/media/mail-icon.065e91a68c47178b2b679e88c6ab3129.svg",
+    "static/media/mail_gray_icon.svg": "/static/media/mail_gray_icon.a45a6059d3aa7ebe417cbe31e7a4b34e.svg",
     "static/media/teach-icon.svg": "/static/media/teach-icon.aaa4b2bd233108e74e5f00cee5f812dd.svg",
     "static/media/arrow-link-icon.svg": "/static/media/arrow-link-icon.7a27a9c64feda870b3b528840aaf7a38.svg",
     "index.html": "/index.html",
@@ -30,11 +33,11 @@
     "static/media/video-icon.svg": "/static/media/video-icon.25d754852f3aa8ebfca9bd18283609b3.svg",
     "static/media/arrow-down-icon.svg": "/static/media/arrow-down-icon.48df1020a651f0ec2b7374a4ed59a4a8.svg",
     "static/media/ms_icon.svg": "/static/media/ms_icon.800c1b5e39d810b7d166536da62f369d.svg",
-    "main.78b63994.css.map": "/static/css/main.78b63994.css.map",
-    "main.c405990e.js.map": "/static/js/main.c405990e.js.map"
+    "main.17336d12.css.map": "/static/css/main.17336d12.css.map",
+    "main.b9c709e6.js.map": "/static/js/main.b9c709e6.js.map"
   },
   "entrypoints": [
-    "static/css/main.78b63994.css",
-    "static/js/main.c405990e.js"
+    "static/css/main.17336d12.css",
+    "static/js/main.b9c709e6.js"
   ]
 }
