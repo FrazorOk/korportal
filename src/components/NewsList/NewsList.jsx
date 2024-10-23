@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import s from './NewsList.module.css';
 import NewsItem from '../NewsItem/NewsItem';
 
@@ -11,7 +11,7 @@ const NewsList = ({ data }) => {
 
 	useEffect(() => {
 		if (news.length > 0) {
-			console.log(data);
+			console.log(news);
 		}
 	}, [news]);
 
@@ -32,4 +32,4 @@ const NewsList = ({ data }) => {
 	);
 };
 
-export default NewsList;
+export default memo(NewsList);

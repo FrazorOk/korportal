@@ -1,15 +1,6 @@
 .chat {
-	flex: 1 1 50%;
+	flex: 0 1 calc(50% - 15px);
 	/* padding-right: 10px !important ; */
-}
-
-.chat iframe {
-	width: 550px;
-	height: 90%;
-	margin-top: 20px;
-	position: relative;
-	left: 50%;
-	transform: translate(-50%, 0);
 }
 
 @media (max-width: 1550px) {
@@ -50,16 +41,9 @@
 	}
 }
 
-@media (max-width: 1024px) {
-	.chat iframe {
-		width: 100%;
-		height: 420px;
-		min-height: 420px;
-	}
-}
 @media (max-width: 768px) {
 	.chat {
-		flex: 1 1 450px;
+		flex: 1 1;
 	}
 	.chat iframe {
 		width: 100%;
