@@ -1,20 +1,30 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import s from './NewsItem.module.css';
 import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
 import heartIcon from '../../assets/img/icons/heart-icon.svg';
 import commentsIcon from '../../assets/img/icons/comments-icon.svg';
 import mailIcon from '../../assets/img/icons/mail_gray_icon.svg';
 import CommentsList from '../CommentsList/CommentsList';
-import { sendCommentNews } from '../../api/api';
+import { getNewsFromID, sendCommentNews } from '../../api/api';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../selectors/userSelectors';
 
 const NewsItem = ({ item }) => {
 	let ref = useRef();
 
-	let { id, title, pub_date, tags, text, img, comment } = item;
 	let user = useSelector(userSelector.userData);
+	let { id, title, pub_date, tags, text, img, comment } = item;
 	let [visibleStatus, toggleVisibleStatus] = useState(false);
+	let [fetchedComments, setFetchedComments] = useState(null);
+	let [commentsLength, setCommentsLenth] = useState(0);
+	let [fetchingStatus, setFetchingStatus] = useState(false);
+
+	useEffect(() => {
+		setFetchedComments(comment);
+	}, [comment]);
+	useEffect(() => {
+		fetchedComments && setCommentsLenth(fetchedComments.length);
+	}, [fetchedComments]);
 
 	let commentButtonOnClickHandler = (e) => {
 		if (!visibleStatus) {
@@ -26,7 +36,14 @@ const NewsItem = ({ item }) => {
 	};
 	let sendCommetnButtonOnClickHandler = (e) => {
 		let text = ref.current.value;
-		sendCommentNews(id, user.id, text);
+
+		let sendAndGetComments = async () => {
+			await sendCommentNews(id, user.id, text, setFetchingStatus);
+			await getNewsFromID(setFetchedComments, id);
+			ref.current.value = '';
+		};
+
+		sendAndGetComments();
 	};
 
 	return (
@@ -55,11 +72,11 @@ const NewsItem = ({ item }) => {
 					</button>
 					<button onClick={commentButtonOnClickHandler} className={s.coments_button}>
 						<img src={commentsIcon} alt="" />
-						<p>{comment ? comment.length : 0}</p>
+						<p>{commentsLength}</p>
 					</button>
 				</div>
 				<div className={s.commet_container}>
-					{comment && <CommentsList comment={comment} />}
+					{comment && <CommentsList comment={fetchedComments} />}
 					<div className={s.coments_input}>
 						<textarea ref={ref} placeholder="Ваш коментар..." name="" id=""></textarea>
 						<button onClick={sendCommetnButtonOnClickHandler}>

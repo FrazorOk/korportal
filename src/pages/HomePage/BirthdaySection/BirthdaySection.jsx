@@ -43,7 +43,6 @@ const BirthdaySection = () => {
 					.then((response) => response.json())
 					.then((result) => {
 						// Фільтрування активних юзерів
-						console.log(result);
 
 						let filterResult = result.value.filter(
 							(user) =>

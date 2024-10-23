@@ -17,7 +17,7 @@ const PageLayout = (props) => {
 			</div>
 			<div className={s.page_container__right_column}>
 				<Header toggleMobileMode={toggleMobileMode} mobileMode={mobileMode} />
-				<div className={s.overflow_container}>
+				<div className={`${s.overflow_container} main-scroll-block`}>
 					<div className="content-container">{props.children}</div>
 				</div>
 			</div>
