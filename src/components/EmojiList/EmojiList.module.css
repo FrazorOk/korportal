@@ -1,0 +1,25 @@
+.emoji_list {
+	margin-top: 12px;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+.emoji_list.active {
+	display: flex;
+}
+.emoji_item {
+	font-size: 18px;
+	width: 30px;
+	transition: all 0.3s ease 0s;
+}
+.emoji_list button {
+	background-color: transparent;
+}
+
+@media (hover: hover) {
+	.emoji_item:hover {
+		font-size: 24px;
+	}
+}

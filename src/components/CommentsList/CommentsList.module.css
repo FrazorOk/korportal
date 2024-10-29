@@ -3,10 +3,11 @@
 }
 .commets_h {
 	font-weight: 500;
+	padding-left: 10px;
 }
 .commets_list {
 	overflow-y: hidden;
-	height: 132px;
+	height: 152px;
 	margin-top: 10px;
 	display: flex;
 	flex-direction: column;
@@ -16,6 +17,15 @@
 	padding: 5px 10px 8px;
 	border-radius: 4px;
 	background-color: #faf9f8;
+	transition: all 0.3s ease 0s;
+}
+.commets_item.active {
+	animation-name: circle;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: normal;
+	animation-play-state: running;
 }
 .commets_title {
 	color: #004795;
@@ -27,7 +37,9 @@
 	margin-top: 2px;
 }
 .commets_text {
-	font-size: 12px;
+	white-space: pre;
+	font-size: 14px;
+	line-height: 17px;
 	margin-top: 10px;
 }
 @media (hover: hover) {
@@ -35,7 +47,7 @@
 		overflow-y: auto;
 	}
 }
-@media (max-width: 1200px) {
+@media (max-width: 1200px), (hover: none) {
 	.commets_list {
 		overflow-y: auto;
 	}
@@ -43,5 +55,16 @@
 @media (max-width: 600px) {
 	.commets_title {
 		font-size: 12px;
+	}
+}
+@keyframes circle {
+	0% {
+		background-color: #faf9f8;
+	}
+	30% {
+		background-color: #0048956c;
+	}
+	100% {
+		background-color: #faf9f8;
 	}
 }

@@ -1,5 +1,5 @@
 import s from './TodaySection.module.css';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { dayConverter, weekDayConverter, monthFullConverter, yearSeasonConverter } from '../../../helpers/dateConverter';
 
 const TodaySection = () => {
@@ -36,4 +36,4 @@ const TodaySection = () => {
 	);
 };
 
-export default TodaySection;
+export default memo(TodaySection);

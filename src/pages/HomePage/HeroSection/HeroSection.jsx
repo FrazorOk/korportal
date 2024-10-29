@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import s from './HeroSection.module.css';
 
 const HeroSection = () => {
@@ -18,4 +19,4 @@ const HeroSection = () => {
 	);
 };
 
-export default HeroSection;
+export default memo(HeroSection);
