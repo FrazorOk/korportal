@@ -262,18 +262,21 @@
 }
 @media (max-width: 550px) {
 	.birthday_list {
-		height: 265px;
+		height: 280px;
 		margin-top: 15px;
 	}
 	.birthday_filters {
 		width: 100%;
 		flex-wrap: wrap;
+		padding-right: 7px;
+		padding-left: 7px;
 	}
 	.birthday_search {
 		width: 100%;
 		min-width: 100%;
 		max-width: 100%;
-		padding-right: 7px;
+		padding-right: 0px;
+		padding-left: 0px;
 	}
 	.birthday_search input {
 		max-width: 100%;
