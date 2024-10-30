@@ -8,8 +8,6 @@ export const sendUserProfile = (data) => {
 		mobilePhone: mobilePhone,
 		userPrincipialName: userPrincipialName,
 	};
-	console.log('HEARE MY PROFILE BODY');
-	console.log(curretBody);
 
 	fetch('https://portal.softcom.ua/php/userreg.php', {
 		method: 'POST',
@@ -19,7 +17,6 @@ export const sendUserProfile = (data) => {
 		console.log(result);
 	});
 };
-
 export const getNews = (setState) => {
 	let curretBody = {
 		limit: 100,
@@ -31,16 +28,13 @@ export const getNews = (setState) => {
 		body: JSON.stringify(curretBody),
 	})
 		.then((response) => {
-			console.log(response);
 			return response.json();
 		})
 		.then((result) => {
 			setState(result);
-			console.log(result);
 		});
 };
-
-export const getNewsFromID = (setState, postID) => {
+export const getNewsFromID = (setState, setStateReactions, postID) => {
 	let curretBody = {
 		id: postID,
 	};
@@ -54,18 +48,16 @@ export const getNewsFromID = (setState, postID) => {
 			return response.json();
 		})
 		.then((result) => {
-			setState(result[0].comment);
+			setState && setState(result[0].comment);
+			setStateReactions && setStateReactions(result[0].reaction);
 		});
 };
-
 export const sendCommentNews = (newsID, userID, text, setFetchingStatus) => {
 	let curretBody = {
 		newsID: newsID,
 		userID: userID,
 		text: text,
 	};
-	console.log('BODY HEARE');
-	console.log(curretBody);
 
 	return fetch('https://portal.softcom.ua/php/commentadd.php', {
 		method: 'POST',
@@ -73,10 +65,25 @@ export const sendCommentNews = (newsID, userID, text, setFetchingStatus) => {
 		body: JSON.stringify(curretBody),
 	})
 		.then((response) => {
-			console.log(response);
 			return response.json();
 		})
 		.then((result) => {
 			console.log(result);
 		});
+};
+export const toggleLike = (newsID, userID, code) => {
+	let curretBody = {
+		newsID: newsID,
+		userID: userID,
+		code: code,
+	};
+
+	return fetch('https://portal.softcom.ua/php/reactionsadd.php', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(curretBody),
+	}).then((response) => {
+		console.log(response);
+		return response;
+	});
 };

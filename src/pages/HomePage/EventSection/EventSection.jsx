@@ -1,5 +1,6 @@
 import s from './EventSection.module.css';
 import calendarIcon from '../../../assets/img/icons/calendar-icon.svg';
+import { memo } from 'react';
 
 const EventSection = () => {
 	return (
@@ -84,4 +85,4 @@ const EventSection = () => {
 	);
 };
 
-export default EventSection;
+export default memo(EventSection);

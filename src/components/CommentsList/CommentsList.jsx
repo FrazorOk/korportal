@@ -5,9 +5,9 @@ const CommentsList = ({ comment }) => {
 	let [firstLoading, setFirstLoading] = useState(0);
 
 	useEffect(() => {
-		if (comment) {
-			setFirstLoading((count) => count + 1);
-		}
+		console.log('comments list');
+
+		setFirstLoading((count) => count + 1);
 	}, [comment]);
 
 	useEffect(() => {
@@ -25,7 +25,7 @@ const CommentsList = ({ comment }) => {
 				{comment &&
 					comment.map(({ autor, post_date, comment_txt }, index) => {
 						return (
-							<li className={`${s.commets_item} ${index === 0 && firstLoading > 1 && s.active}`}>
+							<li key={`comment${index}`} className={`${s.commets_item} ${index === 0 && firstLoading > 1 && s.active}`}>
 								<p className={s.commets_title}>{autor && autor}</p>
 								<p className={s.commets_date}>{post_date && post_date}</p>
 								<p className={s.commets_text}>{comment_txt && comment_txt}</p>

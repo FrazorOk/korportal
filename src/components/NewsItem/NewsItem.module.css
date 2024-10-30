@@ -19,8 +19,14 @@
 	font-weight: 500;
 }
 .date {
+	display: flex;
+	align-items: center;
+	gap: 5px;
 	margin-top: 7px;
 	color: #7d7d7d;
+}
+.date img {
+	width: 14px;
 }
 .tags {
 	display: flex;
@@ -34,9 +40,6 @@
 	color: white;
 }
 .text {
-	/* width: 100%; */
-	/* max-width: 100%; */
-	white-space: pre;
 	text-wrap: wrap;
 	margin-top: 14px;
 	line-height: 17px;
@@ -108,12 +111,19 @@
 }
 .likes_button {
 	background-color: #e16c00;
-	/* border: 1.5px solid #e16c00; */
 	color: #e16c00;
+	transition: all 0.3s ease 0s;
+}
+.buttons_container .likes_button.liked {
+	background-color: #e16c00;
+	color: #fff;
+}
+.buttons_container .likes_button.liked img {
+	background-color: transparent;
+	filter: brightness(0) invert(1);
 }
 .coments_button {
 	background-color: #004795;
-	/* border: 1.5px solid #004795; */
 	color: #004795;
 }
 .buttons_container img {
@@ -129,28 +139,41 @@
 .coments_input {
 	margin-top: 10px;
 	position: relative;
+	background-color: #ebebeb;
+	padding-bottom: 40px;
+	padding-top: 6px;
+	border-radius: 4px;
+	overflow: hidden;
 }
 .coments_input textarea {
+	font-size: 14px;
 	width: 100%;
-	height: 65px;
-	padding: 5px 8px;
+	height: 70px;
+	padding: 8px 14px;
 	background-color: #ebebeb;
-	border-radius: 4px;
 	resize: none;
 }
-.coments_input textarea:focus {
-	box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.15);
+.coments_input__btns {
+	position: absolute;
+	bottom: 10px;
+	left: 12px;
+	display: flex;
+	align-items: center;
+	gap: 2px;
 }
 .coments_input button {
-	padding: 4px 8px;
+	padding: 4px 10px;
 	border-radius: 4px;
-	position: absolute;
-	bottom: 8px;
-	right: 6px;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background-color: transparent;
+
+	transition: all 0.3s ease 0s;
+}
+.coments_input button img {
+	width: 18px;
 }
 
 @media (hover: hover) {
@@ -198,6 +221,7 @@
 	.date {
 		font-size: 12px;
 	}
+
 	.images_container {
 		width: 80%;
 		padding-top: 68%;

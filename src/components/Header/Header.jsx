@@ -69,7 +69,7 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 	useEffect(() => {
 		if (accounts.length > 0 && graphData) {
 			dispatch(setUser(graphData));
-			// sendUserProfile(graphData);
+			sendUserProfile(graphData);
 		}
 	}, [graphData]);
 

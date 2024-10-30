@@ -4,7 +4,7 @@ import NewsSection from './NewsSection/NewsSection';
 import HeroSection from './HeroSection/HeroSection';
 import TodaySection from './TodaySection/TodaySection';
 import VivoChatSection from './VivoChatSection/VivoChatSection';
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 
 const HomePage = () => {
 	let ref = useRef();
@@ -75,4 +75,4 @@ const HomePage = () => {
 	);
 };
 
-export default HomePage;
+export default memo(HomePage);

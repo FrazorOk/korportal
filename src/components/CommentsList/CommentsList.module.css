@@ -3,10 +3,11 @@
 }
 .commets_h {
 	font-weight: 500;
+	padding-left: 10px;
 }
 .commets_list {
 	overflow-y: hidden;
-	height: 132px;
+	height: 222px;
 	margin-top: 10px;
 	display: flex;
 	flex-direction: column;
@@ -37,7 +38,8 @@
 }
 .commets_text {
 	white-space: pre;
-	font-size: 12px;
+	font-size: 14px;
+	line-height: 17px;
 	margin-top: 10px;
 }
 @media (hover: hover) {
@@ -45,7 +47,7 @@
 		overflow-y: auto;
 	}
 }
-@media (max-width: 1200px) {
+@media (max-width: 1200px), (hover: none) {
 	.commets_list {
 		overflow-y: auto;
 	}
