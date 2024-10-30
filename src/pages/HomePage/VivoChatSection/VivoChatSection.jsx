@@ -105,14 +105,14 @@ const VivoChatSection = ({ ref1 }) => {
 	let [data, setData] = useState([]);
 
 	useEffect(() => {
-		getNews(setData);
+		// getNews(setData);
 	}, []);
 
 	return (
 		<div ref={ref1} className={`${s.chat} section-container`}>
 			<h3>Стрічка останніх подій</h3>
 
-			<NewsList data={data} />
+			<NewsList data={data1} />
 			{/* {status && (
 				<iframe
 					title="viva engage"
