@@ -6,7 +6,7 @@ import profileIcon from '../../../assets/img/icons/profile-icon.svg';
 import { getAllUsers, getPhotoUser } from '../../../api/graph';
 import { useMsal } from '@azure/msal-react';
 import { loginRequest } from '../../../authConfig';
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { dateConverter } from '../../../helpers/dateConverter';
 import Loader from '../../../components/Loader/Loader';
 
@@ -278,4 +278,4 @@ const BirthdaySection = () => {
 	);
 };
 
-export default BirthdaySection;
+export default memo(BirthdaySection);

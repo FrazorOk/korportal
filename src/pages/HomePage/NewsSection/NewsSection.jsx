@@ -1,5 +1,6 @@
 import s from './NewsSection.module.css';
 import NewsList from './NewsList';
+import { memo } from 'react';
 
 const NewsSection = () => {
 	return (
@@ -10,4 +11,4 @@ const NewsSection = () => {
 	);
 };
 
-export default NewsSection;
+export default memo(NewsSection);
