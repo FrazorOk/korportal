@@ -102,7 +102,6 @@
 
 .birthday_item__user {
 	width: 55%;
-
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -126,7 +125,6 @@
 .birthday_item.active .birthday_item__user img {
 	border: 1px solid white;
 }
-
 .birthday_item__user div p:nth-child(2) {
 	font-size: 12px;
 	font-weight: 300;
@@ -300,8 +298,8 @@
 
 	.birthday_item {
 		width: 100%;
-		min-height: 60px;
-		padding: 14px 10px;
+		min-height: auto;
+		padding: 10px 10px;
 	}
 
 	.birthday_item__user {
