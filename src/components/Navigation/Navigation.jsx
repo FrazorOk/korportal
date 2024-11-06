@@ -1,13 +1,12 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import s from './Navigation.module.css';
-import { navigationsLinks } from './NavigationLinks';
 
-const Navigation = ({ status, toggleMobileMode }) => {
+const Navigation = ({ status, toggleMobileMode, data, titleName }) => {
 	return (
 		<nav>
-			<p className={s.label_menu}>Меню</p>
+			<p className={s.label_menu}>{titleName}</p>
 			<ul className={`${s.navigation} ${status ? s.active : ''}`}>
-				{navigationsLinks.map((link, index) => {
+				{data.map((link, index) => {
 					return (
 						<li key={`navigation${index}`}>
 							<NavLink

@@ -11,6 +11,8 @@ import TeamPage from './pages/TeamPage/TeamPage';
 import ImagesPage from './pages/ImagesPage/ImagesPage';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import AdminNewsPage from './pages/AdminNewsPage/AdminNewsPage';
+import AdminAddChangeNewsPage from './pages/AdminAddChangeNewsPage/AdminAddChangeNewsPage';
 
 const router = createBrowserRouter([
 	{
@@ -35,6 +37,12 @@ const router = createBrowserRouter([
 				path: 'images/',
 				element: <ImagesPage />,
 			},
+			{
+				path: 'admin-news-feed/',
+				element: <AdminNewsPage />,
+			},
+			{ path: 'admin-news-feed/add-change-news', element: <AdminAddChangeNewsPage /> },
+			{ path: 'admin-news-feed/add-change-news/:newsId', element: <AdminAddChangeNewsPage /> },
 		],
 	},
 	{

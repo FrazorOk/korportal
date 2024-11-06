@@ -3,7 +3,7 @@ import EventSection from './EventSection/EventSection';
 import NewsSection from './NewsSection/NewsSection';
 import HeroSection from './HeroSection/HeroSection';
 import TodaySection from './TodaySection/TodaySection';
-import VivoChatSection from './VivoChatSection/VivoChatSection';
+import VivoChatSection from '../../components/VivoChatSection/VivoChatSection';
 import { memo, useEffect, useRef, useState } from 'react';
 
 const HomePage = () => {
@@ -77,7 +77,7 @@ const HomePage = () => {
 					<NewsSection />
 					<BirthdaySection />
 				</div>
-				<VivoChatSection ref1={ref2} />
+				<VivoChatSection adminStatus={false} ref1={ref2} />
 			</div>
 		</div>
 	);

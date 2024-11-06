@@ -262,7 +262,7 @@ const BirthdaySection = () => {
 							</div>
 							<p className={s.birthday_item__date}>{user.uaDate}</p>
 							<div className={s.birthday_item__buttons}>
-								<a title={'Привітати'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
+								<a title={'Відкрити чат'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
 									<img src={mailIcon} alt="" />
 								</a>
 								<a

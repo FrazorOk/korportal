@@ -5,7 +5,7 @@ import circleArrowIcon from '../../assets/img/icons/circle-arrow-icon.svg';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
-const NewsList = ({ data, setTags, filterParams, setTodayPosts }) => {
+const NewsList = ({ data, setTags, filterParams, setTodayPosts, adminStatus }) => {
 	let [news, setNews] = useState([]);
 	let [visibleNews, setVisibleNews] = useState([]);
 
@@ -126,14 +126,14 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts }) => {
 	return (
 		<div className={s.news_container}>
 			<div className={s.news}>
-				{paginationNews ? (
+				{paginationNews && paginationNews[0] && paginationNews.length ? (
 					paginationNews.map((item, index) => {
 						if (item && index < visibleNews.length - 1 && paginationNews.length > 0) {
-							return <NewsItem item={item} key={item.id} filterParams={filterParams} />;
+							return <NewsItem adminStatus={adminStatus} item={item} key={item.id} filterParams={filterParams} />;
 						}
 					})
 				) : (
-					<p>Нічого не знайдено</p>
+					<p style={{ marginTop: '20px' }}>Немає подій</p>
 				)}
 			</div>
 			{news && visibleNews.length > paginationNews.length + 1 && (
