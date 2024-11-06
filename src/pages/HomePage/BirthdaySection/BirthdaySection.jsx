@@ -215,7 +215,7 @@ const BirthdaySection = () => {
 			<h3>Майбутні дні народження</h3>
 			<div className={s.birthday_filters}>
 				<div className={s.birthday_search}>
-					<button disabled={isLoading} onClick={searchHandler}>
+					<button title={'Пошук'} disabled={isLoading} onClick={searchHandler}>
 						<img src={searchIcon} alt="bell icon" />
 					</button>
 					<input
@@ -227,10 +227,18 @@ const BirthdaySection = () => {
 						placeholder="Пошук тут..."
 					/>
 				</div>
-				<button disabled={isLoading} onClick={onclickClosestUsersFilterButton} className={`${activeButtonFilter === 1 && s.active}`}>
+				<button
+					title={'Найближчі'}
+					disabled={isLoading}
+					onClick={onclickClosestUsersFilterButton}
+					className={`${activeButtonFilter === 1 && s.active}`}>
 					Найближчі
 				</button>
-				<button disabled={isLoading} onClick={onclickAllUsersFilterButton} className={`${activeButtonFilter === 2 && s.active}`}>
+				<button
+					title={'Усі'}
+					disabled={isLoading}
+					onClick={onclickAllUsersFilterButton}
+					className={`${activeButtonFilter === 2 && s.active}`}>
 					Усі
 				</button>
 			</div>

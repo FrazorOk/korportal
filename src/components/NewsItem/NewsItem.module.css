@@ -19,6 +19,7 @@
 	font-weight: 500;
 }
 .date {
+	font-weight: 500;
 	display: flex;
 	align-items: center;
 	gap: 5px;
@@ -26,7 +27,7 @@
 	color: #7d7d7d;
 }
 .date img {
-	width: 14px;
+	width: 17px;
 }
 .tags {
 	display: flex;
@@ -189,7 +190,7 @@
 }
 @media (max-width: 1200px) {
 	.item {
-		max-width: 600px;
+		max-width: 100%;
 	}
 }
 @media (max-width: 768px) {
@@ -211,7 +212,11 @@
 	}
 	.right_column {
 		width: 100%;
-		max-width: 300px;
+		max-width: 100%;
+	}
+	.title {
+		font-size: 16px;
+		line-height: 18px;
 	}
 	.text {
 		font-size: 12px;
@@ -223,6 +228,7 @@
 	}
 
 	.images_container {
+		max-width: 250px;
 		width: 80%;
 		padding-top: 68%;
 		margin: 0 auto;

@@ -168,4 +168,7 @@ h5 {
 	.row {
 		column-gap: 10px;
 	}
+	.section-container {
+		padding: 15px 6px 15px;
+	}
 }
