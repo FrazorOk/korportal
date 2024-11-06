@@ -15,17 +15,23 @@ const HomePage = () => {
 	const [scroll, setScroll] = useState(0);
 	const [windowHeight, setWindowHeight] = useState(null);
 	const [statusStiky, setStatusStiky] = useState(false);
+	const [stikuNeeded, setStikuNeeded] = useState(false);
 
 	const handleScroll = (sizeWindow) => {
 		if (ref3.current) {
-			let heightWindows = ref3.current.getBoundingClientRect();
-
-			if (ref3.current && ref.current && sizeWindow < heightWindows.height + 130) {
-				setStatusStiky(true);
-				setScroll(ref.current.getBoundingClientRect().top + ref3.current.getBoundingClientRect().height - sizeWindow + 30);
+			if (ref3.current.getBoundingClientRect().height > ref2.current.getBoundingClientRect().height) {
+				setStikuNeeded(false);
 			} else {
-				setStatusStiky(false);
-				setScroll(ref.current.getBoundingClientRect().top - 95);
+				setStikuNeeded(true);
+				let heightWindows = ref3.current.getBoundingClientRect();
+
+				if (ref3.current && ref.current && sizeWindow < heightWindows.height + 130) {
+					setStatusStiky(true);
+					setScroll(ref.current.getBoundingClientRect().top + ref3.current.getBoundingClientRect().height - sizeWindow + 30);
+				} else {
+					setStatusStiky(false);
+					setScroll(ref.current.getBoundingClientRect().top - 95);
+				}
 			}
 		}
 	};
@@ -65,7 +71,9 @@ const HomePage = () => {
 				<div
 					ref={ref3}
 					style={{ width: width }}
-					className={`column-50 ${scroll < 0 && 'sticky-position'} ${statusStiky && 'sticky-position__bottom'}`}>
+					className={`column-50 ${stikuNeeded && scroll < 0 && 'sticky-position'} ${
+						stikuNeeded && statusStiky && 'sticky-position__bottom'
+					}`}>
 					<NewsSection />
 					<BirthdaySection />
 				</div>

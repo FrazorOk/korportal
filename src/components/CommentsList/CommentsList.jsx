@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import s from './CommentsList.module.css';
 
+const toDay = new Date().toJSON().slice(0, 10);
+
 const CommentsList = ({ comment }) => {
 	let [firstLoading, setFirstLoading] = useState(0);
 
 	useEffect(() => {
-		console.log('comments list');
-
 		setFirstLoading((count) => count + 1);
 	}, [comment]);
 
@@ -27,7 +27,11 @@ const CommentsList = ({ comment }) => {
 						return (
 							<li key={`comment${index}`} className={`${s.commets_item} ${index === 0 && firstLoading > 1 && s.active}`}>
 								<p className={s.commets_title}>{autor && autor}</p>
-								<p className={s.commets_date}>{post_date && post_date}</p>
+								<p className={s.commets_date}>
+									{post_date && toDay === post_date.slice(0, 10)
+										? `Сьогодні ${post_date.slice(11, 16)}`
+										: `${post_date.slice(8, 10)}-${post_date.slice(5, 7)}-${post_date.slice(0, 4)} ${post_date.slice(11, 16)}`}
+								</p>
 								<p className={s.commets_text}>{comment_txt && comment_txt}</p>
 							</li>
 						);
