@@ -3,7 +3,8 @@ import s from './NewsItem.module.css';
 import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
 import heartIcon from '../../assets/img/icons/heart-icon.svg';
 import commentsIcon from '../../assets/img/icons/comments-icon.svg';
-// import mailIcon from '../../assets/img/icons/send-arrow-icon.svg';
+import changeIcon from '../../assets/img/icons/pencil-icon.svg';
+import deleteIcon from '../../assets/img/icons/delete-icon.svg';
 import smileIcon from '../../assets/img/icons/smile-icon.svg';
 import clockIcon from '../../assets/img/icons/clock-icon.svg';
 import mailIcon from '../../assets/img/icons/mail_gray_icon.svg';
@@ -12,10 +13,11 @@ import { getNewsFromID, sendCommentNews, toggleLike } from '../../api/api';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../selectors/userSelectors';
 import EmojiList from '../EmojiList/EmojiList';
+import { Link } from 'react-router-dom';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
-const NewsItem = ({ item, filterParams }) => {
+const NewsItem = ({ item, filterParams, adminStatus }) => {
 	let ref = useRef();
 
 	let user = useSelector(userSelector.userData);
@@ -124,6 +126,16 @@ const NewsItem = ({ item, filterParams }) => {
 
 	return (
 		<div className={`${s.item} ${visibleStatus && s.active}`}>
+			{adminStatus && (
+				<div className={s.admin_btns}>
+					<Link to={`./add-change-news/${id}`} title="Змінити">
+						<img src={changeIcon} alt="" />
+					</Link>
+					<Link title="Видалити">
+						<img src={deleteIcon} alt="" />
+					</Link>
+				</div>
+			)}
 			<div className={s.left_column}>
 				<p className={s.title}>{title && title}</p>
 				<p className={s.date}>

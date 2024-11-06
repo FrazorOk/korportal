@@ -1,0 +1,75 @@
+.planned_item {
+	width: 100%;
+	min-height: 70px;
+	padding: 10px;
+	background-color: white;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	border: 1px solid #e3e3e3;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 5px;
+}
+.line {
+	width: 1px;
+	height: 35px;
+	background-color: #d7d7d7;
+}
+.title {
+	line-height: 15px;
+	width: 36%;
+	text-wrap: wrap;
+	-webkit-box-orient: vertical;
+	display: -webkit-box;
+	line-clamp: 2;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+.created_date,
+.date_to,
+.autor {
+	text-align: center;
+}
+.created_date {
+	font-weight: 300;
+}
+.date_to {
+	font-weight: 500;
+}
+.autor {
+	width: 20%;
+	color: #004795;
+	font-weight: 600;
+}
+
+.title span,
+.created_date span,
+.date_to span,
+.autor span {
+	width: 100%;
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: 400;
+	color: #7d7d7d;
+}
+.buttons {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 3px;
+}
+.buttons button {
+	padding: 2px;
+	background-color: transparent;
+	border-radius: 4px;
+	transition: all 0.3s ease 0s;
+}
+.buttons button img {
+	width: 16px;
+}
+@media (hover: hover) {
+	.buttons button:hover {
+		background-color: #ebebeb;
+	}
+}

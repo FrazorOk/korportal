@@ -11,6 +11,26 @@
 	gap: 20px;
 	position: relative;
 }
+.admin_btns {
+	position: absolute;
+	right: 20px;
+	top: -10px;
+	display: flex;
+	gap: 5px;
+}
+.admin_btns a {
+	padding: 6px;
+	border-radius: 50%;
+	background-color: #004795;
+	transition: all 0.3s ease 0s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.admin_btns img {
+	width: 16px;
+	filter: brightness(0) invert(1);
+}
 .left_column {
 	width: 100%;
 }
@@ -186,6 +206,9 @@
 	}
 	.coments_input button:hover {
 		background-color: white;
+	}
+	.admin_btns a:hover {
+		background-color: #4088d4;
 	}
 }
 @media (max-width: 1200px) {
