@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { applyMiddleware, configureStore } from '@reduxjs/toolkit';
 import { userSlice } from './userSlice';
 
 export default configureStore({

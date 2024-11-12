@@ -2,19 +2,23 @@ import { useEffect, useState } from 'react';
 import s from './NewsFilter.module.css';
 import { getNews } from '../../api/api';
 
-const NewsFilter = ({ tags, setFilterParams, todayPosts, setData }) => {
+const NewsFilter = ({ tags, setFilterParams, todayPosts, setData, noSeenPotsLength }) => {
 	let [activeButton, setActiveButton] = useState(0);
+	let [disableStatus, setDisableStatus] = useState(false);
 
 	return (
 		<div className={s.filters}>
 			<div className={`${s.filters_row} ${s.params}`}>
 				<button
 					title="Усі події"
+					disabled={disableStatus}
 					onClick={(e) => {
 						async function onClickHandler(e) {
+							await setDisableStatus(true);
 							await setActiveButton(0);
 							await getNews(setData);
-							setFilterParams({ params: e.target.textContent, tags: false });
+							await setFilterParams({ params: e.target.textContent, tags: false });
+							await setDisableStatus(false);
 						}
 						onClickHandler(e);
 					}}
@@ -22,30 +26,52 @@ const NewsFilter = ({ tags, setFilterParams, todayPosts, setData }) => {
 					Усі
 				</button>
 				<button
-					title="Фільтрувати за сьогодні"
+					title="Сортувати за популярністю"
+					disabled={disableStatus}
 					onClick={(e) => {
 						async function onClickHandler(e) {
+							await setDisableStatus(true);
 							await setActiveButton(1);
 							await getNews(setData);
-							setFilterParams({ params: 'Сьогодні', tags: false });
+							await setFilterParams({ params: e.target.textContent, tags: false });
+							await setDisableStatus(false);
 						}
 						onClickHandler(e);
 					}}
 					className={activeButton === 1 ? s.active : ''}>
-					Сьогодні ({todayPosts})
+					Популярне
 				</button>
 				<button
-					title="Сортувати за популярністю"
+					title="Фільтрувати за сьогодні"
+					disabled={disableStatus}
 					onClick={(e) => {
 						async function onClickHandler(e) {
+							await setDisableStatus(true);
 							await setActiveButton(2);
 							await getNews(setData);
-							setFilterParams({ params: e.target.textContent, tags: false });
+							await setFilterParams({ params: 'Сьогодні', tags: false });
+							await setDisableStatus(false);
 						}
 						onClickHandler(e);
 					}}
 					className={activeButton === 2 ? s.active : ''}>
-					Популярне
+					Сьогодні ({todayPosts})
+				</button>
+				<button
+					title="Фільтрувати за переглядом"
+					disabled={disableStatus}
+					onClick={(e) => {
+						async function onClickHandler(e) {
+							await setDisableStatus(true);
+							await setActiveButton(3);
+							await getNews(setData);
+							await setFilterParams({ params: 'Не переглянуті', tags: false });
+							await setDisableStatus(false);
+						}
+						onClickHandler(e);
+					}}
+					className={`${activeButton === 3 ? s.active : ''} ${noSeenPotsLength > 0 ? s.nonSeen : ''}`}>
+					Не переглянуті ({noSeenPotsLength})
 				</button>
 			</div>
 			<div className={`${s.filters_row} ${s.tags}`}>
@@ -53,13 +79,16 @@ const NewsFilter = ({ tags, setFilterParams, todayPosts, setData }) => {
 					return (
 						<button
 							title="Фільтрувати за тегом"
+							disabled={disableStatus}
 							key={`tags buttons ${index}`}
-							className={activeButton === index + 3 ? s.active : ''}
+							className={activeButton === index + 4 ? s.active : ''}
 							onClick={(e) => {
 								async function onClickHandler(e) {
-									await setActiveButton(index + 3);
+									await setDisableStatus(true);
+									await setActiveButton(index + 4);
 									await getNews(setData);
-									setFilterParams({ params: e.target.textContent, tags: true });
+									await setFilterParams({ params: e.target.textContent, tags: true });
+									await setDisableStatus(false);
 								}
 								onClickHandler(e);
 							}}>

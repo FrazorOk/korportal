@@ -2,22 +2,42 @@
 	margin-top: 20px;
 	width: 100%;
 	min-height: 281px;
-	padding: 25px 25px 56px;
+	padding: 25px 25px 40px;
 	background-color: #ffffff;
 	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 	border: 1px solid #e3e3e3;
 	display: flex;
 	flex-direction: column;
-	gap: 15px;
+	gap: 20px;
 	position: relative;
+}
+.post p {
+	cursor: default;
+}
+.post_item {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.post_item.row {
+	flex-direction: row;
+	align-items: center;
+}
+.post input,
+.post textarea {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	text-wrap: wrap;
+	resize: none;
 }
 .title {
 	font-size: 18px;
 	font-weight: 500;
-	border: 1px solid #e3e3e3;
-	text-wrap: wrap;
-	resize: none;
+
 	height: auto;
 }
 .date {
@@ -26,11 +46,92 @@
 	align-items: center;
 	gap: 5px;
 }
-
 .date input {
-	width: 100px;
+	font-size: 14px;
+	width: 122px;
+	height: 30px;
 	font-weight: 500;
 	color: #7d7d7d;
 	border: 1px solid #e3e3e3;
 	cursor: pointer;
+	padding-right: 0px;
+}
+.date input::-webkit-calendar-picker-indicator {
+	width: 25px;
+	padding-left: 5px;
+}
+.text {
+	line-height: 16px;
+	height: 300px;
+	overflow-y: auto;
+}
+.smile_button {
+	margin-top: -8px;
+	width: 30px;
+	height: 30px;
+	border-radius: 4px;
+}
+.image {
+	cursor: pointer;
+}
+.comments_list {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+.comment {
+	display: flex;
+	gap: 10px;
+	background-color: #faf9f8;
+	border-radius: 4px;
+	padding: 10px 12px;
+}
+.comment p {
+	flex-grow: 1;
+}
+.comment button {
+	padding: 5px;
+	border-radius: 50%;
+	transition: all 0.3s ease 0s;
+	background-color: transparent;
+}
+.select_buttons {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	margin-top: 10px;
+}
+.select_buttons input,
+.select_buttons button {
+	font-size: 14px;
+	font-weight: 500;
+	color: white;
+	border-radius: 50px;
+	padding: 10px 15px 12px;
+	transition: all 0.3s ease 0s;
+}
+.select {
+	background-color: #004795;
+}
+.cancel {
+	background-color: #e8903f;
+}
+@media (hover: hover) {
+	.comment button:hover {
+		background-color: rgb(225, 225, 225);
+	}
+	.select_buttons input:hover,
+	.select_buttons button:hover {
+		opacity: 0.8;
+	}
+}
+@media (max-width: 768px) {
+	.post {
+		margin-top: 0px;
+		width: 100%;
+		min-height: 281px;
+		padding: 15px 15px 15px;
+	}
 }
