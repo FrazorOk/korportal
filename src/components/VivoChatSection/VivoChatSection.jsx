@@ -154,6 +154,7 @@ const VivoChatSection = ({ ref1, adminStatus }) => {
 	let [tags, setTags] = useState([]);
 	let [filterParams, setFilterParams] = useState({ params: 'Усі', tags: false });
 	let [todayPosts, setTodayPosts] = useState(0);
+	let [noSeenPotsLength, setNoSeenPotsLength] = useState(0);
 
 	useEffect(() => {
 		getNews(setData);
@@ -170,8 +171,21 @@ const VivoChatSection = ({ ref1, adminStatus }) => {
 		<div ref={ref1} className={`${s.chat} section-container`}>
 			<h3>Стрічка останніх подій</h3>
 
-			<NewsFilter tags={tags} setFilterParams={setFilterParams} todayPosts={todayPosts} setData={setData} />
-			<NewsList adminStatus={adminStatus} setTags={setTags} data={data} filterParams={filterParams} setTodayPosts={setTodayPosts} />
+			<NewsFilter
+				noSeenPotsLength={noSeenPotsLength}
+				tags={tags}
+				setFilterParams={setFilterParams}
+				todayPosts={todayPosts}
+				setData={setData}
+			/>
+			<NewsList
+				setNoSeenPotsLength={setNoSeenPotsLength}
+				adminStatus={adminStatus}
+				setTags={setTags}
+				data={data}
+				filterParams={filterParams}
+				setTodayPosts={setTodayPosts}
+			/>
 		</div>
 	);
 };

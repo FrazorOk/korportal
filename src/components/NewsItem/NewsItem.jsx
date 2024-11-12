@@ -9,17 +9,20 @@ import smileIcon from '../../assets/img/icons/smile-icon.svg';
 import clockIcon from '../../assets/img/icons/clock-icon.svg';
 import mailIcon from '../../assets/img/icons/mail_gray_icon.svg';
 import CommentsList from '../CommentsList/CommentsList';
-import { getNewsFromID, sendCommentNews, toggleLike } from '../../api/api';
-import { useSelector } from 'react-redux';
+import { addIdToSeenNews, getNewsFromID, sendCommentNews, toggleLike } from '../../api/api';
+import { useDispatch, useSelector } from 'react-redux';
 import { userSelector } from '../../selectors/userSelectors';
 import EmojiList from '../EmojiList/EmojiList';
 import { Link } from 'react-router-dom';
+import { fetchSeenNews } from '../../store/thunks';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
 const NewsItem = ({ item, filterParams, adminStatus }) => {
 	let ref = useRef();
+	const dispatch = useDispatch();
 
+	let userSeenNews = useSelector(userSelector.userSeenNews);
 	let user = useSelector(userSelector.userData);
 	let { id, title, pub_date, tags, text, img, comment, reaction } = item;
 
@@ -34,13 +37,15 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 	let [visibleStatus, toggleVisibleStatus] = useState(false);
 	let [fetchingStatus, setFetchingStatus] = useState(false);
 	let [smileStatus, setSmileStatus] = useState(false);
+	let [isSeenStatus, setSeenStatus] = useState(false);
 
+	// functions
 	const findReactionStatus = (state1) => {
 		if (state1) {
 			let likeStatus = false;
 
 			state1.forEach((el) => {
-				if (el.UserCode === user.id) {
+				if (el.UserCode && user.id && el.UserCode === user.id) {
 					setReacionStatus(true);
 					likeStatus = true;
 				}
@@ -51,6 +56,12 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 		} else {
 			setReacionStatus(false);
 		}
+	};
+	const changeIdSeenNews = async () => {
+		console.log('change');
+
+		let result = await addIdToSeenNews(id, user.id);
+		result.status === 200 && dispatch(fetchSeenNews(user.id));
 	};
 
 	// for close tab
@@ -63,6 +74,15 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 			setSmileStatus(false);
 		};
 	}, [filterParams]);
+
+	// this item is seen?
+	useEffect(() => {
+		userSeenNews.forEach((element) => {
+			if (element == id) {
+				setSeenStatus(true);
+			}
+		});
+	}, [userSeenNews]);
 
 	// reactions
 	useEffect(() => {
@@ -96,7 +116,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 		let sendAndGetComments = async () => {
 			setFetchingStatus(true);
 			await sendCommentNews(id, user.id, textAreaComment, setFetchingStatus);
-			await getNewsFromID(setFetchedComments, setReacionState, id);
+			await getNewsFromID(id, setFetchedComments, setReacionState);
 			setFetchingStatus(false);
 			setTextAreaComment('');
 			setSmileStatus(false);
@@ -107,7 +127,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 		let sendAndGetLikes = async () => {
 			setFetchingStatus(true);
 			await toggleLike(id, user.id, 'like');
-			await getNewsFromID(setFetchedComments, setReacionState, id);
+			await getNewsFromID(id, setFetchedComments, setReacionState);
 			setFetchingStatus(false);
 		};
 		sendAndGetLikes();
@@ -116,7 +136,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 		let sendAndGetLikes = async () => {
 			setFetchingStatus(true);
 			await toggleLike(id, user.id, '0');
-			await getNewsFromID(setFetchedComments, setReacionState, id);
+			await getNewsFromID(id, setFetchedComments, setReacionState, id);
 			setReacionStatus(false);
 			setFetchingStatus(false);
 		};
@@ -128,7 +148,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 		<div className={`${s.item} ${visibleStatus && s.active}`}>
 			{adminStatus && (
 				<div className={s.admin_btns}>
-					<Link to={`./add-change-news/${id}`} title="Змінити">
+					<Link to={`./add-change-news/${id}`} title="Редагувати">
 						<img src={changeIcon} alt="" />
 					</Link>
 					<Link title="Видалити">
@@ -201,6 +221,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 				onClick={(e) => {
 					toggleVisibleStatus((status) => (visibleStatus = !status));
 					setSmileStatus(false);
+					!isSeenStatus && changeIdSeenNews();
 				}}>
 				<img src={arrowIcon} alt="" />
 			</button>

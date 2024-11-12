@@ -2,18 +2,35 @@ import { memo, useEffect, useState } from 'react';
 import s from './NewsList.module.css';
 import NewsItem from '../NewsItem/NewsItem';
 import circleArrowIcon from '../../assets/img/icons/circle-arrow-icon.svg';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../selectors/userSelectors';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
-const NewsList = ({ data, setTags, filterParams, setTodayPosts, adminStatus }) => {
+const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLength, adminStatus }) => {
 	let [news, setNews] = useState([]);
 	let [visibleNews, setVisibleNews] = useState([]);
 
 	let [paginationNews, setPaginationNews] = useState([]);
 	let [stepPagination, setStepPagination] = useState(1);
 
+	let userSeenNews = useSelector(userSelector.userSeenNews);
+
 	const getTodayPostsLength = () => {
 		return news.filter((el, index) => index < data.length - 1 && el.pub_date.slice(0, 10) === toDay);
+	};
+	const getNotSeenPosts = () => {
+		return news.filter((el, index) => {
+			if (el) {
+				let found = userSeenNews.find((item) => item == el.id);
+
+				if (found) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		});
 	};
 	const getUniqueTags = (arr) => {
 		if (arr) {
@@ -54,6 +71,11 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, adminStatus }) =
 			}
 			if (filterParams.params === 'Сьогодні') {
 				let filteredArray = getTodayPostsLength();
+				return (filteredArray = [...filteredArray, null]);
+			}
+			if (filterParams.params === 'Не переглянуті') {
+				let filteredArray = getNotSeenPosts();
+
 				return (filteredArray = [...filteredArray, null]);
 			}
 			if (filterParams.params === 'Популярне') {
@@ -110,14 +132,24 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, adminStatus }) =
 		setNews(data);
 		setTags(getUniqueTags(data));
 	}, [data]);
+
 	useEffect(() => {
 		setTodayPosts(getTodayPostsLength().length);
 		setVisibleNews(getFilteredNews());
 		setStepPagination(1);
 	}, [news, filterParams]);
+
 	useEffect(() => {
 		getPaginationNews();
 	}, [visibleNews, stepPagination]);
+
+	// change counter not seen posts
+	useEffect(() => {
+		if (userSeenNews) {
+			let foundNotSeenPosts = getNotSeenPosts();
+			setNoSeenPotsLength(foundNotSeenPosts.length);
+		}
+	}, [userSeenNews, news, filterParams]);
 
 	const addMoreNewsHandler = () => {
 		setStepPagination((count) => count + 1);

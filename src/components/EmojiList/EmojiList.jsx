@@ -6,7 +6,12 @@ const EmojiList = ({ visibleStatus, setSmile }) => {
 		<div>
 			<ul className={`${s.emoji_list} ${visibleStatus && s.active}`}>
 				{emojiArray.map((item, index) => (
-					<button key={`emoji-key-${index}`} onClick={(e) => setSmile((text) => text + item.emoji)}>
+					<button
+						key={`emoji-key-${index}`}
+						onClick={(e) => {
+							e.preventDefault();
+							setSmile((text) => text + item.emoji);
+						}}>
 						<span className={s.emoji_item}>{item.emoji}</span>
 					</button>
 				))}
