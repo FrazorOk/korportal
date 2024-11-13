@@ -102,3 +102,36 @@ export const toggleLike = (newsID, userID, code) => {
 		return response;
 	});
 };
+export const createNewPost = ({ title, tags, date, text, imgFile, cat_id }) => {
+	// let curretBody = {
+	// 	text: text,
+	// 	pub_date: date,
+	// 	cat_id: cat_id,
+	// 	img: imgFile,
+	// };
+	// console.log(curretBody);
+	// return fetch('https://portal.softcom.ua/php/newsadd.php', {
+	// 	method: 'POST',
+	// 	headers: { 'Content-Type': 'application/json' },
+	// 	body: JSON.stringify(curretBody),
+	// }).then((response) => {
+	// 	console.log(response);
+	// 	return response;
+	// });
+	let data = new FormData();
+	data.append('title', title);
+	data.append('tags', tags);
+	data.append('pub_date', date);
+	data.append('text', text);
+	data.append('cat_id', cat_id);
+	data.append('img', imgFile);
+
+	console.log(data);
+	return fetch('https://portal.softcom.ua/php/newsadd.php', {
+		method: 'POST',
+		body: data,
+	}).then((response) => {
+		console.log(response);
+		return response;
+	});
+};
