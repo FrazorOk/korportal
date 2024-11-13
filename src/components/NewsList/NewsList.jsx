@@ -54,10 +54,12 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 					let statusTags = false;
 
 					el.tags.forEach((item) => {
-						if (filterParams.params === item) {
-							statusTags = true;
-						} else {
-							statusTags = false;
+						if (!statusTags) {
+							if (filterParams.params === item) {
+								statusTags = true;
+							} else {
+								statusTags = false;
+							}
 						}
 					});
 
