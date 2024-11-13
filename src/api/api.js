@@ -1,3 +1,4 @@
+// user
 export const sendUserProfile = (data) => {
 	let { displayName, id, jobTitle, mail, mobilePhone, userPrincipialName } = data;
 	let curretBody = {
@@ -15,11 +16,27 @@ export const sendUserProfile = (data) => {
 		body: JSON.stringify(curretBody),
 	}).then((result) => {});
 };
+export const addIdToSeenNews = (newsID, userID) => {
+	let curretBody = {
+		newsID: newsID,
+		userID: userID,
+	};
+
+	return fetch('https://portal.softcom.ua/php/newsviewadd.php', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(curretBody),
+	}).then((response) => {
+		return response;
+	});
+};
+
+// news
 export const getNews = (setState) => {
 	let curretBody = {
 		limit: 100,
 	};
-	fetch('https://portal.softcom.ua/php/newsout.php', {
+	return fetch('https://portal.softcom.ua/php/newsout.php', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
@@ -29,9 +46,10 @@ export const getNews = (setState) => {
 		})
 		.then((result) => {
 			setState(result);
+			return result;
 		});
 };
-export const getNewsFromID = (setState, setStateReactions, postID) => {
+export const getNewsFromID = (postID, setState, setStateReactions) => {
 	let curretBody = {
 		id: postID,
 	};
@@ -47,6 +65,7 @@ export const getNewsFromID = (setState, setStateReactions, postID) => {
 		.then((result) => {
 			setState && setState(result[0].comment);
 			setStateReactions && setStateReactions(result[0].reaction);
+			return result;
 		});
 };
 export const sendCommentNews = (newsID, userID, text, setFetchingStatus) => {
@@ -80,7 +99,6 @@ export const toggleLike = (newsID, userID, code) => {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
 	}).then((response) => {
-		console.log(response);
 		return response;
 	});
 };

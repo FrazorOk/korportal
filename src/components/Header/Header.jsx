@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom';
 import { sendUserProfile } from '../../api/api';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/userSlice';
+import { fetchSeenNews } from '../../store/thunks';
 
 const Header = ({ toggleMobileMode, mobileMode }) => {
 	const dispatch = useDispatch();
@@ -69,6 +70,7 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 	useEffect(() => {
 		if (accounts.length > 0 && graphData) {
 			dispatch(setUser(graphData));
+			dispatch(fetchSeenNews(graphData.id));
 			sendUserProfile(graphData);
 		}
 	}, [graphData]);
