@@ -24,6 +24,7 @@
 	color: white;
 }
 .filters_row.params button {
+	position: relative;
 	font-weight: 500;
 	color: #7d7d7d;
 	background-color: #ebebeb;
@@ -41,8 +42,17 @@
 	background-color: #004795;
 }
 
-.filters_row.params button.nonSeen {
-	background-color: #f3bf8e;
+.filters_row.params button.nonSeen::after {
+	content: '';
+	position: absolute;
+	top: -4px;
+	right: 4px;
+	width: 12px;
+	height: 12px;
+	border: 1px solid white;
+	background-color: #ff2e00;
+	border-radius: 50%;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.116);
 }
 .filters_row.params button.active.nonSeen {
 	background-color: #004795;

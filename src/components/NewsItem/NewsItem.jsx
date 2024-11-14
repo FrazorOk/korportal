@@ -7,7 +7,7 @@ import changeIcon from '../../assets/img/icons/pencil-icon.svg';
 import deleteIcon from '../../assets/img/icons/delete-icon.svg';
 import smileIcon from '../../assets/img/icons/smile-icon.svg';
 import clockIcon from '../../assets/img/icons/clock-icon.svg';
-import mailIcon from '../../assets/img/icons/mail_gray_icon.svg';
+import mailIcon from '../../assets/img/icons/paper-plane-icon.svg';
 import CommentsList from '../CommentsList/CommentsList';
 import { addIdToSeenNews, getNewsFromID, sendCommentNews, toggleLike } from '../../api/api';
 import { useDispatch, useSelector } from 'react-redux';
@@ -204,11 +204,11 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 							name=""
 							id=""></textarea>
 						<div className={s.coments_input__btns}>
-							<button title={'Додати коментар'} disabled={fetchingStatus} onClick={sendCommetnButtonOnClickHandler}>
-								<img src={mailIcon} alt="" />
-							</button>
 							<button title={'Смайлики'} disabled={fetchingStatus} onClick={() => setSmileStatus((status) => !status)}>
 								<img src={smileIcon} alt="" />
+							</button>
+							<button title={'Додати коментар'} disabled={fetchingStatus} onClick={sendCommetnButtonOnClickHandler}>
+								<img src={mailIcon} alt="" />
 							</button>
 						</div>
 					</div>

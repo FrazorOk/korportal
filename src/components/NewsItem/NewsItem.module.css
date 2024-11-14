@@ -114,9 +114,9 @@
 .buttons_container {
 	display: flex;
 	gap: 8px;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
-	margin-top: 6px;
+	margin-top: 8px;
 }
 .buttons_container button {
 	font-weight: 600;
@@ -175,10 +175,13 @@
 	resize: none;
 }
 .coments_input__btns {
+	width: 100%;
+	padding: 0 12px;
 	position: absolute;
 	bottom: 10px;
-	left: 12px;
+	left: 0px;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	gap: 2px;
 }
