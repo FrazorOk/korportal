@@ -126,7 +126,7 @@ export const deleteNewsPost = (newsID, action = 'news') => {
 	// action може бути news або comments
 
 	let curretBody = {
-		newsID: newsID,
+		id: newsID,
 		action: action,
 	};
 
