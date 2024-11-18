@@ -2,21 +2,88 @@ import s from './AdminPostSection.module.css';
 import smileIcon from '../../../assets/img/icons/smile-icon.svg';
 import deleteIcon from '../../../assets/img/icons/delete-icon.svg';
 import EmojiList from '../../../components/EmojiList/EmojiList';
-import { createNewPost } from '../../../api/api.js';
+import { createNewPost, deleteNewsPost } from '../../../api/api.js';
 import { useEffect, useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../../selectors/userSelectors.js';
+import ModalWidnow from '../../../components/UI/ModalWidnow/ModalWidnow.jsx';
+import Loader from '../../../components/UI/Loader/Loader.jsx';
+import { Link } from 'react-router-dom';
+import AlertModalWindow from '../../../components/AlertModalWindow/AlertModalWindow.jsx';
 
 const AdminPostSection = ({ newsId, data }) => {
 	let [visibleStatus, setVisibleStatus] = useState(false);
 	let [visibleStatus2, setVisibleStatus2] = useState(false);
+
+	let [modalWidndovStatus, setModalWidndovStatus] = useState(false);
+	let [modalWidndovStatusDelete, setModalWidndovStatusDelete] = useState(false);
+
+	let [isFetching, setFetching] = useState(false);
+	let [isFetchingStatus, setFetchingStatus] = useState(false);
+
 	let [title, setTitle] = useState('');
-	let [date, setDate] = useState('дд.мм.рррр 00:00:00');
+	let [date, setDate] = useState('');
 	let [text, setText] = useState('');
 	let [tags, setTags] = useState('');
 	let [images, setImages] = useState('');
 	let [comment, setComment] = useState([]);
-	let ref = useRef();
 
-	const selectHandler = (e) => {
+	let [validationErrors, setValidationErrors] = useState({ title: false, date: false, text: false, images: false });
+
+	let ref = useRef();
+	let userID = useSelector(userSelector.userData);
+
+	const nulledAllInputs = () => {
+		setTitle('');
+		setDate('');
+		setText('');
+		setTags('');
+		setImages('');
+		setComment([]);
+		ref.current.value = '';
+	};
+	const nulledAllValidations = () => {
+		setValidationErrors({ title: false, date: false, text: false, images: false });
+	};
+	const validationForm = async () => {
+		!title && setValidationErrors((obj) => ({ ...obj, title: true }));
+		!date && setValidationErrors((obj) => ({ ...obj, date: true }));
+		!text && setValidationErrors((obj) => ({ ...obj, text: true }));
+		!ref.current.files[0] && setValidationErrors((obj) => ({ ...obj, images: true }));
+
+		if (title && date && text && ref.current.files[0]) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+	const fetchingNewPost = async (data) => {
+		await setFetching(true);
+		await setModalWidndovStatus(true);
+		let result = await createNewPost(data);
+		await setFetching(false);
+		if (result.status == 200) {
+			nulledAllInputs();
+			setFetchingStatus(true);
+		} else {
+			setFetchingStatus('error');
+		}
+	};
+	const fetchingDeletePost = async () => {
+		await setFetching(true);
+		await setModalWidndovStatusDelete(true);
+		let result = await deleteNewsPost(newsId);
+		await setFetching(false);
+		if (result.status == 200) {
+			nulledAllInputs();
+			setFetchingStatus(true);
+		} else {
+			console.log(`Помилка ${result.status}`);
+			setFetchingStatus('error');
+		}
+	};
+
+	const creacteHandler = (e) => {
 		e.preventDefault();
 
 		// let data = {
@@ -34,19 +101,45 @@ const AdminPostSection = ({ newsId, data }) => {
 		// 		},
 		// 	],
 		// };
-
-		let data = {
+		let dataFetching = {
 			title: title,
 			tags: tags.split(', '),
 			date: date,
 			text: text,
 			imgFile: ref.current.files[0],
 			cat_id: 1,
+			autor_id: userID.id,
 		};
 
-		createNewPost(data);
+		let asyncFetchingAndValidation = async () => {
+			let validationStatus = await validationForm();
+
+			if (validationStatus) {
+				nulledAllValidations();
+				fetchingNewPost(dataFetching);
+			}
+		};
+
+		asyncFetchingAndValidation();
+	};
+	const deletePostHandler = (e) => {
+		e.preventDefault();
+
+		let asyncFetchingAndValidation = async () => {
+			await fetchingDeletePost();
+			nulledAllValidations();
+		};
+
+		asyncFetchingAndValidation();
+	};
+	const deleteOpenMoalHandler = (e) => {
+		e.preventDefault();
+		setModalWidndovStatusDelete(true);
 	};
 
+	useEffect(() => {
+		console.log(validationErrors);
+	}, [validationErrors]);
 	useEffect(() => {
 		setTitle(data.title);
 		setDate(data.pub_date);
@@ -55,9 +148,33 @@ const AdminPostSection = ({ newsId, data }) => {
 		setImages(data.img);
 		setComment(data.comment);
 	}, [data]);
-	useEffect(() => {
-		console.log(comment);
-	}, [comment]);
+
+	let dataForDeleteModal = {
+		acceptButton: {
+			text: 'Видалити',
+			class: 'delete',
+			handler: deletePostHandler,
+		},
+		cencelButton: {
+			text: 'Повернутися',
+			handler: (e) => {
+				setModalWidndovStatusDelete(false);
+			},
+		},
+		closeButton: {
+			text: 'Повернутися',
+			handler: (e) => {
+				setModalWidndovStatusDelete(false);
+			},
+		},
+		isFetching: isFetching,
+		fetchingResult: isFetchingStatus,
+		text: {
+			question: 'Видалити цю подію?',
+			accept: 'Подію видалено!',
+			error: 'Сталася якась помилка!',
+		},
+	};
 
 	return (
 		<div className={`section-container`}>
@@ -69,7 +186,11 @@ const AdminPostSection = ({ newsId, data }) => {
 							*
 						</span>
 					</p>
-					<textarea value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Заголовок" className={s.title}></textarea>
+					<textarea
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+						placeholder="Заголовок"
+						className={`${s.title} ${validationErrors.title ? s.validated : ''}`}></textarea>
 					<button
 						title="Смайлики"
 						onClick={(e) => {
@@ -89,7 +210,7 @@ const AdminPostSection = ({ newsId, data }) => {
 							*
 						</span>
 					</p>
-					<p className={s.date}>
+					<p className={`${s.date} ${validationErrors.date ? s.validated : ''}`}>
 						<input type="datetime-local" step="1" onChange={(e) => setDate(e.target.value)} value={date} />
 					</p>
 				</div>
@@ -101,12 +222,16 @@ const AdminPostSection = ({ newsId, data }) => {
 
 				<div className={s.post_item}>
 					<p>
-						Текст додії:
+						Текст події:
 						<span style={{ fontSize: '20px', color: 'red' }} title="Обов`язкове">
 							*
 						</span>
 					</p>
-					<textarea value={text} onChange={(e) => setText(e.target.value)} placeholder="Текст події" className={s.text}></textarea>
+					<textarea
+						value={text}
+						onChange={(e) => setText(e.target.value)}
+						placeholder="Текст події"
+						className={`${s.text} ${validationErrors.text ? s.validated : ''}`}></textarea>
 					<button
 						title="Смайлики"
 						onClick={(e) => {
@@ -141,7 +266,13 @@ const AdminPostSection = ({ newsId, data }) => {
 						</div>
 					)}
 
-					<input ref={ref} className={s.image} type="file" name="myImage" />
+					<input
+						ref={ref}
+						className={`${s.image} ${!images && validationErrors.images ? s.validated : ''}`}
+						type="file"
+						name="myImage"
+						placeholder="Оберіть зображення"
+					/>
 				</div>
 
 				{comment && comment.length > 0 ? (
@@ -183,12 +314,42 @@ const AdminPostSection = ({ newsId, data }) => {
 				)}
 
 				<div className={s.select_buttons}>
-					<button className={s.cancel}>Відмінити</button>
-					<button className={s.select} onClick={selectHandler}>
+					<Link to={'/admin-news-feed/'} className={s.cancel}>
+						Відмінити
+					</Link>
+					{data.id && (
+						<button className={s.delete} onClick={deleteOpenMoalHandler}>
+							Видалити
+						</button>
+					)}
+					<button className={s.select} onClick={creacteHandler}>
 						Опублікувати
 					</button>
 				</div>
 			</form>
+
+			{modalWidndovStatus && (
+				<ModalWidnow>
+					<div className={s.result_window}>
+						{isFetching ? (
+							<Loader />
+						) : (
+							<div className={s.result_container}>
+								{isFetchingStatus && isFetchingStatus !== 'error' && <p>Подія успішно створена!</p>}
+								{isFetchingStatus === 'error' && <p>Упс! Вийшла якась помилка!</p>}
+								<button
+									onClick={() => {
+										setModalWidndovStatus(false);
+										setFetchingStatus(false);
+									}}>
+									Повернутися
+								</button>
+							</div>
+						)}
+					</div>
+				</ModalWidnow>
+			)}
+			{modalWidndovStatusDelete && <AlertModalWindow data={dataForDeleteModal} />}
 		</div>
 	);
 };

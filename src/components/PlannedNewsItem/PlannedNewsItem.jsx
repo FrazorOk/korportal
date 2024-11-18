@@ -1,29 +1,28 @@
 import s from './PlannedNewsItem.module.css';
 import changeIcon from '../../assets/img/icons/pencil-icon.svg';
 import deleteIcon from '../../assets/img/icons/delete-icon.svg';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
-const PlannedNewsItem = () => {
+const PlannedNewsItem = ({ data }) => {
+	let { id, title, pub_date, autor_name } = data;
+
+	useEffect(() => {
+		console.log(data);
+	}, [data]);
+
 	return (
 		<div className={s.planned_item}>
 			<div className={s.title}>
-				<p>Новий рекорд у Напрямку автоматизації бізнесу!🏆</p>
-			</div>
-
-			<div className={s.line}></div>
-
-			<div className={s.created_date}>
-				<p>
-					<span>Створено:</span>
-					<br /> 06.11.2024
-				</p>
+				<p>{title && title}</p>
 			</div>
 
 			<div className={s.line}></div>
 
 			<div className={s.date_to}>
 				<p>
-					<span>Заплановано:</span>
-					<br /> 06.11.2024
+					<span>Заплановано на:</span>
+					<br /> {pub_date && pub_date}
 				</p>
 			</div>
 
@@ -32,16 +31,16 @@ const PlannedNewsItem = () => {
 			<div className={s.autor}>
 				<p>
 					<span>Автор:</span>
-					<br /> Жуйков Дмитро
+					<br /> {autor_name && autor_name}
 				</p>
 			</div>
 
 			<div className={s.line}></div>
 
 			<div className={s.buttons}>
-				<button title="Редагувати">
+				<Link to={`./add-change-news/${id}`} title="Редагувати">
 					<img src={changeIcon} alt="" />
-				</button>
+				</Link>
 				<button title="Видалити">
 					<img src={deleteIcon} alt="" />
 				</button>
