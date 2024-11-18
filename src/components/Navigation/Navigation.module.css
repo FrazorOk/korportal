@@ -87,6 +87,9 @@
 }
 
 @media (max-width: 1200px), (hover: none) {
+	.label_menu {
+		margin-top: 15px;
+	}
 	nav {
 		max-width: 450px;
 		margin: 0 auto;

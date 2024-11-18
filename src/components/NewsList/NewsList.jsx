@@ -37,14 +37,16 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 			let concatedArray = [];
 
 			arr.forEach((element, index) => {
-				if (index !== arr.length - 1 && element.tags) {
+				if (element && index !== arr.length - 1 && element.tags) {
 					concatedArray = [...concatedArray, ...element.tags];
 				}
 			});
 
 			let uniqueTags = [...new Set(concatedArray)];
+			// Для видалення нуьовногу тегу
+			let filteredTagsFromNull = uniqueTags.filter((tag) => tag.length > 0);
 
-			return uniqueTags;
+			return filteredTagsFromNull;
 		}
 	};
 	const getFilteredNews = () => {

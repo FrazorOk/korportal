@@ -1,6 +1,6 @@
 import s from './BirthdaySection.module.css';
 import searchIcon from '../../../assets/img/icons/search-icon.svg';
-import mailIcon from '../../../assets/img/icons/mail-icon.svg';
+import mailIcon from '../../../assets/img/icons/teams-ms-icon.svg';
 import calendarIcon from '../../../assets/img/icons/calendar-icon.svg';
 import profileIcon from '../../../assets/img/icons/profile-icon.svg';
 import { getAllUsers, getPhotoUser } from '../../../api/graph';
@@ -8,7 +8,7 @@ import { useMsal } from '@azure/msal-react';
 import { loginRequest } from '../../../authConfig';
 import { memo, useEffect, useRef, useState } from 'react';
 import { dateConverter } from '../../../helpers/dateConverter';
-import Loader from '../../../components/Loader/Loader';
+import Loader from '../../../components/UI/Loader/Loader';
 
 const dateToYMD = (date, year) => {
 	let d = date.getDate();

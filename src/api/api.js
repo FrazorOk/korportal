@@ -32,9 +32,10 @@ export const addIdToSeenNews = (newsID, userID) => {
 };
 
 // news
-export const getNews = (setState) => {
+export const getNews = (setState, all = 0) => {
 	let curretBody = {
 		limit: 100,
+		all: all,
 	};
 	return fetch('https://portal.softcom.ua/php/newsout.php', {
 		method: 'POST',
@@ -102,28 +103,14 @@ export const toggleLike = (newsID, userID, code) => {
 		return response;
 	});
 };
-export const createNewPost = ({ title, tags, date, text, imgFile, cat_id }) => {
-	// let curretBody = {
-	// 	text: text,
-	// 	pub_date: date,
-	// 	cat_id: cat_id,
-	// 	img: imgFile,
-	// };
-	// console.log(curretBody);
-	// return fetch('https://portal.softcom.ua/php/newsadd.php', {
-	// 	method: 'POST',
-	// 	headers: { 'Content-Type': 'application/json' },
-	// 	body: JSON.stringify(curretBody),
-	// }).then((response) => {
-	// 	console.log(response);
-	// 	return response;
-	// });
+export const createNewPost = ({ title, tags, date, text, imgFile, cat_id, autor_id }) => {
 	let data = new FormData();
 	data.append('title', title);
 	data.append('tags', tags);
 	data.append('pub_date', date);
 	data.append('text', text);
 	data.append('cat_id', cat_id);
+	data.append('autor_id', autor_id);
 	data.append('img', imgFile);
 
 	console.log(data);
@@ -132,6 +119,26 @@ export const createNewPost = ({ title, tags, date, text, imgFile, cat_id }) => {
 		body: data,
 	}).then((response) => {
 		console.log(response);
+		return response;
+	});
+};
+export const deleteNewsPost = (newsID, action = 'news') => {
+	// action може бути news або comments
+
+	let curretBody = {
+		newsID: newsID,
+		action: action,
+	};
+
+	console.log(curretBody);
+
+	return fetch('https://portal.softcom.ua/php/delete.php', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(curretBody),
+	}).then((response) => {
+		console.log(response);
+
 		return response;
 	});
 };

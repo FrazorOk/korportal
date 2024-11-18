@@ -18,7 +18,7 @@
 }
 .title {
 	line-height: 15px;
-	width: 36%;
+	width: 40%;
 	text-wrap: wrap;
 	-webkit-box-orient: vertical;
 	display: -webkit-box;
@@ -26,19 +26,18 @@
 	-webkit-line-clamp: 2;
 	overflow: hidden;
 }
-.created_date,
+
 .date_to,
 .autor {
+	font-size: 12px;
 	text-align: center;
 }
-.created_date {
-	font-weight: 300;
-}
+
 .date_to {
 	font-weight: 500;
 }
 .autor {
-	width: 20%;
+	width: 24%;
 	color: #004795;
 	font-weight: 600;
 }
@@ -59,17 +58,20 @@
 	flex-direction: column;
 	gap: 3px;
 }
-.buttons button {
+.buttons button,
+.buttons a {
 	padding: 2px;
 	background-color: transparent;
 	border-radius: 4px;
 	transition: all 0.3s ease 0s;
 }
-.buttons button img {
+.buttons button img,
+.buttons a img {
 	width: 16px;
 }
 @media (hover: hover) {
-	.buttons button:hover {
+	.buttons button:hover,
+	.buttons a:hover {
 		background-color: #ebebeb;
 	}
 }
