@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState } from 'react';
 import s from './Header.module.css';
 import { useMsal } from '@azure/msal-react';
-import { callMe, callPhoto, getStructureCompany } from '../../api/graph';
+import { callMe, callPhoto, getAdminMembers, getGroups, getStructureCompany } from '../../api/graph';
 import { loginRequest } from '../../authConfig';
 import settingIcon from '../../assets/img/icons/settings-icon.svg';
 import bellIcon from '../../assets/img/icons/bell-icon.svg';
@@ -10,7 +10,7 @@ import logo from '../../assets/img/Frame 40.png';
 import { NavLink } from 'react-router-dom';
 import { sendUserProfile } from '../../api/api';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../store/userSlice';
+import { setAdmin, setUser } from '../../store/userSlice';
 import { fetchSeenNews } from '../../store/thunks';
 
 const Header = ({ toggleMobileMode, mobileMode }) => {
@@ -49,16 +49,22 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 			});
 	}
 
-	function RequestStructureData() {
+	function RequestAdminsGroupData() {
 		instance
 			.acquireTokenSilent({
 				...loginRequest,
 				account: accounts[0],
 			})
 			.then((response) => {
-				getStructureCompany(response.accessToken)
-					.then((response) => response.json())
-					.then((result) => console.log(result));
+				getAdminMembers(response.accessToken)
+					.then((response) => {
+						return response.json();
+					})
+					.then((result) => {
+						let adminStatus = result.value.find(({ id }) => id === graphData.id);
+						adminStatus && dispatch(setAdmin(true));
+						return result;
+					});
 			});
 	}
 
@@ -72,6 +78,8 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 			dispatch(setUser(graphData));
 			dispatch(fetchSeenNews(graphData.id));
 			sendUserProfile(graphData);
+			RequestAdminsGroupData();
+			console.log(graphData.id);
 		}
 	}, [graphData]);
 
