@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import AdminNewsPage from './pages/AdminNewsPage/AdminNewsPage';
 import AdminAddChangeNewsPage from './pages/AdminAddChangeNewsPage/AdminAddChangeNewsPage';
+import AdminHolidayCalendarPage from './pages/AdminHolidayCalendarPage/AdminHolidayCalendarPage';
 
 const router = createBrowserRouter([
 	{
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
 			},
 			{ path: 'admin-news-feed/add-change-news', element: <AdminAddChangeNewsPage /> },
 			{ path: 'admin-news-feed/add-change-news/:newsId', element: <AdminAddChangeNewsPage /> },
+			{ path: 'admin-holiday-calendar', element: <AdminHolidayCalendarPage /> },
 		],
 	},
 	{

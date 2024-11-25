@@ -33,17 +33,36 @@ export async function callPhoto(accessToken) {
 		.then((response) => response)
 		.catch((error) => console.log(error));
 }
-export async function getGroups(accessToken) {
+export async function getAdminGroup(accessToken) {
 	const headers = new Headers();
 	const bearer = `Bearer ${accessToken}`;
 
 	headers.append('Authorization', bearer);
+	headers.append('ConsistencyLevel', 'eventual');
+
 	const options = {
 		method: 'GET',
 		headers: headers,
 	};
 
-	return fetch('https://graph.microsoft.com/beta/groups', options)
+	return fetch(`https://graph.microsoft.com/v1.0/groups?$search="displayName:AG-Corportal_Admins"`, options)
+		.then((response) => response)
+		.catch((error) => console.log(error));
+}
+export async function getAdminMembers(accessToken) {
+	let groupID = 'f5f1c6ff-3d52-4ab7-91fd-af4c58393d53';
+
+	const headers = new Headers();
+	const bearer = `Bearer ${accessToken}`;
+
+	headers.append('Authorization', bearer);
+
+	const options = {
+		method: 'GET',
+		headers: headers,
+	};
+
+	return fetch(`https://graph.microsoft.com/v1.0/groups/${groupID}/members`, options)
 		.then((response) => response)
 		.catch((error) => console.log(error));
 }

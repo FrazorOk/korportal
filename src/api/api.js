@@ -1,4 +1,5 @@
 // user
+// ---------------------------------
 export const sendUserProfile = (data) => {
 	let { displayName, id, jobTitle, mail, mobilePhone, userPrincipialName } = data;
 	let curretBody = {
@@ -30,8 +31,10 @@ export const addIdToSeenNews = (newsID, userID) => {
 		return response;
 	});
 };
+// ---------------------------------
 
 // news
+// ---------------------------------
 export const getNews = (setState, all = 0) => {
 	let curretBody = {
 		limit: 100,
@@ -64,8 +67,8 @@ export const getNewsFromID = (postID, setState, setStateReactions) => {
 			return response.json();
 		})
 		.then((result) => {
-			setState && setState(result[0].comment);
-			setStateReactions && setStateReactions(result[0].reaction);
+			result[0].comment && setState && setState(result[0].comment);
+			result[0].reaction && setStateReactions && setStateReactions(result[0].reaction);
 			return result;
 		});
 };
@@ -113,12 +116,28 @@ export const createNewPost = ({ title, tags, date, text, imgFile, cat_id, autor_
 	data.append('autor_id', autor_id);
 	data.append('img', imgFile);
 
-	console.log(data);
 	return fetch('https://portal.softcom.ua/php/newsadd.php', {
 		method: 'POST',
 		body: data,
 	}).then((response) => {
-		console.log(response);
+		return response;
+	});
+};
+export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor_id, id }) => {
+	let data = new FormData();
+	data.append('id', id);
+	data.append('title', title);
+	data.append('tags', tags);
+	data.append('pub_date', date);
+	data.append('text', text);
+	data.append('cat_id', cat_id);
+	data.append('autor_id', autor_id);
+	data.append('img', imgFile);
+
+	return fetch('https://portal.softcom.ua/php/newsadd.php', {
+		method: 'POST',
+		body: data,
+	}).then((response) => {
 		return response;
 	});
 };
@@ -130,15 +149,12 @@ export const deleteNewsPost = (newsID, action = 'news') => {
 		action: action,
 	};
 
-	console.log(curretBody);
-
 	return fetch('https://portal.softcom.ua/php/delete.php', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
 	}).then((response) => {
-		console.log(response);
-
 		return response;
 	});
 };
+// --------------------------------

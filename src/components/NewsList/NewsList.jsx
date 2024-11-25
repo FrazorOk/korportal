@@ -8,6 +8,7 @@ import { userSelector } from '../../selectors/userSelectors';
 const toDay = new Date().toJSON().slice(0, 10);
 
 const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLength, adminStatus }) => {
+	const indexStep = 10;
 	let [news, setNews] = useState([]);
 	let [visibleNews, setVisibleNews] = useState([]);
 
@@ -124,7 +125,6 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 		}
 	};
 	const getPaginationNews = () => {
-		const indexStep = 2;
 		if (stepPagination * indexStep > visibleNews.length - 1) {
 			setPaginationNews((arr) => [...visibleNews.slice(0, visibleNews.length)]);
 		} else {
@@ -169,7 +169,7 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 						}
 					})
 				) : (
-					<p style={{ marginTop: '20px' }}>Немає подій</p>
+					<p style={{ marginTop: '20px', color: 'rgb(125, 125, 125)' }}>Немає подій</p>
 				)}
 			</div>
 			{news && visibleNews.length > paginationNews.length + 1 && (

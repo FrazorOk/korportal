@@ -5,6 +5,7 @@ import teachIcon from '../../assets/img/icons/teach-icon.svg';
 import teamIcon from '../../assets/img/icons/team-icon.svg';
 import videoIcon from '../../assets/img/icons/video-icon.svg';
 import newsFeedIcon from '../../assets/img/icons/news-feed.svg';
+import balloonsIcon from '../../assets/img/icons/balloons-icon.svg';
 
 export const navigationsLinks = [
 	{
@@ -44,5 +45,10 @@ export const navigationsAdminLinks = [
 		name: 'Стрічка новин',
 		path: 'admin-news-feed',
 		icon: newsFeedIcon,
+	},
+	{
+		name: 'Календар свят',
+		path: 'admin-holiday-calendar',
+		icon: balloonsIcon,
 	},
 ];

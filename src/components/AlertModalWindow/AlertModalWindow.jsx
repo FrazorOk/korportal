@@ -26,9 +26,17 @@ const AlertModalWindow = ({ data }) => {
 								</button>
 							</div>
 						) : (
-							<button onClick={closeButton.handler} className="standart-btn cancel">
-								{closeButton.text}
-							</button>
+							<>
+								{closeButton.link ? (
+									<Link to={closeButton.link} className="standart-btn cancel">
+										{closeButton.text}
+									</Link>
+								) : (
+									<button onClick={closeButton.handler} className="standart-btn cancel">
+										{closeButton.text}
+									</button>
+								)}
+							</>
 						)}
 					</div>
 				)}
