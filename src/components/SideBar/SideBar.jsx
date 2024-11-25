@@ -4,8 +4,17 @@ import Navigation from '../Navigation/Navigation';
 import { SignOutButton } from '../SingOutButton/SignOutButton';
 import { navigationsAdminLinks, navigationsLinks } from './NavigationLinks';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../selectors/userSelectors';
+import { useEffect } from 'react';
 
 const SideBar = ({ status, toggleMobileMode }) => {
+	let adminStatus = useSelector(userSelector.userAdminStatus);
+
+	useEffect(() => {
+		console.log(adminStatus);
+	}, [adminStatus]);
+
 	return (
 		<div className={`${s.side_bar} ${status && s.active}`}>
 			<div className={s.side_bar__logo}>
@@ -16,7 +25,9 @@ const SideBar = ({ status, toggleMobileMode }) => {
 			</div>
 			<div className={s.side_bar__menus}>
 				<Navigation data={navigationsLinks} titleName={'Меню'} status={status} toggleMobileMode={toggleMobileMode} />
-				<Navigation data={navigationsAdminLinks} titleName={'Адмін меню'} status={status} toggleMobileMode={toggleMobileMode} />
+				{adminStatus && (
+					<Navigation data={navigationsAdminLinks} titleName={'Адмін меню'} status={status} toggleMobileMode={toggleMobileMode} />
+				)}
 			</div>
 			<div className={s.side_bar__exit}>
 				<SignOutButton status={status} />

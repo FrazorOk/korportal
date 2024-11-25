@@ -251,7 +251,7 @@ const BirthdaySection = () => {
 						<li key={`birthday user ${index}`} className={`${s.birthday_item} ${user.index === 0 ? s.active : ''}`}>
 							<div className={s.birthday_item__user}>
 								<a title={'Відкрити чат'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
-									<img src={user.urlImg ? user.urlImg : profileIcon} alt={profileIcon} />
+									<img loading="lazy" src={user.urlImg ? user.urlImg : profileIcon} alt={profileIcon} />
 								</a>
 								<div>
 									<a title={'Відкрити чат'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>

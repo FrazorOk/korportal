@@ -4,7 +4,6 @@ import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
 import heartIcon from '../../assets/img/icons/heart-icon.svg';
 import commentsIcon from '../../assets/img/icons/comments-icon.svg';
 import changeIcon from '../../assets/img/icons/pencil-icon.svg';
-import deleteIcon from '../../assets/img/icons/delete-icon.svg';
 import smileIcon from '../../assets/img/icons/smile-icon.svg';
 import clockIcon from '../../assets/img/icons/clock-icon.svg';
 import mailIcon from '../../assets/img/icons/paper-plane-icon.svg';
@@ -151,9 +150,6 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 					<Link to={`./add-change-news/${id}`} title="Редагувати">
 						<img src={changeIcon} alt="" />
 					</Link>
-					<Link title="Видалити">
-						<img src={deleteIcon} alt="" />
-					</Link>
 				</div>
 			)}
 			<div className={s.left_column}>
@@ -176,7 +172,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 			</div>
 			<div className={s.right_column}>
 				<div className={s.images_container}>
-					<img src={img} alt="" />
+					<img src={img} alt="" loading="lazy" />
 				</div>
 				<div className={s.buttons_container}>
 					<button

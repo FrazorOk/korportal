@@ -6,6 +6,7 @@ export const userSlice = createSlice({
 	initialState: {
 		userData: {},
 		userSeenNews: [],
+		isAdmin: false,
 	},
 	reducers: {
 		setUser: (state, action) => {
@@ -13,6 +14,9 @@ export const userSlice = createSlice({
 		},
 		setSeenNews: (state, action) => {
 			state.userSeenNews = action.payload;
+		},
+		setAdmin: (state, action) => {
+			state.isAdmin = action.payload;
 		},
 	},
 	extraReducers: {
@@ -23,5 +27,5 @@ export const userSlice = createSlice({
 });
 
 // Функция действия генерируется на каждую функцию релюсера(reducer), определённую в createSlice
-export const { setUser, setSeenNews } = userSlice.actions;
+export const { setUser, setSeenNews, setAdmin } = userSlice.actions;
 export default userSlice.reducer;
