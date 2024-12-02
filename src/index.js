@@ -14,11 +14,13 @@ import store from './store/store';
 import AdminNewsPage from './pages/AdminNewsPage/AdminNewsPage';
 import AdminAddChangeNewsPage from './pages/AdminAddChangeNewsPage/AdminAddChangeNewsPage';
 import AdminHolidayCalendarPage from './pages/AdminHolidayCalendarPage/AdminHolidayCalendarPage';
+import AdminAddChangeHolidayCalendarPage from './pages/AdminAddChangeHolidayCalendarPage/AdminAddChangeHolidayCalendarPage';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <App />,
+		errorElement: <p>Error</p>,
 		children: [
 			{
 				path: '/',
@@ -42,14 +44,27 @@ const router = createBrowserRouter([
 				path: 'admin-news-feed/',
 				element: <AdminNewsPage />,
 			},
-			{ path: 'admin-news-feed/add-change-news', element: <AdminAddChangeNewsPage /> },
-			{ path: 'admin-news-feed/add-change-news/:newsId', element: <AdminAddChangeNewsPage /> },
-			{ path: 'admin-holiday-calendar', element: <AdminHolidayCalendarPage /> },
+			{
+				path: 'admin-news-feed/add-change-news',
+				element: <AdminAddChangeNewsPage />,
+			},
+			{
+				path: 'admin-news-feed/add-change-news/:newsId',
+				element: <AdminAddChangeNewsPage />,
+			},
+			{
+				path: 'admin-holiday-calendar',
+				element: <AdminHolidayCalendarPage />,
+			},
+			{
+				path: 'admin-holiday-calendar/add-change-holiday-calendar',
+				element: <AdminAddChangeHolidayCalendarPage />,
+			},
+			{
+				path: 'admin-holiday-calendar/add-change-holiday-calendar/:Id',
+				element: <AdminAddChangeHolidayCalendarPage />,
+			},
 		],
-	},
-	{
-		path: '*',
-		element: <App />,
 	},
 ]);
 

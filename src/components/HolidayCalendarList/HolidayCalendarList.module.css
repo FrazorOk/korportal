@@ -1,0 +1,17 @@
+.list {
+	width: 100%;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
+}
+.add_button {
+	position: relative;
+	width: calc(25% - 23px);
+	min-height: 105px;
+	border-radius: 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}

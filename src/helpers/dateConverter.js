@@ -26,6 +26,12 @@ export const dateConverter = (date) => {
 
 	return `${day} ${uaMonthsSliced[month - 1]}`;
 };
+export const dateConverterFromYMD = (date) => {
+	let day = date.slice(8, 10);
+	let month = date.slice(5, 7) * 1;
+
+	return { day: day, month: uaMonthsSliced[month - 1] };
+};
 export const monthFullConverter = (date) => {
 	return uaMonths[date - 1];
 };

@@ -1,0 +1,22 @@
+.add_button {
+	width: 100%;
+	height: 100%;
+	border-radius: 14px;
+	border: 3px solid #7d7d7d;
+	position: relative;
+}
+.add_button::after,
+.add_button::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 40px;
+	height: 3px;
+	border-radius: 14px;
+	background-color: #7d7d7d;
+}
+.add_button::before {
+	transform: translate(-50%, -50%) rotate(90deg);
+}

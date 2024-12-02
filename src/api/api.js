@@ -35,10 +35,11 @@ export const addIdToSeenNews = (newsID, userID) => {
 
 // news
 // ---------------------------------
-export const getNews = (setState, all = 0) => {
+export const getNews = (setState, all = 0, categoryID = 1) => {
 	let curretBody = {
 		limit: 100,
 		all: all,
+		categoryID: categoryID,
 	};
 	return fetch('https://portal.softcom.ua/php/newsout.php', {
 		method: 'POST',
@@ -120,6 +121,8 @@ export const createNewPost = ({ title, tags, date, text, imgFile, cat_id, autor_
 		method: 'POST',
 		body: data,
 	}).then((response) => {
+		console.log(response);
+
 		return response;
 	});
 };
@@ -158,3 +161,20 @@ export const deleteNewsPost = (newsID, action = 'news') => {
 	});
 };
 // --------------------------------
+
+export const createNewHolidayDate = ({ title, date, cat_id, autor_id }) => {
+	let data = new FormData();
+	data.append('title', title);
+	data.append('pub_date', date);
+	data.append('cat_id', cat_id);
+	data.append('autor_id', autor_id);
+
+	return fetch('https://portal.softcom.ua/php/newsadd.php', {
+		method: 'POST',
+		body: data,
+	}).then((response) => {
+		console.log(response);
+
+		return response;
+	});
+};
