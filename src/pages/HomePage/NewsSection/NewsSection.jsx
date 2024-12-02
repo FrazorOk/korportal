@@ -7,6 +7,9 @@ const NewsSection = () => {
 		<div className={s.news_row}>
 			<NewsList listTitle={'Новини маркетингу'} />
 			<NewsList listTitle={'Новини компанії'} />
+			<div className={s.overflow}>
+				<p>НЕЗАБАРОМ</p>
+			</div>
 		</div>
 	);
 };

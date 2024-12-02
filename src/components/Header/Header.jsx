@@ -79,7 +79,6 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 			dispatch(fetchSeenNews(graphData.id));
 			sendUserProfile(graphData);
 			RequestAdminsGroupData();
-			console.log(graphData.id);
 		}
 	}, [graphData]);
 

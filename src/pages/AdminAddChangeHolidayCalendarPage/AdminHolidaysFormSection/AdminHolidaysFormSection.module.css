@@ -1,0 +1,210 @@
+.post {
+	margin-top: 20px;
+	width: 100%;
+	min-height: 281px;
+	padding: 25px 25px 40px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	border: 1px solid #e3e3e3;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	position: relative;
+}
+.post p {
+	cursor: default;
+}
+.post_item {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.post_item.row {
+	flex-direction: row;
+	align-items: center;
+}
+.post input,
+.post textarea {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	text-wrap: wrap;
+	resize: none;
+}
+.title {
+	font-size: 18px;
+	font-weight: 500;
+
+	height: auto;
+}
+.date {
+	color: #7d7d7d;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+.date input {
+	font-size: 14px;
+	width: 180px;
+	height: 30px;
+	font-weight: 500;
+	color: #7d7d7d;
+	border: 1px solid #e3e3e3;
+	cursor: pointer;
+	padding-right: 10px;
+}
+
+.text {
+	line-height: 16px;
+	height: 300px;
+	overflow-y: auto;
+}
+.smile_button {
+	margin-top: -8px;
+	width: 30px;
+	height: 30px;
+	border-radius: 4px;
+}
+.image_container {
+	position: relative;
+	width: 100%;
+}
+.image_url {
+	width: 100%;
+	max-width: 300px;
+	height: auto;
+	border-radius: 4px;
+}
+.image_container button {
+	width: fit-content;
+	height: fit-content;
+	padding: 5px;
+	border-radius: 50%;
+	transition: all 0.3s ease 0s;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background-color: rgb(218, 218, 218);
+	box-shadow: 0px 0px 8px #0000001a;
+}
+.image {
+	cursor: pointer;
+	position: relative;
+}
+
+.title.validated,
+.date.validated input,
+.text.validated,
+.image.validated {
+	border: 1px solid red;
+}
+.comments_list {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+.comment {
+	display: flex;
+	justify-content: flex-start;
+	gap: 10px;
+	background-color: #faf9f8;
+	border-radius: 4px;
+	padding: 10px 12px;
+}
+.comment_column {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	width: 100%;
+	flex-grow: 1;
+}
+.comment p {
+	width: 100%;
+}
+.comment button {
+	width: fit-content;
+	height: fit-content;
+	padding: 5px;
+	border-radius: 50%;
+	transition: all 0.3s ease 0s;
+	background-color: transparent;
+}
+.select_buttons {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	margin-top: 10px;
+}
+.select_buttons a,
+.select_buttons button {
+	font-size: 14px;
+	font-weight: 500;
+	color: white;
+	border-radius: 50px;
+	padding: 10px 15px 12px;
+	transition: all 0.3s ease 0s;
+}
+.select {
+	background-color: #004795;
+}
+.delete {
+	background-color: #d71e1e;
+}
+.cancel {
+	background-color: #e8903f;
+}
+.result_window {
+	max-width: 500px;
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+}
+.result_window .result_container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+}
+.result_window p {
+	font-size: 16px;
+	text-align: center;
+	color: #004795;
+}
+.result_window button,
+.result_window a {
+	background-color: #004795;
+	border-radius: 50px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 10px 15px 12px;
+	transition: all 0.3s ease 0s;
+}
+
+@media (hover: hover) {
+	.comment button:hover {
+		background-color: rgb(225, 225, 225);
+	}
+	.select_buttons input:hover,
+	.select_buttons button:hover {
+		opacity: 0.8;
+	}
+	.result_window button:hover,
+	.result_window a:hover {
+		opacity: 0.8;
+	}
+}
+@media (max-width: 768px) {
+	.post {
+		margin-top: 0px;
+		width: 100%;
+		min-height: 281px;
+		padding: 15px 15px 15px;
+	}
+}
