@@ -1,10 +1,12 @@
 import { memo, useEffect, useRef, useState } from 'react';
 import VivoChatSection from '../../components/VivoChatSection/VivoChatSection';
-import PlannedNews from './PlannedNewsSection/PlannedNewsSection';
 import PlannedNewsSection from './PlannedNewsSection/PlannedNewsSection';
 import AddNewPostSection from './AddNewPostSection/AddNewPostSection';
+import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
 
 const AdminNewsPage = () => {
+	let { statusAdmin } = useRedirectAdmin();
+
 	let ref = useRef();
 	let ref2 = useRef();
 	let ref3 = useRef();
@@ -35,43 +37,51 @@ const AdminNewsPage = () => {
 	};
 
 	useEffect(() => {
-		const observer = new ResizeObserver((entries) => {
-			setwidth(entries[0].contentRect.width / 2 - 15);
-			setWindowHeight(window.innerHeight);
-		});
-		observer.observe(ref.current);
-		return () => {
-			ref.current && observer.unobserve(ref.current);
-		};
-	}, []);
-
-	useEffect(() => {
-		if (windowHeight) {
-			let el = document.querySelector('.main-scroll-block');
-			el.addEventListener('scroll', (e) => handleScroll(window.innerHeight));
+		if (statusAdmin) {
+			const observer = new ResizeObserver((entries) => {
+				setwidth(entries[0].contentRect.width / 2 - 15);
+				setWindowHeight(window.innerHeight);
+			});
+			observer.observe(ref.current);
 			return () => {
-				window.removeEventListener('scroll', (e) => handleScroll(window.innerHeight));
+				ref.current && observer.unobserve(ref.current);
 			};
 		}
-	}, [windowHeight]);
+	}, [statusAdmin]);
+
+	useEffect(() => {
+		if (statusAdmin) {
+			if (windowHeight) {
+				let el = document.querySelector('.main-scroll-block');
+				el.addEventListener('scroll', (e) => handleScroll(window.innerHeight));
+				return () => {
+					window.removeEventListener('scroll', (e) => handleScroll(window.innerHeight));
+				};
+			}
+		}
+	}, [windowHeight, statusAdmin]);
 
 	return (
-		<div>
-			<h1>Налаштування стрічки останніх подій</h1>
+		<>
+			{statusAdmin && (
+				<div>
+					<h1>Налаштування стрічки останніх подій</h1>
 
-			<div ref={ref} style={{ marginTop: '30px' }} className="row end">
-				<div
-					ref={ref3}
-					style={{ width: width }}
-					className={`column-50 ${stikuNeeded && scroll < 0 && 'sticky-position'} ${
-						stikuNeeded && statusStiky && 'sticky-position__bottom'
-					}`}>
-					<AddNewPostSection />
-					<PlannedNewsSection />
+					<div ref={ref} style={{ marginTop: '30px' }} className="row end">
+						<div
+							ref={ref3}
+							style={{ width: width }}
+							className={`column-50 ${stikuNeeded && scroll < 0 && 'sticky-position'} ${
+								stikuNeeded && statusStiky && 'sticky-position__bottom'
+							}`}>
+							<AddNewPostSection />
+							<PlannedNewsSection />
+						</div>
+						<VivoChatSection adminStatus={true} ref1={ref2} />
+					</div>
 				</div>
-				<VivoChatSection adminStatus={true} ref1={ref2} />
-			</div>
-		</div>
+			)}
+		</>
 	);
 };
 

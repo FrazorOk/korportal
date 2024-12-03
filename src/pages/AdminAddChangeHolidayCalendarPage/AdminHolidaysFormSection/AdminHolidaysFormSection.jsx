@@ -1,5 +1,5 @@
 import s from './AdminHolidaysFormSection.module.css';
-import { createNewHolidayDate, deleteNewsPost, updateNewsPost } from '../../../api/api.js';
+import { createNewHolidayDate, deleteNewsPost, updateHolidayPost } from '../../../api/api.js';
 import { useEffect, useState } from 'react';
 import ModalWidnow from '../../../components/UI/ModalWidnow/ModalWidnow.jsx';
 import Loader from '../../../components/UI/Loader/Loader.jsx';
@@ -67,7 +67,7 @@ const AdminHolidaysFormSection = ({ Id, data }) => {
 	};
 	const fetchingUpdatePost = async (data) => {
 		await setFetching(true);
-		let result = await updateNewsPost(data);
+		let result = await updateHolidayPost(data);
 		await setFetching(false);
 		if (result.status == 200) {
 			setFetchingStatus(true);

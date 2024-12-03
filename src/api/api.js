@@ -162,6 +162,8 @@ export const deleteNewsPost = (newsID, action = 'news') => {
 };
 // --------------------------------
 
+// Календар свят
+// -------------------------------------
 export const createNewHolidayDate = ({ title, date, cat_id, autor_id }) => {
 	let data = new FormData();
 	data.append('title', title);
@@ -173,8 +175,41 @@ export const createNewHolidayDate = ({ title, date, cat_id, autor_id }) => {
 		method: 'POST',
 		body: data,
 	}).then((response) => {
-		console.log(response);
-
 		return response;
 	});
+};
+export const updateHolidayPost = ({ title, date, cat_id, autor_id, id }) => {
+	let data = new FormData();
+	data.append('id', id);
+	data.append('title', title);
+	data.append('pub_date', date);
+	data.append('cat_id', cat_id);
+	data.append('autor_id', autor_id);
+
+	return fetch('https://portal.softcom.ua/php/newsadd.php', {
+		method: 'POST',
+		body: data,
+	}).then((response) => {
+		return response;
+	});
+};
+export const getHolidayFromID = (postID, categoryID) => {
+	let curretBody = {
+		id: postID,
+		categoryID: categoryID,
+	};
+
+	return fetch('https://portal.softcom.ua/php/newsout.php', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(curretBody),
+	})
+		.then((response) => {
+			return response.json();
+		})
+		.then((result) => {
+			console.log(result);
+
+			return result;
+		});
 };

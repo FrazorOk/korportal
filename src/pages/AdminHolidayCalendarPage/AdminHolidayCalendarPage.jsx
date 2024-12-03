@@ -1,14 +1,20 @@
 import HolidayCalendarList from '../../components/HolidayCalendarList/HolidayCalendarList';
-import s from './AdminHolidayCalendarPage.module.css';
+import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
 
 const AdminHolidayCalendarPage = () => {
+	let { statusAdmin } = useRedirectAdmin();
+
 	return (
-		<div>
-			<h1>Налаштування календаря свят</h1>
-			<div className="row">
-				<HolidayCalendarList />
-			</div>
-		</div>
+		<>
+			{statusAdmin && (
+				<div>
+					<h1>Налаштування календаря свят</h1>
+					<div className="row">
+						<HolidayCalendarList />
+					</div>
+				</div>
+			)}
+		</>
 	);
 };
 

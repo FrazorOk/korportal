@@ -23,7 +23,7 @@ const EventSection = () => {
 		getNews(setData, 1, 2);
 	}, []);
 	useEffect(() => {
-		if (data) {
+		if (data && data.length > 1) {
 			// Константи для дат
 			let year = new Date().getFullYear();
 			let nulledDay = new Date(`${year}-01-01`);
@@ -86,8 +86,8 @@ const EventSection = () => {
 				<div className={s.events}>
 					{formatedData &&
 						formatedData.length > 0 &&
-						formatedData.map((eventDate) => {
-							if (eventDate) {
+						formatedData.map((eventDate, index) => {
+							if (eventDate && index < 4) {
 								return (
 									<div className={s.events_item}>
 										<p>{eventDate.title}</p>

@@ -15,3 +15,27 @@
 	justify-content: center;
 	align-items: center;
 }
+@media (max-width: 1024px) {
+	.list {
+		gap: 20px;
+	}
+	.add_button {
+		width: calc(33.33% - 23px);
+		border-radius: 10px;
+	}
+}
+@media (max-width: 768px) {
+	.list {
+		gap: 14px;
+	}
+	.add_button {
+		min-height: 80px;
+		width: calc(50% - 7px);
+		border-radius: 8px;
+	}
+}
+@media (max-width: 500px) {
+	.add_button {
+		min-height: 70px;
+	}
+}
