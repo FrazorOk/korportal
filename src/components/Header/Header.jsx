@@ -62,7 +62,11 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 					})
 					.then((result) => {
 						let adminStatus = result.value.find(({ id }) => id === graphData.id);
-						adminStatus && dispatch(setAdmin(true));
+						if (adminStatus) {
+							dispatch(setAdmin('isAdmin'));
+						} else {
+							dispatch(setAdmin('notAdmin'));
+						}
 						return result;
 					});
 			});

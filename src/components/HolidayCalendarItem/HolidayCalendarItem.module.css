@@ -57,6 +57,7 @@
 .events_date_row p {
 	font-size: 30px;
 	font-weight: 600;
+	margin-top: 12px;
 }
 .events_date_row p span {
 	font-size: 16px;
@@ -117,6 +118,7 @@
 		gap: 12px;
 	}
 	.events_item {
+		width: calc(33.33% - 23px);
 		padding: 15px 20px;
 		border-radius: 10px;
 	}
@@ -137,7 +139,7 @@
 	}
 	.events_item {
 		min-height: 80px;
-		width: calc(50% - 5px);
+		width: calc(50% - 7px);
 		border-radius: 8px;
 		padding: 15px 15px;
 	}
@@ -168,7 +170,7 @@
 	}
 	.events_item {
 		min-height: 70px;
-		width: calc(50% - 5px);
+		width: calc(50% - 7px);
 		border-radius: 8px;
 		padding: 10px 15px;
 	}

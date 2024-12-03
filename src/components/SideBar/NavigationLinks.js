@@ -13,11 +13,11 @@ export const navigationsLinks = [
 		path: '/',
 		icon: homeIcon,
 	},
-	{
-		name: 'Команда',
-		path: 'team',
-		icon: teamIcon,
-	},
+	// {
+	// 	name: 'Команда',
+	// 	path: 'team',
+	// 	icon: teamIcon,
+	// },
 	{
 		name: 'Навчальний курс',
 		path: 'learn',
@@ -33,11 +33,11 @@ export const navigationsLinks = [
 		path: 'movies',
 		icon: videoIcon,
 	},
-	{
-		name: 'Ще',
-		path: 'more',
-		icon: arrowIcon,
-	},
+	// {
+	// 	name: 'Ще',
+	// 	path: 'more',
+	// 	icon: arrowIcon,
+	// },
 ];
 
 export const navigationsAdminLinks = [

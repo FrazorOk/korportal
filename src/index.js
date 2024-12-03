@@ -15,6 +15,8 @@ import AdminNewsPage from './pages/AdminNewsPage/AdminNewsPage';
 import AdminAddChangeNewsPage from './pages/AdminAddChangeNewsPage/AdminAddChangeNewsPage';
 import AdminHolidayCalendarPage from './pages/AdminHolidayCalendarPage/AdminHolidayCalendarPage';
 import AdminAddChangeHolidayCalendarPage from './pages/AdminAddChangeHolidayCalendarPage/AdminAddChangeHolidayCalendarPage';
+import MoviesPage from './pages/MoviesPage/MoviesPage';
+import LearnPage from './pages/LearnPage/LearnPage';
 
 const router = createBrowserRouter([
 	{
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
 			{
 				path: 'images/',
 				element: <ImagesPage />,
+			},
+			{
+				path: 'movies/',
+				element: <MoviesPage />,
+			},
+			{
+				path: 'learn/',
+				element: <LearnPage />,
 			},
 			{
 				path: 'admin-news-feed/',

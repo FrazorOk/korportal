@@ -6,14 +6,9 @@ import { navigationsAdminLinks, navigationsLinks } from './NavigationLinks';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../selectors/userSelectors';
-import { useEffect } from 'react';
 
 const SideBar = ({ status, toggleMobileMode }) => {
 	let adminStatus = useSelector(userSelector.userAdminStatus);
-
-	useEffect(() => {
-		console.log(adminStatus);
-	}, [adminStatus]);
 
 	return (
 		<div className={`${s.side_bar} ${status && s.active}`}>
@@ -25,7 +20,7 @@ const SideBar = ({ status, toggleMobileMode }) => {
 			</div>
 			<div className={s.side_bar__menus}>
 				<Navigation data={navigationsLinks} titleName={'Меню'} status={status} toggleMobileMode={toggleMobileMode} />
-				{adminStatus && (
+				{adminStatus === 'isAdmin' && (
 					<Navigation data={navigationsAdminLinks} titleName={'Адмін меню'} status={status} toggleMobileMode={toggleMobileMode} />
 				)}
 			</div>

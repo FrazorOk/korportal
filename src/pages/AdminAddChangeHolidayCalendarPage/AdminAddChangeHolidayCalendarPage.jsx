@@ -2,33 +2,43 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
 import AdminHolidaysFormSection from './AdminHolidaysFormSection/AdminHolidaysFormSection';
+import { getHolidayFromID } from '../../api/api';
+import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
 
 const AdminAddChangeHolidayCalendarPage = () => {
+	let { statusAdmin } = useRedirectAdmin();
 	let { Id } = useParams();
-   let [data, setData] = useState({});
-   
+	let [data, setData] = useState({});
 
 	useEffect(() => {
-		if (Id) {
-			console.log(Id);
+		if (Id && statusAdmin) {
+			let getNews = async () => {
+				let result = await getHolidayFromID(Id, 2);
+				setData(result[0]);
+			};
+			getNews();
 		}
-	}, [Id]);
+	}, [Id, statusAdmin]);
 
 	return (
-		<div>
-			{Id ? <h1>Редагування святкову дату</h1> : <h1>Створення нової святкової дати</h1>}
-			<div style={{ marginTop: '30px' }}>
-				<Link style={{ display: 'flex', gap: '4px', alignItems: 'center', width: 'fit-content' }} to="/admin-holiday-calendar/">
-					<img style={{ transform: 'rotate(90deg)' }} src={arrowIcon} alt="" />
-					<p style={{ color: '#7d7d7d' }}>Повернутися</p>
-				</Link>
-			</div>
-			<div className="row">
-				<div className="column-50">
-					<AdminHolidaysFormSection Id={Id} data={data} />
+		<>
+			{statusAdmin && (
+				<div>
+					{Id ? <h1>Редагування святкової дати</h1> : <h1>Створення нової святкової дати</h1>}
+					<div style={{ marginTop: '30px' }}>
+						<Link style={{ display: 'flex', gap: '4px', alignItems: 'center', width: 'fit-content' }} to="/admin-holiday-calendar/">
+							<img style={{ transform: 'rotate(90deg)' }} src={arrowIcon} alt="" />
+							<p style={{ color: '#7d7d7d' }}>Повернутися</p>
+						</Link>
+					</div>
+					<div className="row">
+						<div className="column-50">
+							<AdminHolidaysFormSection Id={Id} data={data} />
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
+			)}
+		</>
 	);
 };
 
