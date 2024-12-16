@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState } from 'react';
 import s from './Header.module.css';
 import { useMsal } from '@azure/msal-react';
-import { callMe, callPhoto, getAdminMembers, getGroups, getStructureCompany } from '../../api/graph';
+import { callMe, callPhoto, getAdminGroup, getAdminMembers, getGroups, getStructureCompany } from '../../api/graph';
 import { loginRequest } from '../../authConfig';
 import settingIcon from '../../assets/img/icons/settings-icon.svg';
 import bellIcon from '../../assets/img/icons/bell-icon.svg';
@@ -12,6 +12,7 @@ import { sendUserProfile } from '../../api/api';
 import { useDispatch } from 'react-redux';
 import { setAdmin, setUser } from '../../store/userSlice';
 import { fetchSeenNews } from '../../store/thunks';
+import Cookies from 'js-cookie';
 
 const Header = ({ toggleMobileMode, mobileMode }) => {
 	const dispatch = useDispatch();
@@ -71,6 +72,24 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 					});
 			});
 	}
+
+	// function RequestAdminsGroupName() {
+	// 	instance
+	// 		.acquireTokenSilent({
+	// 			...loginRequest,
+	// 			account: accounts[0],
+	// 		})
+	// 		.then((response) => {
+	// 			getAdminGroup(response.accessToken)
+	// 				.then((response) => {
+	// 					console.log(response);
+	// 					return response.json();
+	// 				})
+	// 				.then((result) => {
+	// 					console.log(result);
+	// 				});
+	// 		});
+	// }
 
 	useEffect(() => {
 		RequestProfileData();

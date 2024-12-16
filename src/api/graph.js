@@ -45,12 +45,12 @@ export async function getAdminGroup(accessToken) {
 		headers: headers,
 	};
 
-	return fetch(`https://graph.microsoft.com/v1.0/groups?$search="displayName:AG-Corportal_Admins"`, options)
+	return fetch(`https://graph.microsoft.com/v1.0/groups?$search="displayName:AG-CorportalNEW_Admins"`, options)
 		.then((response) => response)
 		.catch((error) => console.log(error));
 }
 export async function getAdminMembers(accessToken) {
-	let groupID = 'f5f1c6ff-3d52-4ab7-91fd-af4c58393d53';
+	let groupID = '5ddf05d9-58e7-4fb8-8e42-a5281828f3e7';
 
 	const headers = new Headers();
 	const bearer = `Bearer ${accessToken}`;
