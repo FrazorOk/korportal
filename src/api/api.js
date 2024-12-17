@@ -130,17 +130,18 @@ export const toggleLike = (newsID, userID, code) => {
 		return response;
 	});
 };
-export const createNewPost = ({ title, tags, date, text, imgFile, cat_id, autor_id }) => {
-	let token = getCookie('_form_token');
+export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, autor_id }) => {
+	let token = await getCookie('_form_token');
+	console.log(token);
 
-	let data = new FormData();
+	let data = await new FormData();
 	data.append('title', title);
 	data.append('tags', tags);
 	data.append('pub_date', date);
 	data.append('text', text);
 	data.append('cat_id', cat_id);
+	data.append('token', `${token}`);
 	data.append('autor_id', autor_id);
-	data.append('token', token);
 	data.append('img', imgFile);
 
 	return fetch('https://portal.softcom.ua/php/newsadd.php', {
@@ -154,10 +155,11 @@ export const createNewPost = ({ title, tags, date, text, imgFile, cat_id, autor_
 };
 export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor_id, id }) => {
 	let token = getCookie('_form_token');
+	console.log(token);
 
 	let data = new FormData();
 	data.append('id', id);
-	data.append('token', token);
+	data.append('token', `${token}`);
 	data.append('title', title);
 	data.append('tags', tags);
 	data.append('pub_date', date);
