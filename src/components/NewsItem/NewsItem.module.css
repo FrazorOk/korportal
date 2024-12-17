@@ -71,8 +71,8 @@
 	overflow: hidden;
 }
 .item.active .text {
-	line-clamp: 100;
-	-webkit-line-clamp: 100;
+	line-clamp: 200;
+	-webkit-line-clamp: 200;
 }
 .right_column {
 	flex: 1 0 100%;
@@ -95,8 +95,8 @@
 	transform: rotate(180deg);
 }
 .images_container {
-	max-width: 270px;
-	padding-top: 45%;
+	max-width: 300px;
+	padding-top: 49%;
 	margin: 0 auto;
 	position: relative;
 	border-radius: 6px;
@@ -111,12 +111,19 @@
 	object-fit: cover;
 	object-position: center;
 }
-.buttons_container {
+.buttons_row {
 	display: flex;
 	gap: 8px;
 	justify-content: flex-start;
 	align-items: center;
-	margin-top: 8px;
+}
+.buttons_container {
+	margin-top: 14px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
 }
 .buttons_container button {
 	font-weight: 600;
@@ -129,6 +136,9 @@
 	border-radius: 4px;
 	background-color: transparent;
 	transition: all 0.3s ease 0s;
+}
+.buttons_container .views {
+	color: #7d7d7d;
 }
 .likes_button {
 	background-color: #e16c00;
@@ -174,6 +184,7 @@
 	background-color: #ebebeb;
 	resize: none;
 }
+
 .coments_input__btns {
 	width: 100%;
 	padding: 0 12px;
