@@ -15,8 +15,16 @@ export const sendUserProfile = (data) => {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
-	}).then((result) => {});
+	}).then((result) => {
+		console.log(result);
+
+		console.log(document.cookie);
+		setTimeout(() => {
+			console.log(document.cookie);
+		}, 10000);
+	});
 };
+
 export const addIdToSeenNews = (newsID, userID) => {
 	let curretBody = {
 		newsID: newsID,
