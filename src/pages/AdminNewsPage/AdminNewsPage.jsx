@@ -3,6 +3,7 @@ import VivoChatSection from '../../components/VivoChatSection/VivoChatSection';
 import PlannedNewsSection from './PlannedNewsSection/PlannedNewsSection';
 import AddNewPostSection from './AddNewPostSection/AddNewPostSection';
 import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
+import { useScrollToTop } from '../../hooks/scrollToTop';
 
 const AdminNewsPage = () => {
 	let { statusAdmin } = useRedirectAdmin();
@@ -16,6 +17,8 @@ const AdminNewsPage = () => {
 	const [windowHeight, setWindowHeight] = useState(null);
 	const [statusStiky, setStatusStiky] = useState(false);
 	const [stikuNeeded, setStikuNeeded] = useState(false);
+
+	useScrollToTop();
 
 	const handleScroll = (sizeWindow) => {
 		if (ref3.current) {

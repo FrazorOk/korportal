@@ -1,7 +1,10 @@
+import { useScrollToTop } from '../../hooks/scrollToTop';
 import s from './ImagesPage.module.css';
 import NewSection from './NewSection/NewSection';
 
 const ImagesPage = () => {
+	useScrollToTop();
+
 	return (
 		<div style={{ position: 'relative' }}>
 			<h1>Фотогалерея</h1>
