@@ -140,8 +140,8 @@ export const createNewPost = ({ title, tags, date, text, imgFile, cat_id, autor_
 	data.append('text', text);
 	data.append('cat_id', cat_id);
 	data.append('autor_id', autor_id);
-	data.append('img', imgFile);
 	data.append('token', token);
+	data.append('img', imgFile);
 
 	return fetch('https://portal.softcom.ua/php/newsadd.php', {
 		method: 'POST',
@@ -157,6 +157,7 @@ export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor
 
 	let data = new FormData();
 	data.append('id', id);
+	data.append('token', token);
 	data.append('title', title);
 	data.append('tags', tags);
 	data.append('pub_date', date);
@@ -164,7 +165,6 @@ export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor
 	data.append('cat_id', cat_id);
 	data.append('autor_id', autor_id);
 	data.append('img', imgFile);
-	data.append('token', token);
 
 	return fetch('https://portal.softcom.ua/php/newsadd.php', {
 		method: 'POST',
