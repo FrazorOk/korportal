@@ -14,6 +14,7 @@ import { userSelector } from '../../selectors/userSelectors';
 import EmojiList from '../EmojiList/EmojiList';
 import { Link } from 'react-router-dom';
 import { fetchSeenNews } from '../../store/thunks';
+import NewsImgSlider from '../NewsImgSlider/NewsImgSlider';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
@@ -35,6 +36,8 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 	let [reacionStatus, setReacionStatus] = useState(false);
 
 	let [currentViews, setCurrentViews] = useState(null);
+
+	let [currentText, setCurrentText] = useState(null);
 
 	let [visibleStatus, toggleVisibleStatus] = useState(false);
 	let [fetchingStatus, setFetchingStatus] = useState(false);
@@ -65,17 +68,21 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 	};
 
 	useEffect(() => {
-		let currentheighttext = refText.current.getBoundingClientRect().height;
+		if (text) {
+			function kitcut(text, limit) {
+				if (text.length >= limit) {
+					let currentText = text.substring(0, limit);
+					let lastIndex = currentText.lastIndexOf(' '); // позиция последнего пробела
+					currentText = currentText.substring(0, lastIndex) + '...'; // обрезаем до последнего слова
+					return currentText;
+				} else {
+					return text;
+				}
+			}
+			let currentText = kitcut(text, 150);
 
-		let sliceTextBySymbol = () => {
-			const productTitle = text.slice(0, 120);
-			const limit = 120;
-			const re = new RegExp('(^.{' + (limit - 1) + '}([^ ]+|\\s))(.*)');
-			const cut = productTitle.replace(re, '$1');
-			console.log(cut);
-		};
-
-		text && sliceTextBySymbol();
+			setCurrentText(currentText);
+		}
 	}, [text]);
 
 	// for close tab
@@ -212,16 +219,22 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 							</div>
 						))}
 				</div>
-				{text && <p ref={refText} dangerouslySetInnerHTML={{ __html: text }} className={`${s.text}`} />}
-				<button
-					onClick={onClickVisibleButtonHandler}
-					style={{ textDecoration: 'underline', color: '#004795', backgroundColor: 'transparent', marginTop: '6px' }}>
-					{visibleStatus ? 'Приховати частину' : 'Показати більше'}
-				</button>
+				{!visibleStatus && currentText ? (
+					<p ref={refText} dangerouslySetInnerHTML={{ __html: currentText }} className={`${s.text}`} />
+				) : (
+					<p ref={refText} dangerouslySetInnerHTML={{ __html: text }} className={`${s.text}`} />
+				)}
+				{currentText && text.length >= 150 && (
+					<button
+						onClick={onClickVisibleButtonHandler}
+						style={{ textDecoration: 'underline', color: '#004795', backgroundColor: 'transparent', marginTop: '6px' }}>
+						{visibleStatus ? 'Приховати частину' : 'Показати більше'}
+					</button>
+				)}
 			</div>
 			<div className={s.right_column}>
 				<div className={s.images_container}>
-					<img src={img} alt="" loading="lazy" />
+					<NewsImgSlider img={img} />
 				</div>
 				<div className={s.buttons_container}>
 					<div className={s.buttons_row}>
