@@ -135,12 +135,12 @@ export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, 
 	console.log(token);
 
 	let data = await new FormData();
+	data.append('token', `${token}`);
 	data.append('title', title);
 	data.append('tags', tags);
 	data.append('pub_date', date);
 	data.append('text', text);
 	data.append('cat_id', cat_id);
-	data.append('token', `${token}`);
 	data.append('autor_id', autor_id);
 	data.append('img', imgFile);
 
@@ -201,11 +201,11 @@ export const createNewHolidayDate = ({ title, date, cat_id, autor_id }) => {
 	let token = getCookie('_form_token');
 
 	let data = new FormData();
+	data.append('token', `${token}`);
 	data.append('title', title);
 	data.append('pub_date', date);
 	data.append('cat_id', cat_id);
 	data.append('autor_id', autor_id);
-	data.append('token', token);
 
 	return fetch('https://portal.softcom.ua/php/newsadd.php', {
 		method: 'POST',
@@ -219,11 +219,11 @@ export const updateHolidayPost = ({ title, date, cat_id, autor_id, id }) => {
 
 	let data = new FormData();
 	data.append('id', id);
+	data.append('token', `${token}`);
 	data.append('title', title);
 	data.append('pub_date', date);
 	data.append('cat_id', cat_id);
 	data.append('autor_id', autor_id);
-	data.append('token', token);
 
 	return fetch('https://portal.softcom.ua/php/newsadd.php', {
 		method: 'POST',
