@@ -4,12 +4,14 @@ import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
 import AdminHolidaysFormSection from './AdminHolidaysFormSection/AdminHolidaysFormSection';
 import { getHolidayFromID } from '../../api/api';
 import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
+import { useScrollToTop } from '../../hooks/scrollToTop';
 
 const AdminAddChangeHolidayCalendarPage = () => {
 	let { statusAdmin } = useRedirectAdmin();
 	let { Id } = useParams();
 	let [data, setData] = useState({});
 
+	useScrollToTop();
 	useEffect(() => {
 		if (Id && statusAdmin) {
 			let getNews = async () => {

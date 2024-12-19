@@ -64,16 +64,16 @@
 	text-wrap: wrap;
 	margin-top: 14px;
 	line-height: 17px;
-	-webkit-box-orient: vertical;
+	/* -webkit-box-orient: vertical;
 	display: -webkit-box;
 	line-clamp: 3;
 	-webkit-line-clamp: 3;
-	overflow: hidden;
+	overflow: hidden; */
 }
-.item.active .text {
-	line-clamp: 100;
-	-webkit-line-clamp: 100;
-}
+/* .item.active .text {
+	line-clamp: 200;
+	-webkit-line-clamp: 200;
+} */
 .right_column {
 	flex: 1 0 100%;
 }
@@ -95,28 +95,22 @@
 	transform: rotate(180deg);
 }
 .images_container {
-	max-width: 270px;
-	padding-top: 45%;
-	margin: 0 auto;
-	position: relative;
-	border-radius: 6px;
-	overflow: hidden;
-}
-.images_container img {
-	position: absolute;
-	top: 0;
-	left: 0;
 	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: center;
 }
-.buttons_container {
+
+.buttons_row {
 	display: flex;
 	gap: 8px;
 	justify-content: flex-start;
 	align-items: center;
-	margin-top: 8px;
+}
+.buttons_container {
+	margin-top: 14px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
 }
 .buttons_container button {
 	font-weight: 600;
@@ -129,6 +123,9 @@
 	border-radius: 4px;
 	background-color: transparent;
 	transition: all 0.3s ease 0s;
+}
+.buttons_container .views {
+	color: #7d7d7d;
 }
 .likes_button {
 	background-color: #e16c00;
@@ -174,6 +171,7 @@
 	background-color: #ebebeb;
 	resize: none;
 }
+
 .coments_input__btns {
 	width: 100%;
 	padding: 0 12px;
@@ -251,19 +249,5 @@
 	.tag,
 	.date {
 		font-size: 12px;
-	}
-
-	.images_container {
-		max-width: 250px;
-		width: 80%;
-		padding-top: 68%;
-		margin: 0 auto;
-	}
-}
-@media (max-width: 450px) {
-	.images_container {
-		max-width: 200px;
-		width: 100%;
-		padding-top: 58%;
 	}
 }

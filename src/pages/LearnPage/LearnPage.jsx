@@ -1,6 +1,9 @@
 import React from 'react';
+import { useScrollToTop } from '../../hooks/scrollToTop';
 
-const Learn = () => {
+const LearnPage = () => {
+	useScrollToTop();
+
 	return (
 		<div>
 			<h1>В процесі розробки</h1>
@@ -8,4 +11,4 @@ const Learn = () => {
 	);
 };
 
-export default Learn;
+export default LearnPage;

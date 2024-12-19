@@ -1,9 +1,11 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import s from './TeamPage.module.css';
 import { useState } from 'react';
+import { useScrollToTop } from '../../hooks/scrollToTop';
 
 const TeamPage = () => {
 	let [index, setIndex] = useState(0);
+	useScrollToTop();
 
 	return (
 		<div className={s.team_page}>

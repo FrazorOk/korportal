@@ -4,12 +4,14 @@ import AdminPostSection from './AdminPostSection/AdminPostSection';
 import { getNewsFromID } from '../../api/api';
 import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
 import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
+import { useScrollToTop } from '../../hooks/scrollToTop';
 
 const AdminAddChangeNewsPage = () => {
 	let { statusAdmin } = useRedirectAdmin();
 	let { newsId } = useParams();
 	let [data, setData] = useState({});
 
+	useScrollToTop();
 	useEffect(() => {
 		if (newsId && statusAdmin) {
 			let getNews = async () => {
