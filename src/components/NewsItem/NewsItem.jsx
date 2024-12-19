@@ -14,16 +14,18 @@ import { userSelector } from '../../selectors/userSelectors';
 import EmojiList from '../EmojiList/EmojiList';
 import { Link } from 'react-router-dom';
 import { fetchSeenNews } from '../../store/thunks';
+import NewsImgSlider from '../NewsImgSlider/NewsImgSlider';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
 const NewsItem = ({ item, filterParams, adminStatus }) => {
 	let ref = useRef();
+	let refText = useRef();
 	const dispatch = useDispatch();
 
 	let userSeenNews = useSelector(userSelector.userSeenNews);
 	let user = useSelector(userSelector.userData);
-	let { id, title, pub_date, tags, text, img, comment, reaction } = item;
+	let { id, title, pub_date, tags, text, img, comment, reaction, views } = item;
 
 	let [fetchedComments, setFetchedComments] = useState(null);
 	let [commentsLength, setCommentsLenth] = useState(0);
@@ -32,6 +34,10 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 	let [reacionState, setReacionState] = useState(null);
 	let [reacionStateLength, setReacionStateLenth] = useState(0);
 	let [reacionStatus, setReacionStatus] = useState(false);
+
+	let [currentViews, setCurrentViews] = useState(null);
+
+	let [currentText, setCurrentText] = useState(null);
 
 	let [visibleStatus, toggleVisibleStatus] = useState(false);
 	let [fetchingStatus, setFetchingStatus] = useState(false);
@@ -57,11 +63,27 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 		}
 	};
 	const changeIdSeenNews = async () => {
-		console.log('change');
-
 		let result = await addIdToSeenNews(id, user.id);
 		result.status === 200 && dispatch(fetchSeenNews(user.id));
 	};
+
+	useEffect(() => {
+		if (text) {
+			function kitcut(text, limit) {
+				if (text.length >= limit) {
+					let currentText = text.substring(0, limit);
+					let lastIndex = currentText.lastIndexOf(' '); // позиция последнего пробела
+					currentText = currentText.substring(0, lastIndex) + '...'; // обрезаем до последнего слова
+					return currentText;
+				} else {
+					return text;
+				}
+			}
+			let currentText = kitcut(text, 150);
+
+			setCurrentText(currentText);
+		}
+	}, [text]);
 
 	// for close tab
 	useEffect(() => {
@@ -102,11 +124,25 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 		fetchedComments && setCommentsLenth(fetchedComments.length);
 	}, [fetchedComments]);
 
+	useEffect(() => {
+		views && setCurrentViews(views);
+	}, [views]);
+
 	// Handlers
 	let commentButtonOnClickHandler = (e) => {
 		if (!visibleStatus) {
 			toggleVisibleStatus(true);
 		}
+		if (!isSeenStatus) {
+			let changeViews = async () => {
+				await changeIdSeenNews();
+				let relustItem = await getNewsFromID(id, setFetchedComments, setReacionState);
+				setCurrentViews(relustItem[0].views);
+			};
+
+			changeViews();
+		}
+
 		setTimeout(() => {
 			ref.current.focus();
 		}, 100);
@@ -120,7 +156,9 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 			setTextAreaComment('');
 			setSmileStatus(false);
 		};
-		sendAndGetComments();
+		if (textAreaComment) {
+			sendAndGetComments();
+		}
 	};
 	let addLikeButtonHandler = (e) => {
 		let sendAndGetLikes = async () => {
@@ -141,6 +179,19 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 		};
 
 		sendAndGetLikes();
+	};
+	let onClickVisibleButtonHandler = (e) => {
+		toggleVisibleStatus((status) => (visibleStatus = !status));
+		setSmileStatus(false);
+		if (!isSeenStatus) {
+			let changeViews = async () => {
+				await changeIdSeenNews();
+				let relustItem = await getNewsFromID(id, setFetchedComments, setReacionState);
+				setCurrentViews(relustItem[0].views);
+			};
+
+			changeViews();
+		}
 	};
 
 	return (
@@ -168,25 +219,41 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 							</div>
 						))}
 				</div>
-				{text && <p dangerouslySetInnerHTML={{ __html: text }} className={`${s.text}`} />}
+				{!visibleStatus && currentText ? (
+					<p ref={refText} dangerouslySetInnerHTML={{ __html: currentText }} className={`${s.text}`} />
+				) : (
+					<p ref={refText} dangerouslySetInnerHTML={{ __html: text }} className={`${s.text}`} />
+				)}
+				{currentText && text.length >= 150 && (
+					<button
+						onClick={onClickVisibleButtonHandler}
+						style={{ textDecoration: 'underline', color: '#004795', backgroundColor: 'transparent', marginTop: '6px' }}>
+						{visibleStatus ? 'Приховати частину' : 'Показати більше'}
+					</button>
+				)}
 			</div>
 			<div className={s.right_column}>
 				<div className={s.images_container}>
-					<img src={img} alt="" loading="lazy" />
+					<NewsImgSlider img={img} />
 				</div>
 				<div className={s.buttons_container}>
-					<button
-						title={'Подобається'}
-						onClick={reacionStatus ? removeLikeButtonHandler : addLikeButtonHandler}
-						disabled={fetchingStatus}
-						className={`${s.likes_button} ${reacionStatus && s.liked}`}>
-						<img src={heartIcon} alt="" />
-						<p>{reacionStateLength}</p>
-					</button>
-					<button title={'Коментарі'} onClick={commentButtonOnClickHandler} className={s.coments_button}>
-						<img src={commentsIcon} alt="" />
-						<p>{commentsLength}</p>
-					</button>
+					<div className={s.buttons_row}>
+						<button
+							title={'Подобається'}
+							onClick={reacionStatus ? removeLikeButtonHandler : addLikeButtonHandler}
+							disabled={fetchingStatus}
+							className={`${s.likes_button} ${reacionStatus && s.liked}`}>
+							<img src={heartIcon} alt="" />
+							<p>{reacionStateLength}</p>
+						</button>
+						<button title={'Коментарі'} onClick={commentButtonOnClickHandler} className={s.coments_button}>
+							<img src={commentsIcon} alt="" />
+							<p>{commentsLength}</p>
+						</button>
+					</div>
+					<div>
+						<p className={s.views}>Перегляди: {currentViews ? currentViews : '0'}</p>
+					</div>
 				</div>
 				<div className={s.commet_container}>
 					{fetchedComments && <CommentsList comment={fetchedComments} />}
@@ -211,14 +278,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 					<EmojiList visibleStatus={smileStatus} setSmile={setTextAreaComment} />
 				</div>
 			</div>
-			<button
-				title={visibleStatus ? 'Згорнути' : 'Розгорнути'}
-				className={s.open_button}
-				onClick={(e) => {
-					toggleVisibleStatus((status) => (visibleStatus = !status));
-					setSmileStatus(false);
-					!isSeenStatus && changeIdSeenNews();
-				}}>
+			<button title={visibleStatus ? 'Згорнути' : 'Розгорнути'} className={s.open_button} onClick={onClickVisibleButtonHandler}>
 				<img src={arrowIcon} alt="" />
 			</button>
 		</div>

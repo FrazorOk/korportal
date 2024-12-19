@@ -5,6 +5,7 @@ import HeroSection from './HeroSection/HeroSection';
 import TodaySection from './TodaySection/TodaySection';
 import VivoChatSection from '../../components/VivoChatSection/VivoChatSection';
 import { memo, useEffect, useRef, useState } from 'react';
+import { useScrollToTop } from '../../hooks/scrollToTop';
 
 const HomePage = () => {
 	let ref = useRef();
@@ -36,6 +37,7 @@ const HomePage = () => {
 		}
 	};
 
+	useScrollToTop();
 	useEffect(() => {
 		const observer = new ResizeObserver((entries) => {
 			setwidth(entries[0].contentRect.width / 2 - 15);

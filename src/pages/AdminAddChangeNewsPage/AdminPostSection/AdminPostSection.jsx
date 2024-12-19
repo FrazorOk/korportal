@@ -395,6 +395,7 @@ const AdminPostSection = ({ newsId, data }) => {
 								setImages('');
 							}}
 							className={`${s.image} ${!images && validationErrors.images ? s.validated : ''}`}
+							multiple
 							type="file"
 							name="myImage"
 							placeholder="Оберіть зображення"
