@@ -142,7 +142,13 @@ export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, 
 	data.append('text', text);
 	data.append('cat_id', cat_id);
 	data.append('autor_id', autor_id);
-	data.append('img', imgFile);
+	// data.append('img', imgFile);
+
+	for (let i = 0; i < imgFile.length; i++) {
+		data.append('img[]', imgFile[i]);
+	}
+
+	console.log(data);
 
 	return fetch('https://portal.softcom.ua/php/newsadd.php', {
 		method: 'POST',

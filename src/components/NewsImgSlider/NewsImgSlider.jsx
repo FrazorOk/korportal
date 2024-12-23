@@ -1,10 +1,11 @@
-import s from './NewsImgSlider.module.css';
 import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import s from './NewsImgSlider.module.css';
+
 import { Navigation, Pagination } from 'swiper/modules';
 import { useRef } from 'react';
 
@@ -13,7 +14,7 @@ const NewsImgSlider = ({ img }) => {
 	const navigationPrevRef = useRef(null);
 
 	return (
-		<div className={s.slider}>
+		<div className={s.slider123}>
 			<Swiper
 				modules={[Navigation, Pagination]}
 				navigation={{

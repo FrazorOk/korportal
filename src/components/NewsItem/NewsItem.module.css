@@ -96,6 +96,7 @@
 }
 .images_container {
 	width: 100%;
+	position: relative;
 }
 
 .buttons_row {

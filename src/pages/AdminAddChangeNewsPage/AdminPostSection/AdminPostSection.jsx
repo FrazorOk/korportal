@@ -14,6 +14,12 @@ import AlertModalWindow from '../../../components/AlertModalWindow/AlertModalWin
 let now = new Date(Date.now()).toLocaleString();
 let formatedNow = `${now.slice(6, 10)}-${now.slice(3, 5)}-${now.slice(0, 2)}T${now.slice(12, now.length)}`;
 
+function getRandomInt(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min) + min); // Максимум не включается, минимум включается
+}
+
 const AdminPostSection = ({ newsId, data }) => {
 	let ref = useRef();
 	let userID = useSelector(userSelector.userData);
@@ -37,7 +43,17 @@ const AdminPostSection = ({ newsId, data }) => {
 	let [comment, setComment] = useState([]);
 	let [willDeleteComment, setWillDeleteComment] = useState(null);
 
+	let [filesList, setFilesList] = useState(['']);
+	let [fileIndex, setFilesIndex] = useState(['']);
+	let [idIndexFiles, setIdIndexFiles] = useState(['']);
+
 	let [validationErrors, setValidationErrors] = useState({ title: false, date: false, text: false, images: false });
+
+	useEffect(() => {
+		setTimeout(() => {
+			console.log(filesList);
+		}, 1200);
+	}, [filesList]);
 
 	// Functions
 	const nulledAllInputs = () => {
@@ -47,7 +63,8 @@ const AdminPostSection = ({ newsId, data }) => {
 		setTags('');
 		setImages('');
 		setComment([]);
-		ref.current.value = '';
+		setFilesList(['']);
+		setFilesIndex(['']);
 	};
 	const nulledAllValidations = () => {
 		setValidationErrors({ title: false, date: false, text: false, images: false });
@@ -56,10 +73,11 @@ const AdminPostSection = ({ newsId, data }) => {
 		!title && setValidationErrors((obj) => ({ ...obj, title: true }));
 		!date && setValidationErrors((obj) => ({ ...obj, date: true }));
 		!text && setValidationErrors((obj) => ({ ...obj, text: true }));
-		!ref.current.files[0] && setValidationErrors((obj) => ({ ...obj, images: true }));
+		let filteredImgsList = filesList.filter((item) => item != false);
+		filteredImgsList.length < 1 && setValidationErrors((obj) => ({ ...obj, images: true }));
 
 		let imgStatus = false;
-		if (ref.current.files[0] || images) {
+		if (filteredImgsList.length > 1) {
 			imgStatus = true;
 		}
 		if (title && date && text && imgStatus) {
@@ -120,28 +138,15 @@ const AdminPostSection = ({ newsId, data }) => {
 	// Handlers
 	const creacteHandler = (e) => {
 		e.preventDefault();
+		let filteredImgsList = filesList.filter((item) => item != false);
+		console.log(filteredImgsList);
 
-		// let data = {
-		// 	title: title,
-		// 	date: date,
-		// 	tags: tags,
-		// 	text: text,
-		// 	imgUrl: '',
-		// 	imgFile: '',
-		// 	comments: [
-		// 		{
-		// 			autor: '',
-		// 			comment_txt: '',
-		// 			post_date: '',
-		// 		},
-		// 	],
-		// };
 		let dataFetching = {
 			title: title,
 			tags: tags.split(', '),
 			date: date,
 			text: text,
-			imgFile: ref.current.files[0],
+			imgFile: filteredImgsList,
 			cat_id: 1,
 			autor_id: userID.id,
 		};
@@ -180,10 +185,12 @@ const AdminPostSection = ({ newsId, data }) => {
 			tags: tags.split(', '),
 			date: date,
 			text: text,
-			imgFile: ref.current.files[0] ? ref.current.files[0] : data.img,
+			imgFile: ref.current.files.length > 0 ? ref.current.files : data.img,
+			// imgFile: ref.current.files[0] ? ref.current.files[0] : data.img,
 			cat_id: 1,
 			autor_id: userID.id,
 		};
+		console.log(ref.current.files);
 
 		let asyncFetchingAndValidation = async () => {
 			let validationStatus = await validationForm();
@@ -388,27 +395,46 @@ const AdminPostSection = ({ newsId, data }) => {
 
 					{images && <img className={s.image_url} src={images} alt="" />}
 
-					<div className={s.image_container}>
-						<input
-							ref={ref}
-							onChange={() => {
-								setImages('');
-							}}
-							className={`${s.image} ${!images && validationErrors.images ? s.validated : ''}`}
-							multiple
-							type="file"
-							name="myImage"
-							placeholder="Оберіть зображення"
-						/>
-						<button
-							onClick={(e) => {
-								e.preventDefault();
-								ref.current.value = '';
-							}}
-							title="Очистити">
-							<img src={deleteIcon} alt="" />
-						</button>
-					</div>
+					{fileIndex.map((itemImg, indexImg) => (
+						<div className={`${s.image_container} ${filesList[indexImg] === false && s.hidden}`}>
+							<input
+								key={`${indexImg}`}
+								onChange={(e) => {
+									setFilesList((filesItem) => {
+										let fileItem = [...filesItem];
+										fileItem[indexImg] = e.target.files[0];
+
+										return fileItem;
+									});
+								}}
+								className={`${s.image} ${!images && validationErrors.images ? s.validated : ''}`}
+								multiple
+								type="file"
+								name="myImage"
+								placeholder="Оберіть зображення"
+							/>
+							<button
+								onClick={(e) => {
+									e.preventDefault();
+									setFilesList((filesItem) => {
+										let fileItem = [...filesItem];
+										fileItem[indexImg] = false;
+										return fileItem;
+									});
+								}}
+								title="Очистити">
+								<img src={deleteIcon} alt="" />
+							</button>
+						</div>
+					))}
+					<button
+						onClick={(e) => {
+							e.preventDefault();
+							setFilesIndex((i) => [...i, '']);
+							console.log(fileIndex);
+						}}>
+						Додати ще зображення
+					</button>
 				</div>
 
 				{comment && comment.length > 0 ? (

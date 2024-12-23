@@ -233,9 +233,11 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 				)}
 			</div>
 			<div className={s.right_column}>
-				<div className={s.images_container}>
-					<NewsImgSlider img={img} />
-				</div>
+				{img && (
+					<div className={s.images_container}>
+						<NewsImgSlider img={img} />
+					</div>
+				)}
 				<div className={s.buttons_container}>
 					<div className={s.buttons_row}>
 						<button
