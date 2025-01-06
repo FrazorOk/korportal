@@ -3,7 +3,7 @@ import s from './CommentsList.module.css';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
-const CommentsList = ({ comment }) => {
+const CommentsList = ({ comment, fullScreen }) => {
 	let [firstLoading, setFirstLoading] = useState(0);
 
 	useEffect(() => {
@@ -19,7 +19,7 @@ const CommentsList = ({ comment }) => {
 	}, [firstLoading]);
 
 	return (
-		<div className={s.commets_container}>
+		<div className={`${s.commets_container} ${fullScreen && s.full_screen}`}>
 			<p className={s.commets_h}>Коментарі:</p>
 			<ul className={s.commets_list}>
 				{comment &&

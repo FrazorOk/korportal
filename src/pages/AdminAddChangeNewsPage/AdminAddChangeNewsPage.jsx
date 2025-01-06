@@ -30,7 +30,7 @@ const AdminAddChangeNewsPage = () => {
 					<div style={{ marginTop: '30px' }}>
 						<Link style={{ display: 'flex', gap: '4px', alignItems: 'center', width: 'fit-content' }} to="/admin-news-feed/">
 							<img style={{ transform: 'rotate(90deg)' }} src={arrowIcon} alt="" />
-							<p style={{ color: '#7d7d7d' }}>Повернутися</p>
+							<p style={{ color: '#7d7d7d', fontWeight: '500' }}>Повернутися</p>
 						</Link>
 					</div>
 					<div className="row">
