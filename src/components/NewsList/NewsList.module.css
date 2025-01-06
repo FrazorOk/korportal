@@ -3,6 +3,9 @@
 	padding: 10px;
 	overflow-y: auto;
 }
+.news_container.full_screen {
+	margin-top: 25px;
+}
 .news {
 	height: fit-content;
 	display: flex;
@@ -10,6 +13,9 @@
 	align-items: center;
 	gap: 20px;
 	/* padding-right: 10px; */
+}
+.news_container.full_screen .news {
+	gap: 30px;
 }
 .add_more_btn_container {
 	margin-top: 30px;
@@ -73,7 +79,13 @@
 		margin-top: 15px;
 		margin-bottom: 0px;
 	}
+	.news_container.full_screen {
+		margin-top: 15px;
+	}
 	.news {
+		gap: 10px;
+	}
+	.news_container.full_screen .news {
 		gap: 10px;
 	}
 	.add_more_btn_container {

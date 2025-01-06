@@ -42,17 +42,6 @@ const AdminPostSection = ({ newsId, data }) => {
 
 	let [validationErrors, setValidationErrors] = useState({ title: false, date: false, text: false, images: false });
 
-	useEffect(() => {
-		setTimeout(() => {
-			console.log(filesList);
-		}, 1200);
-	}, [filesList]);
-	useEffect(() => {
-		setTimeout(() => {
-			console.log(fileIndex);
-		}, 1200);
-	}, [fileIndex]);
-
 	// Functions
 	const nulledAllInputs = () => {
 		setTitle('');
@@ -72,10 +61,11 @@ const AdminPostSection = ({ newsId, data }) => {
 		!date && setValidationErrors((obj) => ({ ...obj, date: true }));
 		!text && setValidationErrors((obj) => ({ ...obj, text: true }));
 		let filteredImgsList = filesList.filter((item) => item != false);
+
 		filteredImgsList.length < 1 && setValidationErrors((obj) => ({ ...obj, images: true }));
 
 		let imgStatus = false;
-		if (filteredImgsList.length > 1) {
+		if (filteredImgsList.length > 0) {
 			imgStatus = true;
 		}
 		if (title && date && text && imgStatus) {
@@ -137,7 +127,6 @@ const AdminPostSection = ({ newsId, data }) => {
 	const creacteHandler = (e) => {
 		e.preventDefault();
 		let filteredImgsList = filesList.filter((item) => item != false);
-		console.log(filteredImgsList);
 
 		let dataFetching = {
 			title: title,
@@ -154,6 +143,7 @@ const AdminPostSection = ({ newsId, data }) => {
 
 			if (validationStatus) {
 				nulledAllValidations();
+
 				fetchingNewPost(dataFetching);
 			}
 		};
@@ -177,15 +167,18 @@ const AdminPostSection = ({ newsId, data }) => {
 	const updatePostHandler = (e) => {
 		e.preventDefault();
 
-		let filteredImgsList = filesList.filter((item) => item != false && item != 'delimg');
-		console.log(filteredImgsList);
 		let filteredDelImgsList = [];
-		filteredDelImgsList.map((itemDelImg, indexDelImg) => {
-			if (itemDelImg === 'delimg') {
-				return data.img[indexDelImg];
+		filesList.forEach((itemDelImg, indexDelIndex) => {
+			if (`${itemDelImg}` == 'delimg') {
+				filteredDelImgsList.push(data.img[indexDelIndex]);
 			}
 		});
-		console.log(filteredDelImgsList);
+
+		let filteredImgsList = filesList.filter((item) => {
+			if (item != false && item != 'delimg') {
+				return true;
+			}
+		});
 
 		let dataFetching = {
 			id: newsId,
@@ -194,6 +187,7 @@ const AdminPostSection = ({ newsId, data }) => {
 			date: date,
 			text: text,
 			imgFile: filteredImgsList,
+			delimg: filteredDelImgsList,
 			cat_id: 1,
 			autor_id: userID.id,
 		};
@@ -414,8 +408,8 @@ const AdminPostSection = ({ newsId, data }) => {
 					{fileIndex.map((itemImg, indexImg) => (
 						<div
 							key={`${indexImg}`}
-							className={`${s.image_container} ${filesList[indexImg] === false || filesList[indexImg] === 'delіmg' ? s.hidden : ''}`}>
-							{filesList[indexImg] && !filesList[indexImg].name && filesList[indexImg] != 'delіmg' ? (
+							className={`${s.image_container} ${filesList[indexImg] === false || filesList[indexImg] === 'delimg' ? s.hidden : ''}`}>
+							{filesList[indexImg] && !filesList[indexImg].name && filesList[indexImg] != 'delimg' ? (
 								<div className={s.image_now_container}>
 									<img className={s.image_now} src={filesList[indexImg]} alt="" />
 									<button
@@ -423,7 +417,7 @@ const AdminPostSection = ({ newsId, data }) => {
 											e.preventDefault();
 											setFilesList((filesItem) => {
 												let fileItem = [...filesItem];
-												fileItem[indexImg] = 'delіmg';
+												fileItem[indexImg] = 'delimg';
 												return fileItem;
 											});
 										}}
@@ -540,7 +534,6 @@ const AdminPostSection = ({ newsId, data }) => {
 						onClick={(e) => {
 							e.preventDefault();
 							setFilesIndex((i) => [...i, '']);
-							console.log(fileIndex);
 						}}>
 						Додати ще зображення
 					</button>

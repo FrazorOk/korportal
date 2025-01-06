@@ -18,7 +18,7 @@ import NewsImgSlider from '../NewsImgSlider/NewsImgSlider';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
-const NewsItem = ({ item, filterParams, adminStatus }) => {
+const NewsItem = ({ item, filterParams, adminStatus, fullScreen }) => {
 	let ref = useRef();
 	let refText = useRef();
 	const dispatch = useDispatch();
@@ -195,7 +195,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 	};
 
 	return (
-		<div className={`${s.item} ${visibleStatus && s.active}`}>
+		<div className={`${s.item} ${visibleStatus && s.active} ${fullScreen && s.full_screen}`}>
 			{adminStatus && (
 				<div className={s.admin_btns}>
 					<Link to={`./add-change-news/${id}`} title="Редагувати">
@@ -227,7 +227,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 				{currentText && text.length >= 150 && (
 					<button
 						onClick={onClickVisibleButtonHandler}
-						style={{ textDecoration: 'underline', color: '#004795', backgroundColor: 'transparent', marginTop: '6px' }}>
+						style={{ textDecoration: 'underline', color: '#004795', backgroundColor: 'transparent', marginTop: '6px', fontSize: '14px' }}>
 						{visibleStatus ? 'Приховати частину' : 'Показати більше'}
 					</button>
 				)}
@@ -235,7 +235,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 			<div className={s.right_column}>
 				{img && (
 					<div className={s.images_container}>
-						<NewsImgSlider img={img} />
+						<NewsImgSlider img={img} fullScreen={fullScreen} />
 					</div>
 				)}
 				<div className={s.buttons_container}>
@@ -258,7 +258,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 					</div>
 				</div>
 				<div className={s.commet_container}>
-					{fetchedComments && <CommentsList comment={fetchedComments} />}
+					{fetchedComments && <CommentsList comment={fetchedComments} fullScreen={fullScreen} />}
 					<div className={s.coments_input}>
 						<textarea
 							value={textAreaComment}
