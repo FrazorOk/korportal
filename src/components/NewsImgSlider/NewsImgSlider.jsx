@@ -9,7 +9,7 @@ import s from './NewsImgSlider.module.css';
 import { Navigation, Pagination } from 'swiper/modules';
 import { useRef } from 'react';
 
-const NewsImgSlider = ({ img }) => {
+const NewsImgSlider = ({ img, fullScreen }) => {
 	const navigationNextRef = useRef(null);
 	const navigationPrevRef = useRef(null);
 
@@ -32,8 +32,9 @@ const NewsImgSlider = ({ img }) => {
 				{typeof img != 'string' ? (
 					img.map((item) => (
 						<SwiperSlide>
-							<div className={s.slider_slide}>
+							<div className={`${s.slider_slide} ${fullScreen && s.full_screen}`}>
 								<div className={s.slider_img_container}>
+									<button></button>
 									<img src={item} alt="" />
 								</div>
 							</div>
@@ -41,8 +42,9 @@ const NewsImgSlider = ({ img }) => {
 					))
 				) : (
 					<SwiperSlide>
-						<div className={s.slider_slide}>
+						<div className={`${s.slider_slide} ${fullScreen && s.full_screen}`}>
 							<div className={s.slider_img_container}>
+								<button></button>
 								<img src={img} alt="" />
 							</div>
 						</div>

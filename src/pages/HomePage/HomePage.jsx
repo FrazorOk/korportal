@@ -79,7 +79,7 @@ const HomePage = () => {
 					<NewsSection />
 					<BirthdaySection />
 				</div>
-				<VivoChatSection adminStatus={false} ref1={ref2} />
+				<VivoChatSection adminStatus={false} ref1={ref2} title={true} fullScreen={false} />
 			</div>
 		</div>
 	);

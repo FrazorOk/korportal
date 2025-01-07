@@ -7,7 +7,7 @@ import { userSelector } from '../../selectors/userSelectors';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
-const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLength, adminStatus }) => {
+const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLength, adminStatus, fullScreen }) => {
 	const indexStep = 10;
 	let [news, setNews] = useState([]);
 	let [visibleNews, setVisibleNews] = useState([]);
@@ -160,12 +160,12 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 	};
 
 	return (
-		<div className={s.news_container}>
+		<div className={`${s.news_container} ${fullScreen && s.full_screen}`}>
 			<div className={s.news}>
 				{paginationNews && paginationNews[0] && paginationNews.length ? (
 					paginationNews.map((item, index) => {
 						if (item && index < visibleNews.length - 1 && paginationNews.length > 0) {
-							return <NewsItem adminStatus={adminStatus} item={item} key={item.id} filterParams={filterParams} />;
+							return <NewsItem adminStatus={adminStatus} item={item} key={item.id} filterParams={filterParams} fullScreen={fullScreen} />;
 						}
 					})
 				) : (

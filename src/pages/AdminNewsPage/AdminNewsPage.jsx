@@ -80,7 +80,7 @@ const AdminNewsPage = () => {
 							<AddNewPostSection />
 							<PlannedNewsSection />
 						</div>
-						<VivoChatSection adminStatus={true} ref1={ref2} />
+						<VivoChatSection adminStatus={true} ref1={ref2} title={true} fullScreen={false} />
 					</div>
 				</div>
 			)}
