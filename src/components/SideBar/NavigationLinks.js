@@ -6,6 +6,7 @@ import teamIcon from '../../assets/img/icons/team-icon.svg';
 import videoIcon from '../../assets/img/icons/video-icon.svg';
 import newsFeedIcon from '../../assets/img/icons/news-feed.svg';
 import balloonsIcon from '../../assets/img/icons/balloons-icon.svg';
+import feedIcon from '../../assets/img/icons/fi-rs-apps.svg';
 
 export const navigationsLinks = [
 	{
@@ -13,26 +14,31 @@ export const navigationsLinks = [
 		path: '/',
 		icon: homeIcon,
 	},
+	{
+		name: 'Стрічка подій',
+		path: 'feed-news',
+		icon: feedIcon,
+	},
 	// {
 	// 	name: 'Команда',
 	// 	path: 'team',
 	// 	icon: teamIcon,
 	// },
-	{
-		name: 'Навчальний курс',
-		path: 'learn',
-		icon: teachIcon,
-	},
+	// {
+	// 	name: 'Навчальний курс',
+	// 	path: 'learn',
+	// 	icon: teachIcon,
+	// },
 	{
 		name: 'Зображення',
 		path: 'images',
 		icon: imgIcon,
 	},
-	{
-		name: 'Відео',
-		path: 'movies',
-		icon: videoIcon,
-	},
+	// {
+	// 	name: 'Відео',
+	// 	path: 'movies',
+	// 	icon: videoIcon,
+	// },
 	// {
 	// 	name: 'Ще',
 	// 	path: 'more',
@@ -42,7 +48,7 @@ export const navigationsLinks = [
 
 export const navigationsAdminLinks = [
 	{
-		name: 'Стрічка новин',
+		name: 'Стрічка подій',
 		path: 'admin-news-feed',
 		icon: newsFeedIcon,
 	},

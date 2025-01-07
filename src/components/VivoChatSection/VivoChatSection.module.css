@@ -3,10 +3,32 @@
 	flex: 0 1 calc(50% - 15px);
 	/* padding-right: 10px !important ; */
 }
+.chat.full_screen {
+	width: 100%;
+	flex: 0 1 calc(100%);
+	padding: 30px 130px 30px;
+	/* padding-right: 10px !important ; */
+}
+.title_link {
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	color: black;
+}
+.title_link img {
+	width: 16px;
+	padding-top: 10px;
+}
 
 @media (max-width: 1550px) {
 	.chat {
 		width: 580px;
+	}
+	.chat.full_screen {
+		width: 100%;
+		flex: 0 1 calc(50% - 15px);
+		padding: 30px 90px 30px;
+		/* padding-right: 10px !important ; */
 	}
 
 	.chat iframe {
@@ -16,6 +38,11 @@
 @media (max-width: 1400px) {
 	.chat {
 		width: 500px;
+	}
+	.chat.full_screen {
+		width: 100%;
+		flex: 0 1 calc(50% - 15px);
+		/* padding-right: 10px !important ; */
 	}
 
 	.chat iframe {
@@ -27,6 +54,11 @@
 	.chat {
 		width: 400px;
 	}
+	.chat.full_screen {
+		width: 100%;
+		flex: 0 1 calc(50% - 15px);
+		/* padding-right: 10px !important ; */
+	}
 
 	.chat iframe {
 		width: 340px;
@@ -36,9 +68,23 @@
 	.chat {
 		width: 100%;
 	}
+	.chat.full_screen {
+		width: 100%;
+		flex: 0 1 calc(50% - 15px);
+		padding: 20px 60px 20px;
+
+		/* padding-right: 10px !important ; */
+	}
 
 	.chat iframe {
 		width: 500px;
+	}
+}
+@media (max-width: 1024px) {
+	.title_link img {
+		width: 13px;
+		padding-top: 0px;
+		padding-bottom: 5px;
 	}
 }
 
@@ -46,9 +92,24 @@
 	.chat {
 		flex: 1 1;
 	}
+	.chat.full_screen {
+		width: 100%;
+		flex: 0 1 calc(50% - 15px);
+		padding: 15px;
+		/* padding-right: 10px !important ; */
+	}
 	.chat iframe {
 		width: 100%;
 		height: 370px;
 		min-height: 370px;
+	}
+}
+@media (max-width: 550px) {
+	.chat.full_screen {
+		padding: 15px 6px;
+	}
+	.title_link img {
+		padding-top: 2px;
+		padding-bottom: 0px;
 	}
 }

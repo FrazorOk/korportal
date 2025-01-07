@@ -159,9 +159,10 @@ export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, 
 		return response;
 	});
 };
-export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor_id, id }) => {
+export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor_id, id, delimg }) => {
 	let token = getCookie('_form_token');
 	console.log(token);
+	console.log(delimg);
 
 	let data = new FormData();
 	data.append('id', id);
@@ -170,9 +171,15 @@ export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor
 	data.append('tags', tags);
 	data.append('pub_date', date);
 	data.append('text', text);
+	data.append('delimg', delimg);
 	data.append('cat_id', cat_id);
 	data.append('autor_id', autor_id);
-	data.append('img', imgFile);
+
+	for (let i = 0; i < imgFile.length; i++) {
+		data.append('img[]', imgFile[i]);
+	}
+
+	console.log(data);
 
 	return fetch('https://portal.softcom.ua/php/newsadd.php', {
 		method: 'POST',

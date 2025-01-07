@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import s from './NewsFilter.module.css';
 import { getNews } from '../../api/api';
 
-const NewsFilter = ({ tags, setFilterParams, todayPosts, setData, noSeenPotsLength }) => {
+const NewsFilter = ({ tags, setFilterParams, todayPosts, setData, noSeenPotsLength, fullScreen }) => {
 	let [activeButton, setActiveButton] = useState(0);
 	let [disableStatus, setDisableStatus] = useState(false);
 
 	return (
-		<div className={s.filters}>
+		<div className={`${s.filters} ${fullScreen && s.full_screen}`}>
 			<div className={`${s.filters_row} ${s.params}`}>
 				<button
 					title="Усі події"

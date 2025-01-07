@@ -15,13 +15,18 @@ import EmojiList from '../EmojiList/EmojiList';
 import { Link } from 'react-router-dom';
 import { fetchSeenNews } from '../../store/thunks';
 import NewsImgSlider from '../NewsImgSlider/NewsImgSlider';
+import { useOutsideClick } from '../../hooks/useOutsideClick';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
-const NewsItem = ({ item, filterParams, adminStatus }) => {
+const NewsItem = ({ item, filterParams, adminStatus, fullScreen }) => {
 	let ref = useRef();
 	let refText = useRef();
 	const dispatch = useDispatch();
+
+	// select block
+	let [selectorStatus, setSelectorStatus] = useState(false);
+	let [copyLinkStatus, setCopyLinkStatus] = useState(false);
 
 	let userSeenNews = useSelector(userSelector.userSeenNews);
 	let user = useSelector(userSelector.userData);
@@ -180,7 +185,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 
 		sendAndGetLikes();
 	};
-	let onClickVisibleButtonHandler = (e) => {
+	let onClickVisibleButtonHandler = () => {
 		toggleVisibleStatus((status) => (visibleStatus = !status));
 		setSmileStatus(false);
 		if (!isSeenStatus) {
@@ -195,7 +200,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 	};
 
 	return (
-		<div className={`${s.item} ${visibleStatus && s.active}`}>
+		<div className={`${s.item} ${visibleStatus && s.active} ${fullScreen && s.full_screen}`}>
 			{adminStatus && (
 				<div className={s.admin_btns}>
 					<Link to={`./add-change-news/${id}`} title="Редагувати">
@@ -204,7 +209,51 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 				</div>
 			)}
 			<div className={s.left_column}>
-				<p className={s.title}>{title && title}</p>
+				<p className={s.title}>
+					<span>
+						<Link className={s.title_link} title="Перейти" to={`/feed-news/feed-separate-news/${id}`}>
+							{title && title}
+						</Link>
+					</span>
+					<div
+						ref={useOutsideClick(() => selectorStatus && setSelectorStatus(false) && setCopyLinkStatus(false))}
+						className={s.selector_list}>
+						<button
+							title={selectorStatus ? 'Закрити' : 'Відкрити'}
+							onClick={() => {
+								setSelectorStatus((selector) => !selector);
+								setCopyLinkStatus(false);
+							}}>
+							<span></span>
+						</button>
+
+						<ul className={`${s.selector_body} ${selectorStatus && s.active}`}>
+							<li>
+								<Link to={`/feed-news/feed-separate-news/${id}`}>Перейти</Link>
+							</li>
+							<li>
+								<button
+									onClick={() => {
+										let inp = document.createElement('input');
+										inp.value = `https://portal.softcom.ua/feed-news/feed-separate-news/${id}`;
+										document.body.appendChild(inp);
+										inp.select();
+
+										if (document.execCommand('copy')) {
+											setCopyLinkStatus(true);
+										} else {
+											setCopyLinkStatus(false);
+										}
+
+										document.body.removeChild(inp);
+									}}>
+									Копіювати посилання
+								</button>
+								{copyLinkStatus && <p style={{ color: 'green', fontSize: '12px', width: '100%', textAlign: 'center' }}>Скопійовано</p>}
+							</li>
+						</ul>
+					</div>
+				</p>
 				<p className={s.date}>
 					<img src={clockIcon} alt="" />
 					{pub_date && toDay === pub_date.slice(0, 10)
@@ -227,7 +276,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 				{currentText && text.length >= 150 && (
 					<button
 						onClick={onClickVisibleButtonHandler}
-						style={{ textDecoration: 'underline', color: '#004795', backgroundColor: 'transparent', marginTop: '6px' }}>
+						style={{ textDecoration: 'underline', color: '#004795', backgroundColor: 'transparent', marginTop: '6px', fontSize: '14px' }}>
 						{visibleStatus ? 'Приховати частину' : 'Показати більше'}
 					</button>
 				)}
@@ -235,7 +284,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 			<div className={s.right_column}>
 				{img && (
 					<div className={s.images_container}>
-						<NewsImgSlider img={img} />
+						<NewsImgSlider img={img} fullScreen={fullScreen} />
 					</div>
 				)}
 				<div className={s.buttons_container}>
@@ -258,7 +307,7 @@ const NewsItem = ({ item, filterParams, adminStatus }) => {
 					</div>
 				</div>
 				<div className={s.commet_container}>
-					{fetchedComments && <CommentsList comment={fetchedComments} />}
+					{fetchedComments && <CommentsList comment={fetchedComments} fullScreen={fullScreen} />}
 					<div className={s.coments_input}>
 						<textarea
 							value={textAreaComment}
