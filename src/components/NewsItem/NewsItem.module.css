@@ -208,11 +208,13 @@
 	left: 50%;
 	transform: translate(-50%, 0);
 	border-radius: 12px;
-	background-color: transparent;
+	background-color: #004795;
+	opacity: 0.85;
 	transition: all 0.3s ease 0s;
 }
 .open_button img {
 	transition: all 0.5s ease 0s;
+	filter: brightness(0) invert(1);
 }
 .item.active .open_button img {
 	transform: rotate(180deg);
@@ -353,7 +355,7 @@
 	}
 
 	.item:hover .open_button {
-		background-color: #ebebeb;
+		transform: translate(-50%, 0) scale(1.1);
 	}
 	.buttons_container button:hover {
 		background-color: #ebebeb;
