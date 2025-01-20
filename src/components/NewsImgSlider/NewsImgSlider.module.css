@@ -49,9 +49,13 @@
 	width: 35px;
 	height: 35px;
 	border-radius: 50%;
-	background-color: #ebebeb;
+	background-color: #004795;
 	transition: all 0.3s ease 0s;
 	opacity: 0.85;
+}
+.slider_prev_btn img,
+.slider_next_btn img {
+	filter: brightness(0) invert(1);
 }
 .slider_prev_btn:disabled,
 .slider_next_btn:disabled {
