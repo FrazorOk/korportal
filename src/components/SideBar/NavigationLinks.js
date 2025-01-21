@@ -15,7 +15,7 @@ export const navigationsLinks = [
 		icon: homeIcon,
 	},
 	{
-		name: 'Стрічка подій',
+		name: 'Стрічка новин',
 		path: 'feed-news',
 		icon: feedIcon,
 	},
@@ -48,7 +48,7 @@ export const navigationsLinks = [
 
 export const navigationsAdminLinks = [
 	{
-		name: 'Стрічка подій',
+		name: 'Стрічка новин',
 		path: 'admin-news-feed',
 		icon: newsFeedIcon,
 	},

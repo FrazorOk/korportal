@@ -68,7 +68,7 @@ const AdminNewsPage = () => {
 		<>
 			{statusAdmin && (
 				<div>
-					<h1>Налаштування стрічки останніх подій</h1>
+					<h1>Налаштування стрічки останніх новин</h1>
 
 					<div ref={ref} style={{ marginTop: '30px' }} className="row end">
 						<div

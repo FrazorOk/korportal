@@ -5,7 +5,7 @@ const FeedNewsPage = () => {
 	let ref = useRef();
 	return (
 		<div>
-			<h1>Стрічка останніх подій</h1>
+			<h1>Стрічка останніх новин</h1>
 			<div className="row">
 				<VivoChatSection adminStatus={false} ref1={ref} title={false} fullScreen={true} />
 			</div>
