@@ -161,7 +161,8 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen }) => {
 			setTextAreaComment('');
 			setSmileStatus(false);
 		};
-		if (textAreaComment) {
+
+		if (textAreaComment && textAreaComment.trim()) {
 			sendAndGetComments();
 		}
 	};

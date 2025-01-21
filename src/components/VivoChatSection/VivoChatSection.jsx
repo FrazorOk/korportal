@@ -3,7 +3,7 @@ import s from './VivoChatSection.module.css';
 import NewsList from '../NewsList/NewsList';
 import { getNews } from '../../api/api';
 import NewsFilter from '../NewsFilter/NewsFilter';
-import arrowLinkIcon from '../../assets/img/icons/arrow-link-left-icon.svg';
+import arrowLinkIcon from '../../assets/img/icons/redirect-icon.svg';
 import { Link } from 'react-router-dom';
 
 const VivoChatSection = ({ ref1, adminStatus, title, fullScreen }) => {
