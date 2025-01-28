@@ -250,11 +250,14 @@ const BirthdaySection = () => {
 					visibleUsers.map((user, index) => (
 						<li key={`birthday user ${index}`} className={`${s.birthday_item} ${user.index === 0 ? s.active : ''}`}>
 							<div className={s.birthday_item__user}>
-								<a title={'Відкрити чат'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
+								<a title={'Відкрити Teams'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
 									<img src={user.urlImg ? user.urlImg : profileIcon} alt={profileIcon} />
 								</a>
 								<div>
-									<a title={'Відкрити чат'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
+									<a
+										title={'Відкрити Teams'}
+										target="_blank"
+										href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
 										{user.displayName}
 									</a>
 									<p>{user.jobTitle}</p>
@@ -262,7 +265,7 @@ const BirthdaySection = () => {
 							</div>
 							<p className={s.birthday_item__date}>{user.uaDate}</p>
 							<div className={s.birthday_item__buttons}>
-								<a title={'Відкрити чат'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
+								<a title={'Відкрити Teams'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
 									<img src={mailIcon} alt="" />
 								</a>
 								<a

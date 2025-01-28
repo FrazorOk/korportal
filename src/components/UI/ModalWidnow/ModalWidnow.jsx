@@ -1,9 +1,13 @@
+import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import s from './ModalWidnow.module.css';
 
-const ModalWidnow = ({ children }) => {
+const ModalWidnow = ({ children, closeModal }) => {
 	return (
 		<div className={s.modal}>
-			<div className={s.modal_container}>{children}</div>
+			<div ref={useOutsideClick(() => closeModal())} className={s.modal_container}>
+				{children}
+			</div>
+			<button onClick={() => closeModal()} className={s.modal_close}></button>
 		</div>
 	);
 };

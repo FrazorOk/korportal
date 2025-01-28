@@ -215,7 +215,7 @@
 }
 .open_button img {
 	transition: all 0.5s ease 0s;
-	filter: brightness(0) invert(1);
+	/* filter: brightness(0) invert(1); */
 }
 .item.active .open_button img {
 	transform: rotate(180deg);

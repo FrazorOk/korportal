@@ -27,7 +27,7 @@ const VivoChatSection = ({ ref1, adminStatus, title, fullScreen }) => {
 	return (
 		<div ref={ref1} className={`${s.chat} section-container ${fullScreen && s.full_screen}`}>
 			{title && (
-				<Link className={s.title_link} title="Перейти" to={'feed-news'}>
+				<Link className="title_link" title="Перейти" to={'feed-news'}>
 					<h3>Стрічка останніх новин</h3>
 					<img src={arrowLinkIcon} alt="" />
 				</Link>
