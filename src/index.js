@@ -19,6 +19,7 @@ import MoviesPage from './pages/MoviesPage/MoviesPage';
 import LearnPage from './pages/LearnPage/LearnPage';
 import FeedNewsPage from './pages/FeedNewsPage/FeedNewsPage';
 import FeedSeparateNewsPage from './pages/FeedSeparateNewsPage/FeedSeparateNewsPage';
+import CompanyMarketingNewsPage from './pages/CompanyMarketingNewsPage/CompanyMarketingNewsPage';
 
 const router = createBrowserRouter([
 	{
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
 			{
 				path: 'feed-news/feed-separate-news/:newsId',
 				element: <FeedSeparateNewsPage />,
+			},
+			{
+				path: 'company-marketing-news/',
+				element: <CompanyMarketingNewsPage />,
 			},
 			{
 				path: 'team/',

@@ -108,9 +108,7 @@ export const sendCommentNews = (newsID, userID, text, setFetchingStatus) => {
 		.then((response) => {
 			return response.json();
 		})
-		.then((result) => {
-			console.log(result);
-		});
+		.then((result) => {});
 };
 export const toggleLike = (newsID, userID, code) => {
 	let token = getCookie('_form_token');
@@ -148,14 +146,10 @@ export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, 
 		data.append('img[]', imgFile[i]);
 	}
 
-	console.log(data);
-
 	return fetch('https://portal.softcom.ua/php/newsadd.php', {
 		method: 'POST',
 		body: data,
 	}).then((response) => {
-		console.log(response);
-
 		return response;
 	});
 };
@@ -178,8 +172,6 @@ export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor
 	for (let i = 0; i < imgFile.length; i++) {
 		data.append('img[]', imgFile[i]);
 	}
-
-	console.log(data);
 
 	return fetch('https://portal.softcom.ua/php/newsadd.php', {
 		method: 'POST',
@@ -263,8 +255,6 @@ export const getHolidayFromID = (postID, categoryID) => {
 			return response.json();
 		})
 		.then((result) => {
-			console.log(result);
-
 			return result;
 		});
 };

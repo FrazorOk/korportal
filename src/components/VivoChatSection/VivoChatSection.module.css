@@ -9,26 +9,6 @@
 	padding: 30px 130px 30px;
 	/* padding-right: 10px !important ; */
 }
-.title_link {
-	display: flex;
-	align-items: center;
-	width: fit-content;
-	color: black;
-}
-.title_link img {
-	position: relative;
-	left: -12px;
-	width: 16px;
-	padding-top: 10px;
-	opacity: 0.4;
-	transition: all 0.4s ease 0s;
-}
-
-@media (hover: hover) {
-	.title_link:hover img {
-		opacity: 1;
-	}
-}
 
 @media (max-width: 1550px) {
 	.chat {
@@ -90,14 +70,6 @@
 		width: 500px;
 	}
 }
-@media (max-width: 1024px) {
-	.title_link img {
-		left: -5px;
-		width: 13px;
-		padding-top: 0px;
-		padding-bottom: 5px;
-	}
-}
 
 @media (max-width: 768px) {
 	.chat {
@@ -118,9 +90,5 @@
 @media (max-width: 550px) {
 	.chat.full_screen {
 		padding: 15px 6px;
-	}
-	.title_link img {
-		padding-top: 2px;
-		padding-bottom: 0px;
 	}
 }

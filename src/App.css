@@ -104,9 +104,27 @@ h5 {
 	background-color: #d71e1e;
 }
 
+.title_link {
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	color: black;
+}
+.title_link img {
+	position: relative;
+	left: -12px;
+	width: 16px;
+	padding-top: 10px;
+	opacity: 0.22;
+	transition: all 0.4s ease 0s;
+}
+
 @media (hover: hover) {
 	.standart-btn:hover {
 		opacity: 0.8;
+	}
+	.title_link:hover img {
+		opacity: 1;
 	}
 }
 
@@ -158,6 +176,12 @@ h5 {
 	.column-40 {
 		gap: 20px;
 	}
+	.title_link img {
+		left: -5px;
+		width: 13px;
+		padding-top: 0px;
+		padding-bottom: 5px;
+	}
 
 	h2 {
 		font-size: 22px;
@@ -194,5 +218,9 @@ h5 {
 	}
 	.section-container {
 		padding: 15px 6px 15px;
+	}
+	.title_link img {
+		padding-top: 2px;
+		padding-bottom: 0px;
 	}
 }
