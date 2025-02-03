@@ -3,7 +3,6 @@ import s from './NewsItem.module.css';
 import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
 import heartIcon from '../../assets/img/icons/heart-icon.svg';
 import commentsIcon from '../../assets/img/icons/comments-icon.svg';
-import changeIcon from '../../assets/img/icons/pencil-icon.svg';
 import smileIcon from '../../assets/img/icons/smile-icon.svg';
 import clockIcon from '../../assets/img/icons/clock-icon.svg';
 import mailIcon from '../../assets/img/icons/paper-plane-icon.svg';
@@ -16,6 +15,7 @@ import { Link } from 'react-router-dom';
 import { fetchSeenNews } from '../../store/thunks';
 import NewsImgSlider from '../NewsImgSlider/NewsImgSlider';
 import { useOutsideClick } from '../../hooks/useOutsideClick';
+import EditAdminButton from '../UI/EditAdminButton/EditAdminButton';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
@@ -202,13 +202,8 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen }) => {
 
 	return (
 		<div className={`${s.item} ${visibleStatus && s.active} ${fullScreen && s.full_screen}`}>
-			{adminStatus && (
-				<div className={s.admin_btns}>
-					<Link to={`./add-change-news/${id}`} title="Редагувати">
-						<img src={changeIcon} alt="" />
-					</Link>
-				</div>
-			)}
+			{adminStatus && <EditAdminButton link={`./add-change-news/${id}`} />}
+
 			<div className={s.left_column}>
 				<p className={s.title}>
 					<span>

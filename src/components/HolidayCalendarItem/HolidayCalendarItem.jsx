@@ -1,19 +1,14 @@
 import s from './HolidayCalendarItem.module.css';
 import calendarIcon from '../../assets/img/icons/calendar-icon.svg';
-import editIcon from '../../assets/img/icons/pencil-icon.svg';
-import { Link } from 'react-router-dom';
 import { dateConverterFromYMD } from '../../helpers/dateConverter';
+import EditAdminButton from '../UI/EditAdminButton/EditAdminButton';
 
 const HolidayCalendarItem = ({ data, adminStatus, allLink, color }) => {
 	return (
 		<div style={{ backgroundColor: `${color}` }} className={s.events_item}>
 			<p>{data.title}</p>
 			<div className={s.events_bottom}>
-				{adminStatus && (
-					<Link className={s.edit_btn} to={`./add-change-holiday-calendar/${data.id}`}>
-						<img src={editIcon} />
-					</Link>
-				)}
+				{adminStatus && <EditAdminButton link={`./add-change-holiday-calendar/${data.id}`} />}
 				<div className={s.events_date_row}>
 					<p>
 						{dateConverterFromYMD(data.pub_date).day} <span> {dateConverterFromYMD(data.pub_date).month}</span>

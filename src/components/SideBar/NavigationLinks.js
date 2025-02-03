@@ -7,6 +7,7 @@ import videoIcon from '../../assets/img/icons/video-icon.svg';
 import newsFeedIcon from '../../assets/img/icons/news-feed.svg';
 import balloonsIcon from '../../assets/img/icons/balloons-icon.svg';
 import feedIcon from '../../assets/img/icons/fi-rs-apps.svg';
+import mkfeedIcon from '../../assets/img/icons/m-k-feed-icon.svg';
 
 export const navigationsLinks = [
 	{
@@ -18,6 +19,11 @@ export const navigationsLinks = [
 		name: 'Стрічка новин',
 		path: 'feed-news',
 		icon: feedIcon,
+	},
+	{
+		name: 'Новини маркетингу та компанії',
+		path: 'company-marketing-news',
+		icon: mkfeedIcon,
 	},
 	// {
 	// 	name: 'Команда',
@@ -51,6 +57,11 @@ export const navigationsAdminLinks = [
 		name: 'Стрічка новин',
 		path: 'admin-news-feed',
 		icon: newsFeedIcon,
+	},
+	{
+		name: 'Новини маркетингу та компанії',
+		path: 'admin-company-marketing-news',
+		icon: mkfeedIcon,
 	},
 	{
 		name: 'Календар свят',

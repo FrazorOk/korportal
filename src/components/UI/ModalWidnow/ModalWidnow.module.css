@@ -23,6 +23,9 @@
 	align-items: center;
 	border-radius: 12px;
 }
+.modal_container.background {
+	background-color: white;
+}
 .modal_close {
 	position: absolute;
 	top: 30px;

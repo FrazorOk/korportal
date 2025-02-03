@@ -1,0 +1,28 @@
+.admin_btns {
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	z-index: 3;
+	display: flex;
+	gap: 5px;
+}
+.admin_btns a {
+	padding: 6px;
+	border-radius: 50%;
+	background-color: #004795;
+	transition: all 0.3s ease 0s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.admin_btns img {
+	width: 16px;
+	filter: brightness(0) invert(1);
+}
+@media (hover: hover) {
+	.admin_btns a:hover {
+		background-color: #4088d4;
+	}
+}

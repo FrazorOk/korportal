@@ -15,7 +15,6 @@ let now = new Date(Date.now()).toLocaleString();
 let formatedNow = `${now.slice(6, 10)}-${now.slice(3, 5)}-${now.slice(0, 2)}T${now.slice(12, now.length)}`;
 
 const AdminPostSection = ({ newsId, data }) => {
-	let ref = useRef();
 	let userID = useSelector(userSelector.userData);
 
 	let [visibleStatus, setVisibleStatus] = useState(false);
@@ -456,77 +455,6 @@ const AdminPostSection = ({ newsId, data }) => {
 									</button>
 								</>
 							)}
-							{/* {!filesList[indexImg] && (
-								<>
-									<input
-										onChange={(e) => {
-											setFilesList((filesItem) => {
-												let fileItem = [...filesItem];
-												fileItem[indexImg] = e.target.files[0];
-												return fileItem;
-											});
-										}}
-										className={`${s.image} ${!images && validationErrors.images ? s.validated : ''}`}
-										multiple
-										type="file"
-										name="myImage"
-										placeholder="Оберіть зображення"
-									/>
-									<button
-										onClick={(e) => {
-											e.preventDefault();
-											setFilesList((filesItem) => {
-												let fileItem = [...filesItem];
-												fileItem[indexImg] = false;
-												return fileItem;
-											});
-										}}
-										title="Видалити">
-										<img src={deleteIcon} alt="" />
-									</button>
-								</>
-							)}
-							{filesList[indexImg] && (
-								<>
-									{!filesList[indexImg].name ? (
-										<div className={s.image_now_container}>
-											<img className={s.image_now} src={filesList[indexImg]} alt="" />
-											<button className={s.image_now_del} title="Видалити">
-												<img src={deleteIcon} alt="" />
-											</button>
-										</div>
-									) : (
-										<>
-											<input
-												onChange={(e) => {
-													setFilesList((filesItem) => {
-														let fileItem = [...filesItem];
-														fileItem[indexImg] = e.target.files[0];
-														return fileItem;
-													});
-												}}
-												className={`${s.image} ${!images && validationErrors.images ? s.validated : ''}`}
-												multiple
-												type="file"
-												name="myImage"
-												placeholder="Оберіть зображення"
-											/>
-											<button
-												onClick={(e) => {
-													e.preventDefault();
-													setFilesList((filesItem) => {
-														let fileItem = [...filesItem];
-														fileItem[indexImg] = false;
-														return fileItem;
-													});
-												}}
-												title="Видалити">
-												<img src={deleteIcon} alt="" />
-											</button>
-										</>
-									)}
-								</>
-							)} */}
 						</div>
 					))}
 					<button

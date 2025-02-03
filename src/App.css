@@ -38,6 +38,12 @@ h5 {
 	background-color: #faf9f8;
 	border-radius: 16px;
 }
+.desktop {
+	display: block;
+}
+.mobile {
+	display: none;
+}
 
 .row {
 	position: relative;
@@ -197,6 +203,13 @@ h5 {
 	}
 	h2 {
 		font-size: 20px;
+	}
+
+	.desktop {
+		display: none;
+	}
+	.mobile {
+		display: block;
 	}
 
 	.content-container {
