@@ -20,6 +20,10 @@ import LearnPage from './pages/LearnPage/LearnPage';
 import FeedNewsPage from './pages/FeedNewsPage/FeedNewsPage';
 import FeedSeparateNewsPage from './pages/FeedSeparateNewsPage/FeedSeparateNewsPage';
 import CompanyMarketingNewsPage from './pages/CompanyMarketingNewsPage/CompanyMarketingNewsPage';
+import CompanySeparateNewsPage from './pages/CompanySeparateNewsPage/CompanySeparateNewsPage';
+import MarketingSeparateNewsPage from './pages/MarketingSeparateNewsPage/MarketingSeparateNewsPage';
+import AdminCompanyMarketingNewsPage from './pages/AdminCompanyMarketingNewsPage/AdminCompanyMarketingNewsPage';
+import AdminAddChangeCompanyMarketingNewsPage from './pages/AdminAddChangeCompanyMarketingNewsPage/AdminAddChangeCompanyMarketingNewsPage';
 
 const router = createBrowserRouter([
 	{
@@ -42,6 +46,14 @@ const router = createBrowserRouter([
 			{
 				path: 'company-marketing-news/',
 				element: <CompanyMarketingNewsPage />,
+			},
+			{
+				path: 'company-marketing-news/company-separate-news/:newsId',
+				element: <CompanySeparateNewsPage />,
+			},
+			{
+				path: 'company-marketing-news/marketing-separate-news/:newsId',
+				element: <MarketingSeparateNewsPage />,
 			},
 			{
 				path: 'team/',
@@ -88,6 +100,18 @@ const router = createBrowserRouter([
 			{
 				path: 'admin-holiday-calendar/add-change-holiday-calendar/:Id',
 				element: <AdminAddChangeHolidayCalendarPage />,
+			},
+			{
+				path: 'admin-company-marketing-news/',
+				element: <AdminCompanyMarketingNewsPage />,
+			},
+			{
+				path: 'admin-company-marketing-news/add-change-company-marketing-news',
+				element: <AdminAddChangeCompanyMarketingNewsPage />,
+			},
+			{
+				path: 'admin-company-marketing-news/add-change-company-marketing-news/:newsId',
+				element: <AdminAddChangeCompanyMarketingNewsPage />,
 			},
 		],
 	},

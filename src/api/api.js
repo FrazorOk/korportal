@@ -258,3 +258,57 @@ export const getHolidayFromID = (postID, categoryID) => {
 			return result;
 		});
 };
+
+// Новини маркетингу та компанії
+export const createMarketingCompanyNewPost = async ({ title, date, text, imgFile, cat_id, autor_id, html }) => {
+	let token = await getCookie('_form_token');
+	console.log(token);
+
+	let data = await new FormData();
+	data.append('token', `${token}`);
+	data.append('title', title);
+	data.append('pub_date', date);
+	data.append('text', text);
+	data.append('html', html);
+	data.append('cat_id', cat_id);
+	data.append('autor_id', autor_id);
+	// data.append('img', imgFile);
+
+	for (let i = 0; i < imgFile.length; i++) {
+		data.append('img[]', imgFile[i]);
+	}
+
+	return fetch('https://portal.softcom.ua/php/newsadd.php', {
+		method: 'POST',
+		body: data,
+	}).then((response) => {
+		return response;
+	});
+};
+export const updateMarketingCompanyNewsPost = ({ title, html, date, text, imgFile, cat_id, autor_id, id, delimg }) => {
+	let token = getCookie('_form_token');
+	console.log(token);
+	console.log(delimg);
+
+	let data = new FormData();
+	data.append('id', id);
+	data.append('token', `${token}`);
+	data.append('title', title);
+	data.append('html', html);
+	data.append('pub_date', date);
+	data.append('text', text);
+	data.append('delimg', delimg);
+	data.append('cat_id', cat_id);
+	data.append('autor_id', autor_id);
+
+	for (let i = 0; i < imgFile.length; i++) {
+		data.append('img[]', imgFile[i]);
+	}
+
+	return fetch('https://portal.softcom.ua/php/newsadd.php', {
+		method: 'POST',
+		body: data,
+	}).then((response) => {
+		return response;
+	});
+};
