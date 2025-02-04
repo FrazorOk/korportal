@@ -1,14 +1,13 @@
 import s from './NewsSection.module.css';
-import imgEvent from '../../../assets/img/img-event.jpg';
 import arrowLinkIcon from '../../../assets/img/icons/redirect-icon.svg';
 import { Link } from 'react-router-dom';
 
-const NewsList = ({ listTitle, activetab, data }) => {
+const NewsList = ({ listTitle, activetab, data, type }) => {
 	return (
 		<div className={s.news_container}>
 			<Link className="title_link" title="Перейти" to={`company-marketing-news?activetab=${activetab}`}>
 				<h3>{listTitle}</h3>
-				<img src={arrowLinkIcon} alt="" />
+				<img className={s.icon_link} src={arrowLinkIcon} alt="" />
 			</Link>
 
 			{data && data.length > 0 ? (
@@ -16,12 +15,17 @@ const NewsList = ({ listTitle, activetab, data }) => {
 					{data.map(
 						(newsItem, newsIndex) =>
 							newsItem &&
-							newsIndex < 3 && (
-								<a href={`/company-marketing-news/marketing-separate-news/${newsItem.id}`} className={s.news_item}>
-									<div>
+							newsIndex < 2 && (
+								<a
+									href={`/company-marketing-news/${type === 'marketing' ? 'marketing-separate-news' : 'company-separate-news'}/${
+										newsItem.id
+									}`}
+									className={`${s.news_item} ${type === 'marketing' && s.yellow}`}>
+									<div className={s.item_img_container}>
 										<img src={newsItem.img} alt="" />
 									</div>
 									<div className={s.news_item_content}>
+										<p className={s.date}>{newsItem.pub_date}</p>
 										<p>{newsItem.title}</p>
 										<p>{newsItem.text}</p>
 									</div>

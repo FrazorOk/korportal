@@ -60,11 +60,11 @@ const CompanyMarketingNewsPage = () => {
 				<div style={{ marginTop: '0' }} className="row">
 					<div className="column-50">
 						<h1>Новини маркетингу</h1>
-						<CompanyMarketingList admin={false} newsList={marketingData} linkTo="marketing-separate-news" />
+						<CompanyMarketingList admin={false} newsList={marketingData} linkTo="marketing-separate-news" type="marketing" />
 					</div>
 					<div className="column-50">
 						<h1>Новини компанії</h1>
-						<CompanyMarketingList admin={false} newsList={companyData} linkTo="company-separate-news" />
+						<CompanyMarketingList admin={false} newsList={companyData} linkTo="company-separate-news" type="company" />
 					</div>
 				</div>
 			</div>

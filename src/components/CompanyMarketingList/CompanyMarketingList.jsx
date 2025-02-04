@@ -10,13 +10,16 @@ const CompanyMarketingList = ({ newsList, linkTo, admin, type }) => {
 					(news) =>
 						news && (
 							<>
-								<Link to={`/company-marketing-news/${linkTo}/${news.id}`} className={`${s.news_item}`}>
-									<div className={`${s.content} section-container`}>
+								<Link to={`/company-marketing-news/${linkTo}/${news.id}`} className={`${s.news_item} ${type === 'marketing' && s.yellow}`}>
+									<div className={`${s.content}`}>
 										{admin && (
 											<EditAdminButton link={`/admin-company-marketing-news/add-change-company-marketing-news/${news.id}?type=${type}`} />
 										)}
-										<img className={s.image} src={news.img} alt="" />
+										<div className={s.image_container}>
+											<img className={s.image} src={news.img} alt="" />
+										</div>
 										<div className={s.text_container}>
+											<p className={s.date}>{news.pub_date}</p>
 											<p className={s.title}>{news.title}</p>
 											<p className={s.text}>{news.text}</p>
 										</div>
