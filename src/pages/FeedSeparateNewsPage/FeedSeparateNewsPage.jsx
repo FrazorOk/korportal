@@ -1,9 +1,8 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getNewsFromID } from '../../api/api';
 import { useScrollToTop } from '../../hooks/scrollToTop';
 import NewsItem from '../../components/NewsItem/NewsItem';
-import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
 import GoBackButton from '../../components/UI/GoBackButton/GoBackButton';
 
 const FeedSeparateNewsPage = () => {

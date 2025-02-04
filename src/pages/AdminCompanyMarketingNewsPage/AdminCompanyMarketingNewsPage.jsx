@@ -18,13 +18,13 @@ const AdminCompanyMarketingNewsPage = () => {
 	const tabsTitles = ['Новини маркетингу', 'Новини компанії'];
 	const tabsItems = [
 		<>
-			<div title="Створити новину маркетингу" style={{ maxWidth: '580px', width: '100%', height: '60px' }}>
+			<div title="Створити новину маркетингу" style={{ width: '100%', height: '55px' }}>
 				<AddEventButton path={'add-change-company-marketing-news?type=marketing'} />
 			</div>
 			<CompanyMarketingList admin={true} newsList={marketingData} linkTo="marketing-separate-news" type="marketing" />
 		</>,
 		<>
-			<div title="Створити новину компанії" style={{ maxWidth: '580px', width: '100%', height: '60px' }}>
+			<div title="Створити новину компанії" style={{ width: '100%', height: '55px' }}>
 				<AddEventButton path={'add-change-company-marketing-news?type=company'} />
 			</div>
 			<CompanyMarketingList admin={true} newsList={companyData} linkTo="company-separate-news" type="company" />
