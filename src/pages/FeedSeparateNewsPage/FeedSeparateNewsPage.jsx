@@ -30,7 +30,7 @@ const FeedSeparateNewsPage = () => {
 
 			<div className="row">
 				{data ? (
-					<NewsItem item={data} filterParams={true} adminStatus={false} fullScreen={true} />
+					<NewsItem item={data} filterParams={true} adminStatus={false} fullScreen={true} viewed={true} />
 				) : (
 					<p style={{ color: '#7d7d7d' }}>Подію не знайдено</p>
 				)}

@@ -199,6 +199,13 @@
 }
 
 @media (hover: hover) {
+	.birthday_filters button:hover {
+		background-color: #d3d3d3;
+	}
+	.birthday_filters button.active:hover {
+		background: #004795;
+	}
+
 	.birthday_item__buttons button:hover,
 	.birthday_item__buttons a:hover {
 		background-color: #e2e2e2;

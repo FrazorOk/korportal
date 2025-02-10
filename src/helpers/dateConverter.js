@@ -18,6 +18,7 @@ const uaMonths = [
 	'листопада',
 	'грудня',
 ];
+
 const uaMonthsSliced = ['січ.', 'лют.', 'берез.', 'квіт.', 'трав.', 'черв.', 'лип.', 'серп.', 'верес.', 'жовт.', 'лист.', 'груд.'];
 
 export const dateConverter = (date) => {
@@ -31,6 +32,12 @@ export const dateConverterFromYMD = (date) => {
 	let month = date.slice(5, 7) * 1;
 
 	return { day: day, month: uaMonthsSliced[month - 1] };
+};
+export const dateConverterFromYMDFullMonth = (date) => {
+	let day = date.slice(8, 10);
+	let month = date.slice(5, 7) * 1;
+
+	return { day: day, month: uaMonths[month - 1] };
 };
 export const monthFullConverter = (date) => {
 	return uaMonths[date - 1];

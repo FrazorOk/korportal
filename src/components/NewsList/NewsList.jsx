@@ -169,7 +169,7 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 						}
 					})
 				) : (
-					<p style={{ marginTop: '20px', color: 'rgb(125, 125, 125)' }}>Немає подій</p>
+					<p style={{ marginTop: '20px', color: 'rgb(125, 125, 125)' }}>Немає новин</p>
 				)}
 			</div>
 			{news && visibleNews.length > paginationNews.length + 1 && (

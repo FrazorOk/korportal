@@ -19,7 +19,7 @@ import EditAdminButton from '../UI/EditAdminButton/EditAdminButton';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
-const NewsItem = ({ item, filterParams, adminStatus, fullScreen }) => {
+const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false }) => {
 	let ref = useRef();
 	let refText = useRef();
 	const dispatch = useDispatch();
@@ -71,6 +71,34 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen }) => {
 		let result = await addIdToSeenNews(id, user.id);
 		result.status === 200 && dispatch(fetchSeenNews(user.id));
 	};
+	let changeViews = async () => {
+		await changeIdSeenNews();
+		let relustItem = await getNewsFromID(id, setFetchedComments, setReacionState);
+		setCurrentViews(relustItem[0].views);
+	};
+
+	useEffect(() => {
+		if (viewed) {
+			toggleVisibleStatus(true);
+		} else {
+			toggleVisibleStatus(false);
+		}
+	}, []);
+
+	useEffect(() => {
+		if (viewed && id && user.id) {
+			let seenStatus = false;
+			userSeenNews.forEach((element) => {
+				if (element == id) {
+					seenStatus = true;
+				}
+			});
+
+			if (!seenStatus) {
+				changeViews();
+			}
+		}
+	}, [id, user.id]);
 
 	useEffect(() => {
 		if (text) {
@@ -92,8 +120,10 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen }) => {
 
 	// for close tab
 	useEffect(() => {
-		toggleVisibleStatus(false);
-		setSmileStatus(false);
+		if (!viewed) {
+			toggleVisibleStatus(false);
+			setSmileStatus(false);
+		}
 
 		return () => {
 			toggleVisibleStatus(false);
@@ -103,11 +133,12 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen }) => {
 
 	// this item is seen?
 	useEffect(() => {
-		userSeenNews.forEach((element) => {
-			if (element == id) {
-				setSeenStatus(true);
-			}
-		});
+		!userSeenNews &&
+			userSeenNews.forEach((element) => {
+				if (element == id) {
+					setSeenStatus(true);
+				}
+			});
 	}, [userSeenNews]);
 
 	// reactions
@@ -190,12 +221,6 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen }) => {
 		toggleVisibleStatus((status) => (visibleStatus = !status));
 		setSmileStatus(false);
 		if (!isSeenStatus) {
-			let changeViews = async () => {
-				await changeIdSeenNews();
-				let relustItem = await getNewsFromID(id, setFetchedComments, setReacionState);
-				setCurrentViews(relustItem[0].views);
-			};
-
 			changeViews();
 		}
 	};

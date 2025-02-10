@@ -3,6 +3,7 @@ import GoBackButton from '../../components/UI/GoBackButton/GoBackButton';
 import { getHolidayFromID } from '../../api/api';
 import { useParams } from 'react-router-dom';
 import { useScrollToTop } from '../../hooks/scrollToTop';
+import HtmlSectionNews from '../../components/HtmlSectionNews/HtmlSectionNews';
 
 const MarketingSeparateNewsPage = () => {
 	let { newsId } = useParams();
@@ -31,12 +32,7 @@ const MarketingSeparateNewsPage = () => {
 				<>
 					<h1>{data.title}</h1>
 					<GoBackButton toLink={'/company-marketing-news?activetab=0'} />
-					<div className="row">
-						<div
-							className="section-container"
-							style={{ maxWidth: '1200px', width: '100%' }}
-							dangerouslySetInnerHTML={{ __html: data.html }}></div>
-					</div>
+					<HtmlSectionNews htmlBody={data.html} />
 				</>
 			)}
 		</div>

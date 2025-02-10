@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import s from './CompanyMarketingList.module.css';
 import EditAdminButton from '../UI/EditAdminButton/EditAdminButton';
+import { dateConverterFromYMDFullMonth } from '../../helpers/dateConverter';
 
 const CompanyMarketingList = ({ newsList, linkTo, admin, type }) => {
 	return (
@@ -19,7 +20,10 @@ const CompanyMarketingList = ({ newsList, linkTo, admin, type }) => {
 											<img className={s.image} src={news.img} alt="" />
 										</div>
 										<div className={s.text_container}>
-											<p className={s.date}>{news.pub_date}</p>
+											<p className={s.date}>
+												{dateConverterFromYMDFullMonth(news.pub_date).day} {dateConverterFromYMDFullMonth(news.pub_date).month}{' '}
+												{news.pub_date.slice(0, 4)}
+											</p>
 											<p className={s.title}>{news.title}</p>
 											<p className={s.text}>{news.text}</p>
 										</div>
