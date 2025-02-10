@@ -1,6 +1,7 @@
 import s from './NewsSection.module.css';
 import arrowLinkIcon from '../../../assets/img/icons/redirect-icon.svg';
 import { Link } from 'react-router-dom';
+import { dateConverterFromYMDFullMonth } from '../../../helpers/dateConverter';
 
 const NewsList = ({ listTitle, activetab, data, type }) => {
 	return (
@@ -25,16 +26,30 @@ const NewsList = ({ listTitle, activetab, data, type }) => {
 										<img src={newsItem.img} alt="" />
 									</div>
 									<div className={s.news_item_content}>
-										<p className={s.date}>{newsItem.pub_date}</p>
+										<p className={s.date}>
+											{dateConverterFromYMDFullMonth(newsItem.pub_date).day} {dateConverterFromYMDFullMonth(newsItem.pub_date).month}{' '}
+											{newsItem.pub_date.slice(0, 4)}
+										</p>
 										<p>{newsItem.title}</p>
 										<p>{newsItem.text}</p>
 									</div>
 								</a>
 							)
 					)}
+					{data && data.length < 3 && (
+						<div
+							style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}
+							className={`${s.news_item} ${type === 'marketing' && s.yellow} ${s.none_item}`}>
+							<p style={{ textAlign: 'center', fontSize: '22px', color: 'rgb(187 187 187)', fontWeight: '600' }}>Поки немає інших новин</p>
+						</div>
+					)}
 				</div>
 			) : (
-				<p style={{ marginTop: '20px', marginLeft: '18px', marginBottom: '10px', color: '#7d7d7d' }}>Немає новин</p>
+				<div
+					style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}
+					className={`${s.news_item} ${type === 'marketing' && s.yellow}`}>
+					<p style={{ textAlign: 'center', fontSize: '22px', color: 'rgb(187 187 187)', fontWeight: '600' }}>Поки немає інших новин</p>
+				</div>
 			)}
 		</div>
 	);

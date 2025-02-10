@@ -72,7 +72,7 @@
 	font-weight: 600;
 }
 .news_item.yellow .date {
-	background-color: #fdf5c0;
+	background-color: #f1e593;
 	color: #957d00;
 }
 .title {
@@ -80,6 +80,7 @@
 	font-weight: 500;
 	color: black;
 	margin-top: 16px;
+	transition: all 0.3s ease 0s;
 }
 .text {
 	font-size: 14px;
@@ -95,6 +96,12 @@
 	}
 	.news_item.yellow:hover .content {
 		border: 1px solid #e2bc0088;
+	}
+	.news_item:hover .title {
+		color: #004795;
+	}
+	.news_item.yellow:hover .title {
+		color: #957d00;
 	}
 }
 

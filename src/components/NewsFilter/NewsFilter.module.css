@@ -40,6 +40,7 @@
 .filters_row.params button.active {
 	color: white;
 	background-color: #004795;
+	transition: all 0.3s ease 0s;
 }
 
 .filters_row.params button.nonSeen::after {
@@ -56,6 +57,18 @@
 }
 .filters_row.params button.active.nonSeen {
 	background-color: #004795;
+}
+
+@media (hover: hover) {
+	.filters_row.params button:hover {
+		background-color: #d3d3d3;
+	}
+	.filters_row.params button.active:hover {
+		background-color: #004795;
+	}
+	.filters_row.tags button:hover {
+		background-color: #ebebeb;
+	}
 }
 
 @media (max-width: 768px) {

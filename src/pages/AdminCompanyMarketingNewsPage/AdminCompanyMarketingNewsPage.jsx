@@ -71,14 +71,14 @@ const AdminCompanyMarketingNewsPage = () => {
 				<div style={{ marginTop: '0' }} className="row">
 					<div className="column-50">
 						<h1>Налаштування новини маркетингу</h1>
-						<div title="Створити новину маркетингу" style={{ maxWidth: '580px', width: '100%', height: '60px' }}>
+						<div title="Створити новину маркетингу" style={{ width: '100%', height: '60px' }}>
 							<AddEventButton path={'add-change-company-marketing-news?type=marketing'} />
 						</div>
 						<CompanyMarketingList admin={true} newsList={marketingData} linkTo="marketing-separate-news" type="marketing" />
 					</div>
 					<div className="column-50">
 						<h1>Налаштування новини компанії</h1>
-						<div title="Створити новину компанії" style={{ maxWidth: '580px', width: '100%', height: '60px' }}>
+						<div title="Створити новину компанії" style={{ width: '100%', height: '60px' }}>
 							<AddEventButton path={'add-change-company-marketing-news?type=company'} />
 						</div>
 						<CompanyMarketingList admin={true} newsList={companyData} linkTo="company-separate-news" type="company" />
