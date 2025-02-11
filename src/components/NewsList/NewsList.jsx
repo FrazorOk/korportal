@@ -23,7 +23,7 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 	const getNotSeenPosts = () => {
 		return news.filter((el, index) => {
 			if (el) {
-				let found = userSeenNews.find((item) => item == el.id);
+				let found = userSeenNews.find((item) => item === el.id);
 
 				if (found) {
 					return false;
@@ -149,8 +149,13 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 
 	// change counter not seen posts
 	useEffect(() => {
-		if (userSeenNews) {
+		if (userSeenNews && news.length > 0) {
 			let foundNotSeenPosts = getNotSeenPosts();
+			console.log('userSeenNews');
+			console.log(userSeenNews);
+			console.log('foundNotSeenPosts');
+			console.log(foundNotSeenPosts);
+
 			setNoSeenPotsLength(foundNotSeenPosts.length);
 		}
 	}, [userSeenNews, news, filterParams]);

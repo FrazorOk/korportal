@@ -153,6 +153,7 @@ export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, 
 		return response;
 	});
 };
+
 export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor_id, id, delimg }) => {
 	let token = getCookie('_form_token');
 	console.log(token);

@@ -23,7 +23,7 @@ const FeedSeparateNewsPage = () => {
 	}, [newsId]);
 
 	return (
-		<div>
+		<div style={{ maxWidth: '1000px', margin: '0 auto' }}>
 			<h1>Стрічка останніх подій</h1>
 
 			<GoBackButton toLink={'/feed-news'} />

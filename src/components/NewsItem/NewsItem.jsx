@@ -86,7 +86,7 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 	}, []);
 
 	useEffect(() => {
-		if (viewed && id && user.id) {
+		if (viewed && id && user.id && userSeenNews) {
 			let seenStatus = false;
 			userSeenNews.forEach((element) => {
 				if (element == id) {
@@ -98,7 +98,7 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 				changeViews();
 			}
 		}
-	}, [id, user.id]);
+	}, [id, user.id, userSeenNews]);
 
 	useEffect(() => {
 		if (text) {
@@ -133,10 +133,11 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 
 	// this item is seen?
 	useEffect(() => {
-		!userSeenNews &&
+		userSeenNews &&
 			userSeenNews.forEach((element) => {
 				if (element == id) {
 					setSeenStatus(true);
+					console.log('yes');
 				}
 			});
 	}, [userSeenNews]);
@@ -294,7 +295,7 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 				) : (
 					<p ref={refText} dangerouslySetInnerHTML={{ __html: text }} className={`${s.text}`} />
 				)}
-				{currentText && text.length >= 150 && (
+				{currentText && text.length >= 150 && !viewed && (
 					<button
 						onClick={onClickVisibleButtonHandler}
 						style={{ textDecoration: 'underline', color: '#004795', backgroundColor: 'transparent', marginTop: '6px', fontSize: '14px' }}>
@@ -350,9 +351,11 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 					<EmojiList visibleStatus={smileStatus} setSmile={setTextAreaComment} />
 				</div>
 			</div>
-			<button title={visibleStatus ? 'Згорнути' : 'Розгорнути'} className={s.open_button} onClick={onClickVisibleButtonHandler}>
-				<img src={arrowIcon} alt="" />
-			</button>
+			{!viewed && (
+				<button title={visibleStatus ? 'Згорнути' : 'Розгорнути'} className={s.open_button} onClick={onClickVisibleButtonHandler}>
+					<img src={arrowIcon} alt="" />
+				</button>
+			)}
 		</div>
 	);
 };

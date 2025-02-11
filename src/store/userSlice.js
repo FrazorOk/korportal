@@ -5,7 +5,7 @@ export const userSlice = createSlice({
 	name: 'user',
 	initialState: {
 		userData: {},
-		userSeenNews: [],
+		userSeenNews: false,
 		isAdmin: false,
 	},
 	reducers: {

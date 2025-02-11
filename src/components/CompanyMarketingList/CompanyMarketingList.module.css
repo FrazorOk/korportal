@@ -88,9 +88,6 @@
 	margin-top: 12px;
 }
 @media (hover: hover) {
-	/* .news_item:hover .hover_el {
-		opacity: 1;
-	} */
 	.news_item:hover .content {
 		border: 1px solid #0048956c;
 	}

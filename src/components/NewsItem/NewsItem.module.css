@@ -11,10 +11,11 @@
 	flex-direction: column;
 	gap: 20px;
 	position: relative;
+	overflow: hidden;
 }
 .item.full_screen {
 	padding: 56px;
-	padding-top: 30px;
+	padding-top: 40px;
 }
 .admin_btns {
 	position: absolute;
@@ -182,6 +183,7 @@
 	text-wrap: wrap;
 	margin-top: 14px;
 	line-height: 17px;
+	color: #383833;
 	/* -webkit-box-orient: vertical;
 	display: -webkit-box;
 	line-clamp: 3;
@@ -189,8 +191,8 @@
 	overflow: hidden; */
 }
 .item.full_screen .text {
-	font-size: 18px;
-	line-height: 24px;
+	font-size: 16px;
+	line-height: 22px;
 	margin-top: 18px;
 }
 /* .item.active .text {
