@@ -50,13 +50,14 @@ const HomePage = () => {
 	}, []);
 
 	useEffect(() => {
+		let el = document.querySelector('.main-scroll-block');
+
 		if (windowHeight) {
-			let el = document.querySelector('.main-scroll-block');
 			el.addEventListener('scroll', (e) => handleScroll(window.innerHeight));
-			return () => {
-				window.removeEventListener('scroll', (e) => handleScroll(window.innerHeight));
-			};
 		}
+		return () => {
+			el.removeEventListener('scroll', (e) => handleScroll(window.innerHeight));
+		};
 	}, [windowHeight]);
 
 	return (

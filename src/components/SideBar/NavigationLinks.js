@@ -36,8 +36,8 @@ export const navigationsLinks = [
 	// 	icon: teachIcon,
 	// },
 	{
-		name: 'Зображення',
-		path: 'images',
+		name: 'Галерея',
+		path: 'gallery',
 		icon: imgIcon,
 	},
 	// {
