@@ -8,7 +8,6 @@ import { MsalProvider } from '@azure/msal-react';
 import { msalConfig } from './authConfig';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import TeamPage from './pages/TeamPage/TeamPage';
-import ImagesPage from './pages/ImagesPage/ImagesPage';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import AdminNewsPage from './pages/AdminNewsPage/AdminNewsPage';
@@ -24,6 +23,7 @@ import CompanySeparateNewsPage from './pages/CompanySeparateNewsPage/CompanySepa
 import MarketingSeparateNewsPage from './pages/MarketingSeparateNewsPage/MarketingSeparateNewsPage';
 import AdminCompanyMarketingNewsPage from './pages/AdminCompanyMarketingNewsPage/AdminCompanyMarketingNewsPage';
 import AdminAddChangeCompanyMarketingNewsPage from './pages/AdminAddChangeCompanyMarketingNewsPage/AdminAddChangeCompanyMarketingNewsPage';
+import GalleryPage from './pages/GalleryPage/GalleryPage';
 
 const router = createBrowserRouter([
 	{
@@ -66,8 +66,8 @@ const router = createBrowserRouter([
 				],
 			},
 			{
-				path: 'images/',
-				element: <ImagesPage />,
+				path: 'gallery/',
+				element: <GalleryPage />,
 			},
 			{
 				path: 'movies/',

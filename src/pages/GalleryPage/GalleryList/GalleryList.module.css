@@ -1,0 +1,151 @@
+.list {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+.item {
+	width: calc(100% / 4 - 15px);
+	border-radius: 10px;
+	box-shadow: 0 0 9px #00000021;
+	position: relative;
+	overflow: hidden;
+}
+.item::after {
+	content: '';
+	position: absolute;
+	top: -50px;
+	left: 0;
+	width: 100%;
+	height: calc(100% + 50px);
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.7931547619047619) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0) 100%);
+	transition: all 0.3s ease 0s;
+}
+
+.item img {
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
+	height: 220px;
+}
+.item .main_img {
+	transition: all 0.3s ease 0s;
+}
+.item_title {
+	font-size: 18px;
+	font-weight: 500;
+	position: absolute;
+	z-index: 2;
+	bottom: 66px;
+	left: 22px;
+	color: #ffffff;
+	text-align: left;
+	transition: all 0.3s ease 0s;
+}
+.item_date {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	color: white;
+	font-size: 14px;
+	margin-bottom: 8px;
+}
+.item_date img {
+	width: 15px;
+	height: auto;
+	filter: brightness(0) invert(1);
+}
+.item_btn {
+	position: absolute;
+	bottom: 16px;
+	left: 22px;
+	z-index: 2;
+	border-radius: 20px;
+	padding: 8px 16px;
+	background-color: #ffffff;
+	font-weight: 500;
+	color: #585858;
+	transition: all 0.3s ease 0.05s;
+	display: flex;
+	align-items: center;
+}
+.item_btn img {
+	width: 20px;
+	height: auto;
+	transform: rotate(-90deg);
+}
+@media (hover: hover) {
+	.item_title {
+		bottom: 26px;
+	}
+	.item:hover .item_title {
+		bottom: 66px;
+	}
+	.item:hover .main_img {
+		transform: scale(1.1);
+	}
+	.item_btn {
+		bottom: -40px;
+	}
+	.item_btn:hover {
+		background-color: #ebebeb;
+	}
+	.item:hover .item_btn {
+		bottom: 16px;
+	}
+	.item::after {
+		top: 0;
+	}
+	.item:hover::after {
+		top: -50px;
+	}
+}
+@media (max-width: 1200px) {
+	.item {
+		width: calc(100% / 3 - 13.4px);
+	}
+}
+@media (max-width: 700px) {
+	.list {
+		gap: 10px;
+	}
+	.item {
+		width: calc(100% / 2 - 5px);
+	}
+	.item img {
+		width: 100%;
+		object-fit: cover;
+		object-position: center;
+		height: 170px;
+	}
+	.item_date img {
+		width: 15px;
+		height: auto;
+	}
+	.item_btn img {
+		width: 20px;
+		height: auto;
+	}
+}
+@media (max-width: 500px) {
+	.list {
+		gap: 10px;
+	}
+	.item {
+		width: 100%;
+	}
+	.item img {
+		width: 100%;
+		object-fit: cover;
+		object-position: center;
+		height: 200px;
+	}
+	.item_date img {
+		width: 15px;
+		height: auto;
+	}
+	.item_btn img {
+		width: 20px;
+		height: auto;
+	}
+}

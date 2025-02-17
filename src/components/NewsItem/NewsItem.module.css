@@ -360,6 +360,10 @@
 	.item:hover .open_button {
 		transform: translate(-50%, 0) scale(1.1);
 	}
+	.open_button:hover {
+		transform: translate(-50%, 0) scale(1.1);
+		background-color: #a9a9a9;
+	}
 	.buttons_container button:hover {
 		background-color: #ebebeb;
 	}
@@ -388,9 +392,6 @@
 	}
 	.commet_container {
 		margin-top: 20px;
-	}
-	.item .open_button {
-		background-color: #ebebeb;
 	}
 	.item.full_screen .date {
 		font-size: 14px;

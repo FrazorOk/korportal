@@ -11,7 +11,7 @@
 	margin: 0 auto;
 	margin-top: 14px;
 
-	padding: 0 29.5px;
+	/* padding: 0 29.5px; */
 
 	display: flex;
 	flex-direction: column;
@@ -19,6 +19,15 @@
 	gap: 8px;
 
 	width: 100%;
+	max-width: 40px;
+
+	transition: all 0s ease 0s;
+
+	transition: all 0.2s ease 0s;
+}
+
+.navigation.active {
+	max-width: calc(100% - 59px);
 }
 
 .navigation img {
