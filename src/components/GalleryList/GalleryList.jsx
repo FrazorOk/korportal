@@ -1,7 +1,8 @@
 import s from './GalleryList.module.css';
-import arrowIcon from '../../../assets/img/icons/arrow-down-icon.svg';
-import clockIcon from '../../../assets/img/icons/clock-icon.svg';
+import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
+import clockIcon from '../../assets/img/icons/clock-icon.svg';
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const GalleryList = ({ galleryList }) => {
 	let ref = useRef();
@@ -40,21 +41,24 @@ const GalleryList = ({ galleryList }) => {
 		<div ref={ref} className={s.list}>
 			{isCurrentGalleryList &&
 				isCurrentGalleryList.length > 0 &&
-				isCurrentGalleryList.map((galleryItem, galleryIndex) => (
-					<a href="#" className={s.item} key={`${galleryIndex}gallery`}>
-						<img className={s.main_img} loading="lazy" src={`${galleryItem}`} />
-						<p className={s.item_title}>
-							<span className={s.item_date}>
-								<img src={clockIcon} alt="" /> 12 лютого 2025
-							</span>
-							Назва каталогу така
-						</p>
-						<span className={s.item_btn} href="">
-							Переглянути
-							<img src={arrowIcon} alt="" />
-						</span>
-					</a>
-				))}
+				isCurrentGalleryList.map(
+					(galleryItem) =>
+						galleryItem && (
+							<Link to={`/gallery/catalog/${galleryItem.id}`} className={s.item} key={`${galleryItem.id}gallery`}>
+								{galleryItem.cover && <img className={s.main_img} loading="lazy" src={`${galleryItem.cover}`} />}
+								<p className={s.item_title}>
+									<span className={s.item_date}>
+										<img src={clockIcon} alt="" /> {galleryItem.create_date}
+									</span>
+									{galleryItem.title}
+								</p>
+								<span className={s.item_btn} href="">
+									Переглянути
+									<img src={arrowIcon} alt="" />
+								</span>
+							</Link>
+						)
+				)}
 		</div>
 	);
 };
