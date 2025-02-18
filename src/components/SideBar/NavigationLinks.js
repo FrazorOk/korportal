@@ -64,6 +64,11 @@ export const navigationsAdminLinks = [
 		icon: mkfeedIcon,
 	},
 	{
+		name: 'Галерея',
+		path: 'admin-gallery',
+		icon: imgIcon,
+	},
+	{
 		name: 'Календар свят',
 		path: 'admin-holiday-calendar',
 		icon: balloonsIcon,

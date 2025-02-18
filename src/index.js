@@ -24,6 +24,9 @@ import MarketingSeparateNewsPage from './pages/MarketingSeparateNewsPage/Marketi
 import AdminCompanyMarketingNewsPage from './pages/AdminCompanyMarketingNewsPage/AdminCompanyMarketingNewsPage';
 import AdminAddChangeCompanyMarketingNewsPage from './pages/AdminAddChangeCompanyMarketingNewsPage/AdminAddChangeCompanyMarketingNewsPage';
 import GalleryPage from './pages/GalleryPage/GalleryPage';
+import AdminGalleryPage from './pages/AdminGalleryPage/AdminGalleryPage';
+import AdminAddGalleryPage from './pages/AdminAddGalleryPage/AdminAddGalleryPage';
+import GallerySeparatePage from './pages/GallerySeparatePage/GallerySeparatePage';
 
 const router = createBrowserRouter([
 	{
@@ -70,6 +73,10 @@ const router = createBrowserRouter([
 				element: <GalleryPage />,
 			},
 			{
+				path: 'gallery/catalog/:Id',
+				element: <GallerySeparatePage />,
+			},
+			{
 				path: 'movies/',
 				element: <MoviesPage />,
 			},
@@ -112,6 +119,14 @@ const router = createBrowserRouter([
 			{
 				path: 'admin-company-marketing-news/add-change-company-marketing-news/:newsId',
 				element: <AdminAddChangeCompanyMarketingNewsPage />,
+			},
+			{
+				path: 'admin-gallery/',
+				element: <AdminGalleryPage />,
+			},
+			{
+				path: 'admin-gallery/add-gallery',
+				element: <AdminAddGalleryPage />,
 			},
 		],
 	},

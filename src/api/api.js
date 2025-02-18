@@ -313,3 +313,68 @@ export const updateMarketingCompanyNewsPost = ({ title, html, date, text, imgFil
 		return response;
 	});
 };
+
+// КАТАЛОГ
+
+export const createNewCatalogGallery = ({ title, imgFile, date, autor_id }) => {
+	let token = getCookie('_form_token');
+
+	let data = new FormData();
+	data.append('token', `${token}`);
+	data.append('title', title);
+	data.append('create_date', date);
+	data.append('autor_id', autor_id);
+
+	for (let i = 0; i < imgFile.length; i++) {
+		data.append('img[]', imgFile[i]);
+	}
+
+	return fetch('https://portal.softcom.ua/php/createcat.php', {
+		method: 'POST',
+		body: data,
+	}).then((response) => {
+		console.log(response);
+
+		return response;
+	});
+};
+export const getGalleryCatalogs = () => {
+	let token = getCookie('_form_token');
+
+	let data = new FormData();
+	data.append('token', `${token}`);
+	data.append('out', 'yes');
+
+	return fetch('https://portal.softcom.ua/php/createcat.php', {
+		method: 'POST',
+		body: data,
+	})
+		.then((response) => {
+			console.log(response);
+			return response.json();
+		})
+		.then((result) => {
+			console.log(result);
+			return result;
+		});
+};
+export const getGalleryCatalogsByID = (catalog_id) => {
+	let token = getCookie('_form_token');
+
+	let data = new FormData();
+	data.append('token', `${token}`);
+	data.append('catalog_id', `${catalog_id}`);
+
+	return fetch('https://portal.softcom.ua/php/catfilesout.php', {
+		method: 'POST',
+		body: data,
+	})
+		.then((response) => {
+			console.log(response);
+			return response.json();
+		})
+		.then((result) => {
+			console.log(result);
+			return result;
+		});
+};
