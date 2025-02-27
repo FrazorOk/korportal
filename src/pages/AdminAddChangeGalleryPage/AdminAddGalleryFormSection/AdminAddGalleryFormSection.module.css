@@ -222,7 +222,8 @@
 		background-color: rgb(225, 225, 225);
 	}
 	.select_buttons input:hover,
-	.select_buttons button:hover {
+	.select_buttons button:hover,
+	.select_buttons a:hover {
 		opacity: 0.8;
 	}
 	.result_window button:hover,

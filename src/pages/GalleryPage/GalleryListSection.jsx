@@ -6,7 +6,11 @@ const GalleryListSection = () => {
 	let [data, setData] = useState([]);
 
 	useEffect(() => {
-		getGalleryCatalogs().then((response) => setData(response));
+		getGalleryCatalogs().then((response) => {
+			console.log(response);
+
+			setData(response);
+		});
 	}, []);
 
 	return (

@@ -25,8 +25,8 @@ import AdminCompanyMarketingNewsPage from './pages/AdminCompanyMarketingNewsPage
 import AdminAddChangeCompanyMarketingNewsPage from './pages/AdminAddChangeCompanyMarketingNewsPage/AdminAddChangeCompanyMarketingNewsPage';
 import GalleryPage from './pages/GalleryPage/GalleryPage';
 import AdminGalleryPage from './pages/AdminGalleryPage/AdminGalleryPage';
-import AdminAddGalleryPage from './pages/AdminAddGalleryPage/AdminAddGalleryPage';
 import GallerySeparatePage from './pages/GallerySeparatePage/GallerySeparatePage';
+import AdminAddChangeGalleryPage from './pages/AdminAddChangeGalleryPage/AdminAddChangeGalleryPage';
 
 const router = createBrowserRouter([
 	{
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
 				element: <GalleryPage />,
 			},
 			{
-				path: 'gallery/catalog/:Id',
+				path: 'gallery/:Id',
 				element: <GallerySeparatePage />,
 			},
 			{
@@ -125,8 +125,12 @@ const router = createBrowserRouter([
 				element: <AdminGalleryPage />,
 			},
 			{
-				path: 'admin-gallery/add-gallery',
-				element: <AdminAddGalleryPage />,
+				path: 'admin-gallery/add-change-gallery',
+				element: <AdminAddChangeGalleryPage />,
+			},
+			{
+				path: 'admin-gallery/add-change-gallery/:Id',
+				element: <AdminAddChangeGalleryPage />,
 			},
 		],
 	},
