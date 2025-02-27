@@ -1,12 +1,12 @@
 import s from './AdminAddGalleryFormSection.module.css';
 import deleteIcon from '../../../assets/img/icons/delete-icon.svg';
-import { createNewCatalogGallery, deleteNewsPost, updateMarketingCompanyNewsPost } from '../../../api/api.js';
+import { createNewCatalogGallery, deleteGalleryCatalogsFiles, updateCatalogGallery } from '../../../api/api.js';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../../selectors/userSelectors.js';
 import ModalWidnow from '../../../components/UI/ModalWidnow/ModalWidnow.jsx';
 import Loader from '../../../components/UI/Loader/Loader.jsx';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AlertModalWindow from '../../../components/AlertModalWindow/AlertModalWindow.jsx';
 
 let now = new Date(Date.now()).toLocaleString();
@@ -14,7 +14,9 @@ let formatedNow = `${now.slice(6, 10)}-${now.slice(3, 5)}-${now.slice(0, 2)}T${n
 
 const AdminAddGalleryFormSection = ({ Id, data }) => {
 	let userID = useSelector(userSelector.userData);
+	let navigate = useNavigate();
 
+	let [resultId, setResultId] = useState(null);
 	let [modalWidndovStatus, setModalWidndovStatus] = useState(false);
 	let [modalWidndovStatusDelete, setModalWidndovStatusDelete] = useState(false);
 	let [modalWidndovStatusUpdate, setModalWidndovStatusUpdate] = useState(false);
@@ -65,9 +67,10 @@ const AdminAddGalleryFormSection = ({ Id, data }) => {
 		await setModalWidndovStatus(true);
 		let result = await createNewCatalogGallery(data);
 		await setFetching(false);
-		if (result.status == 200) {
+		if (result.status == 200 || result.id) {
 			nulledAllInputs();
 			setFetchingStatus(true);
+			setResultId(result.id);
 		} else {
 			setFetchingStatus('error');
 		}
@@ -75,7 +78,7 @@ const AdminAddGalleryFormSection = ({ Id, data }) => {
 	const fetchingDeletePost = async () => {
 		await setFetching(true);
 
-		let result = await deleteNewsPost(Id);
+		let result = await deleteGalleryCatalogsFiles(Id, 'catalog');
 		await setFetching(false);
 		if (result.status == 200) {
 			nulledAllInputs();
@@ -87,9 +90,11 @@ const AdminAddGalleryFormSection = ({ Id, data }) => {
 	};
 	const fetchingUpdatePost = async (data) => {
 		await setFetching(true);
-		let result = await updateMarketingCompanyNewsPost(data);
+		let result = await updateCatalogGallery(data);
 		await setFetching(false);
-		if (result.status == 200) {
+		console.log(result);
+
+		if (result.status == 200 || result.id) {
 			setFetchingStatus(true);
 		} else {
 			console.log(`Помилка ${result.status}`);
@@ -138,25 +143,26 @@ const AdminAddGalleryFormSection = ({ Id, data }) => {
 	const updatePostHandler = (e) => {
 		e.preventDefault();
 
-		let filteredDelImgsList = [];
-		filesList.forEach((itemDelImg, indexDelIndex) => {
-			if (`${itemDelImg}` == 'delimg') {
-				filteredDelImgsList.push(data.img[indexDelIndex]);
-			}
-		});
+		// let filteredDelImgsList = [];
+		// filesList.forEach((itemDelImg, indexDelIndex) => {
+		// 	if (`${itemDelImg}` == 'delimg') {
+		// 		filteredDelImgsList.push(data.img[indexDelIndex]);
+		// 	}
+		// });
 
 		let filteredImgsList = filesList.filter((item) => {
 			if (item != false && item != 'delimg') {
 				return true;
 			}
 		});
+		console.log(filteredImgsList);
+		console.log(filesList);
 
 		let dataFetching = {
 			id: Id,
 			title: title,
 			date: date,
 			imgFile: filteredImgsList,
-			delimg: filteredDelImgsList,
 			autor_id: userID.id,
 		};
 
@@ -181,16 +187,18 @@ const AdminAddGalleryFormSection = ({ Id, data }) => {
 	// Effects
 
 	useEffect(() => {
+		console.log(data);
+
 		data.title && setTitle(data.title);
-		data.pub_date && setDate(data.pub_date);
-		data.img && setFilesList(data.img);
-		data.img &&
+		data.create_date && setDate(data.create_date);
+		data.cover && setFilesList([data.cover]);
+		data.cover &&
 			setFilesIndex((index) => {
 				let currentIndex = [...index];
 
-				for (let i = 0; i < data.img.length - 1; i++) {
-					currentIndex = [...currentIndex, ''];
-				}
+				// for (let i = 0; i < 1; i++) {
+				// 	currentIndex = [...currentIndex, ''];
+				// }
 
 				return currentIndex;
 			});
@@ -359,7 +367,7 @@ const AdminAddGalleryFormSection = ({ Id, data }) => {
 				</div>
 
 				<div className={s.select_buttons}>
-					<Link to={'/admin-company-marketing-news'} className={s.cancel}>
+					<Link to={'/admin-gallery'} className={s.cancel}>
 						Відмінити
 					</Link>
 					{data.id && (
@@ -392,6 +400,7 @@ const AdminAddGalleryFormSection = ({ Id, data }) => {
 									onClick={() => {
 										setModalWidndovStatus(false);
 										setFetchingStatus(false);
+										navigate(`/admin-gallery/add-change-gallery/${resultId}`);
 									}}>
 									Повернутися
 								</button>

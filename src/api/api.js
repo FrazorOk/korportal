@@ -329,14 +329,23 @@ export const createNewCatalogGallery = ({ title, imgFile, date, autor_id }) => {
 		data.append('img[]', imgFile[i]);
 	}
 
+	console.log(title);
+	console.log(imgFile);
+	console.log(date);
+	console.log(autor_id);
+
 	return fetch('https://portal.softcom.ua/php/createcat.php', {
 		method: 'POST',
 		body: data,
-	}).then((response) => {
-		console.log(response);
-
-		return response;
-	});
+	})
+		.then((response) => {
+			console.log(response);
+			return response.json();
+		})
+		.then((result) => {
+			console.log(result);
+			return result;
+		});
 };
 export const getGalleryCatalogs = () => {
 	let token = getCookie('_form_token');
@@ -366,6 +375,86 @@ export const getGalleryCatalogsByID = (catalog_id) => {
 	data.append('catalog_id', `${catalog_id}`);
 
 	return fetch('https://portal.softcom.ua/php/catfilesout.php', {
+		method: 'POST',
+		body: data,
+	})
+		.then((response) => {
+			console.log(response);
+			return response.json();
+		})
+		.then((result) => {
+			console.log(result);
+			return result;
+		});
+};
+export const updateCatalogGallery = ({ title, id, imgFile, date, autor_id }) => {
+	let token = getCookie('_form_token');
+
+	let data = new FormData();
+	data.append('token', `${token}`);
+	data.append('id', id);
+	data.append('title', title);
+	data.append('create_date', date);
+	// data.append('autor_id', autor_id);
+
+	console.log(title);
+	console.log(id);
+	console.log(imgFile);
+	console.log(date);
+	console.log(autor_id);
+
+	if (imgFile) {
+		for (let i = 0; i < imgFile.length; i++) {
+			data.append('img[]', imgFile[i]);
+		}
+	}
+
+	return fetch('https://portal.softcom.ua/php/editcat.php', {
+		method: 'POST',
+		body: data,
+	}).then((response) => {
+		console.log(response);
+		return response;
+	});
+};
+export const deleteGalleryCatalogsFiles = (id, target) => {
+	// target - catalog/files
+
+	let token = getCookie('_form_token');
+
+	let data = new FormData();
+	data.append('token', `${token}`);
+	data.append('id', id);
+	data.append('target', target);
+
+	console.log(id);
+	console.log(target);
+
+	return fetch('https://portal.softcom.ua/php/delcatorfile.php', {
+		method: 'POST',
+		body: data,
+	}).then((response) => {
+		console.log(response);
+		return response;
+	});
+};
+export const uploadFileInGallery = (id, imgFile) => {
+	let token = getCookie('_form_token');
+
+	let data = new FormData();
+	data.append('token', `${token}`);
+	data.append('catalog_id', id);
+
+	if (imgFile) {
+		for (let i = 0; i < imgFile.length; i++) {
+			data.append('img[]', imgFile[i]);
+		}
+	}
+
+	console.log(id);
+	console.log(imgFile);
+
+	return fetch('https://portal.softcom.ua/php/upload.php', {
 		method: 'POST',
 		body: data,
 	})

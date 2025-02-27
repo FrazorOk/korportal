@@ -1,11 +1,12 @@
 import s from './GalleryList.module.css';
 import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
 import clockIcon from '../../assets/img/icons/clock-icon.svg';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Loader from '../UI/Loader/Loader';
+import EditAdminButton from '../UI/EditAdminButton/EditAdminButton';
 
-const GalleryList = ({ galleryList }) => {
-	let ref = useRef();
+const GalleryList = ({ galleryList, adminStatus = false }) => {
 	let [isGalleryList, setGalleryList] = useState([]);
 	let [isCurrentGalleryList, setCurrentGalleryList] = useState([]);
 	let [isPaginationIndex, setPaginationIndex] = useState(1);
@@ -15,7 +16,9 @@ const GalleryList = ({ galleryList }) => {
 		// Відступ до кінця блоку
 		let y = 0;
 		if (Math.ceil(block.scrollTop + block.clientHeight) >= Math.ceil(block.scrollHeight) - y) {
-			setPaginationIndex((index) => index + 1);
+			if (isGalleryList.length >= 20 && isCurrentGalleryList.length < isGalleryList.length) {
+				setPaginationIndex((index) => index + 1);
+			}
 		}
 	};
 
@@ -38,14 +41,13 @@ const GalleryList = ({ galleryList }) => {
 	}, [isGalleryList, isPaginationIndex]);
 
 	return (
-		<div ref={ref} className={s.list}>
-			{isCurrentGalleryList &&
-				isCurrentGalleryList.length > 0 &&
+		<div className={s.list}>
+			{isCurrentGalleryList && isCurrentGalleryList.length > 0 ? (
 				isCurrentGalleryList.map(
 					(galleryItem) =>
 						galleryItem && (
-							<Link to={`/gallery/catalog/${galleryItem.id}`} className={s.item} key={`${galleryItem.id}gallery`}>
-								{galleryItem.cover && <img className={s.main_img} loading="lazy" src={`${galleryItem.cover}`} />}
+							<Link to={`/gallery/${galleryItem.id}`} className={s.item} key={`${galleryItem.id}gallery`}>
+								{galleryItem.cover && <img className={s.main_img} src={`${galleryItem.cover}`} />}
 								<p className={s.item_title}>
 									<span className={s.item_date}>
 										<img src={clockIcon} alt="" /> {galleryItem.create_date}
@@ -56,9 +58,13 @@ const GalleryList = ({ galleryList }) => {
 									Переглянути
 									<img src={arrowIcon} alt="" />
 								</span>
+								{adminStatus && <EditAdminButton link={`add-change-gallery/${galleryItem.id}`} />}
 							</Link>
 						)
-				)}
+				)
+			) : (
+				<Loader />
+			)}
 		</div>
 	);
 };
