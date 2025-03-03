@@ -30,7 +30,7 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 
 	let userSeenNews = useSelector(userSelector.userSeenNews);
 	let user = useSelector(userSelector.userData);
-	let { id, title, pub_date, tags, text, img, comment, reaction, views } = item;
+	let { id, title, pub_date, tags, text, html, img, comment, reaction, views } = item;
 
 	let [fetchedComments, setFetchedComments] = useState(null);
 	let [commentsLength, setCommentsLenth] = useState(0);
@@ -115,6 +115,7 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 			let currentText = kitcut(text, 150);
 
 			setCurrentText(currentText);
+			console.log(text);
 		}
 	}, [text]);
 

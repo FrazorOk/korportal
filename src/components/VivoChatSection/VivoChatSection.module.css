@@ -15,6 +15,7 @@
 		width: 580px;
 	}
 	.chat.full_screen {
+		flex-basis: 100% !important;
 		width: 100%;
 		flex: 0 1 calc(50% - 15px);
 		padding: 30px 90px 30px;
@@ -30,8 +31,8 @@
 		width: 500px;
 	}
 	.chat.full_screen {
+		flex-basis: 100% !important;
 		width: 100%;
-		flex: 0 1 calc(50% - 15px);
 		/* padding-right: 10px !important ; */
 	}
 
@@ -46,7 +47,7 @@
 	}
 	.chat.full_screen {
 		width: 100%;
-		flex: 0 1 calc(50% - 15px);
+		flex-basis: 100% !important;
 		/* padding-right: 10px !important ; */
 	}
 

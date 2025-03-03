@@ -75,27 +75,29 @@ const NewsFilter = ({ tags, setFilterParams, todayPosts, setData, noSeenPotsLeng
 				</button>
 			</div>
 			<div className={`${s.filters_row} ${s.tags}`}>
-				{tags.map((el, index) => {
-					return (
-						<button
-							title="Фільтрувати за тегом"
-							disabled={disableStatus}
-							key={`tags buttons ${index}`}
-							className={activeButton === index + 4 ? s.active : ''}
-							onClick={(e) => {
-								async function onClickHandler(e) {
-									await setDisableStatus(true);
-									await setActiveButton(index + 4);
-									await getNews(setData);
-									await setFilterParams({ params: e.target.textContent, tags: true });
-									await setDisableStatus(false);
-								}
-								onClickHandler(e);
-							}}>
-							{el}
-						</button>
-					);
-				})}
+				{tags &&
+					tags.length > 0 &&
+					tags.map((el, index) => {
+						return (
+							<button
+								title="Фільтрувати за тегом"
+								disabled={disableStatus}
+								key={`tags buttons ${index}`}
+								className={activeButton === index + 4 ? s.active : ''}
+								onClick={(e) => {
+									async function onClickHandler(e) {
+										await setDisableStatus(true);
+										await setActiveButton(index + 4);
+										await getNews(setData);
+										await setFilterParams({ params: e.target.textContent, tags: true });
+										await setDisableStatus(false);
+									}
+									onClickHandler(e);
+								}}>
+								{el}
+							</button>
+						);
+					})}
 			</div>
 		</div>
 	);
