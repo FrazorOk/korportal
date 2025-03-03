@@ -15,7 +15,7 @@ const AdminAddChangeNewsPage = () => {
 	useEffect(() => {
 		if (newsId && statusAdmin) {
 			let getNews = async () => {
-				let result = await getNewsFromID(newsId);
+				let result = await getNewsFromID(newsId, null, null, 2);
 				setData(result[0]);
 			};
 			getNews();

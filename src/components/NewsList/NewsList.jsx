@@ -18,23 +18,24 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 	let userSeenNews = useSelector(userSelector.userSeenNews);
 
 	const getTodayPostsLength = () => {
-		return news.filter((el, index) => index < data.length - 1 && el.pub_date.slice(0, 10) === toDay);
+		if (news && news.length > 0) return news.filter((el, index) => index < data.length - 1 && el.pub_date.slice(0, 10) === toDay);
 	};
 	const getNotSeenPosts = () => {
-		return news.filter((el, index) => {
-			if (el) {
-				let found = userSeenNews.find((item) => item === el.id);
+		if (news && news.length > 0)
+			return news.filter((el, index) => {
+				if (el) {
+					let found = userSeenNews.find((item) => item === el.id);
 
-				if (found) {
-					return false;
-				} else {
-					return true;
+					if (found) {
+						return false;
+					} else {
+						return true;
+					}
 				}
-			}
-		});
+			});
 	};
 	const getUniqueTags = (arr) => {
-		if (arr) {
+		if (arr && arr.length > 0) {
 			let concatedArray = [];
 
 			arr.forEach((element, index) => {
@@ -76,59 +77,67 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 			}
 			if (filterParams.params === 'Сьогодні') {
 				let filteredArray = getTodayPostsLength();
-				return (filteredArray = [...filteredArray, null]);
+
+				if (filteredArray && filteredArray.length > 0) {
+					return (filteredArray = [...filteredArray, null]);
+				}
 			}
 			if (filterParams.params === 'Не переглянуті') {
 				let filteredArray = getNotSeenPosts();
-
-				return (filteredArray = [...filteredArray, null]);
+				if (filteredArray && filteredArray.length > 0) {
+					return (filteredArray = [...filteredArray, null]);
+				}
 			}
 			if (filterParams.params === 'Популярне') {
-				let currentArray = news.map((el, index) => {
-					if (index !== news.length - 1) {
-						return el;
-					}
-				});
-				currentArray.pop();
+				if (news && news.length > 0) {
+					let currentArray = news.map((el, index) => {
+						if (index !== news.length - 1) {
+							return el;
+						}
+					});
+					currentArray.pop();
 
-				function compare(a, b) {
-					let aReactions = 0;
-					let aComments = 0;
-					let bReactions = 0;
-					let bComments = 0;
+					function compare(a, b) {
+						let aReactions = 0;
+						let aComments = 0;
+						let bReactions = 0;
+						let bComments = 0;
 
-					if (a.reaction) {
-						aReactions = a.reaction.length;
-					}
-					if (a.comment) {
-						aComments = a.comment.length;
-					}
-					if (b.reaction) {
-						bReactions = b.reaction.length;
-					}
-					if (b.comment) {
-						bComments = b.comment.length;
-					}
+						if (a.reaction) {
+							aReactions = a.reaction.length;
+						}
+						if (a.comment) {
+							aComments = a.comment.length;
+						}
+						if (b.reaction) {
+							bReactions = b.reaction.length;
+						}
+						if (b.comment) {
+							bComments = b.comment.length;
+						}
 
-					if (aReactions * 1 + aComments * 1 < bReactions * 1 + bComments * 1) {
-						return 1;
+						if (aReactions * 1 + aComments * 1 < bReactions * 1 + bComments * 1) {
+							return 1;
+						}
+						if (aReactions * 1 + aComments * 1 > bReactions * 1 + bComments * 1) {
+							return -1;
+						}
+						return 0;
 					}
-					if (aReactions * 1 + aComments * 1 > bReactions * 1 + bComments * 1) {
-						return -1;
-					}
-					return 0;
+					let filteredArray = currentArray.sort(compare);
+
+					return (filteredArray = [...filteredArray, null]);
 				}
-				let filteredArray = currentArray.sort(compare);
-
-				return (filteredArray = [...filteredArray, null]);
 			}
 		}
 	};
 	const getPaginationNews = () => {
-		if (stepPagination * indexStep > visibleNews.length - 1) {
-			setPaginationNews((arr) => [...visibleNews.slice(0, visibleNews.length)]);
-		} else {
-			setPaginationNews((arr) => [...visibleNews.slice(0, stepPagination * indexStep)]);
+		if (visibleNews && visibleNews.length > 0) {
+			if (stepPagination * indexStep > visibleNews.length - 1) {
+				setPaginationNews((arr) => [...visibleNews.slice(0, visibleNews.length)]);
+			} else {
+				setPaginationNews((arr) => [...visibleNews.slice(0, stepPagination * indexStep)]);
+			}
 		}
 	};
 
@@ -138,7 +147,7 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 	}, [data]);
 
 	useEffect(() => {
-		setTodayPosts(getTodayPostsLength().length);
+		getTodayPostsLength() && setTodayPosts(getTodayPostsLength().length);
 		setVisibleNews(getFilteredNews());
 		setStepPagination(1);
 	}, [news, filterParams]);
@@ -151,10 +160,6 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 	useEffect(() => {
 		if (userSeenNews && news.length > 0) {
 			let foundNotSeenPosts = getNotSeenPosts();
-			console.log('userSeenNews');
-			console.log(userSeenNews);
-			console.log('foundNotSeenPosts');
-			console.log(foundNotSeenPosts);
 
 			setNoSeenPotsLength(foundNotSeenPosts.length);
 		}
@@ -167,9 +172,9 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 	return (
 		<div className={`${s.news_container} ${fullScreen && s.full_screen}`}>
 			<div className={s.news}>
-				{paginationNews && paginationNews[0] && paginationNews.length ? (
+				{paginationNews && paginationNews[0] && paginationNews.length > 0 && visibleNews ? (
 					paginationNews.map((item, index) => {
-						if (item && index < visibleNews.length - 1 && paginationNews.length > 0) {
+						if (item && paginationNews && index < visibleNews.length - 1 && paginationNews.length > 0) {
 							return <NewsItem adminStatus={adminStatus} item={item} key={item.id} filterParams={filterParams} fullScreen={fullScreen} />;
 						}
 					})
@@ -177,7 +182,7 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 					<p style={{ marginTop: '20px', color: 'rgb(125, 125, 125)' }}>Немає новин</p>
 				)}
 			</div>
-			{news && visibleNews.length > paginationNews.length + 1 && (
+			{news && visibleNews && visibleNews.length > paginationNews.length + 1 && (
 				<div className={s.add_more_btn_container}>
 					<button onClick={addMoreNewsHandler} className={s.add_more_btn}>
 						<img src={circleArrowIcon} alt="" />

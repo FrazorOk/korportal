@@ -132,6 +132,7 @@ const AdminPostSection = ({ newsId, data }) => {
 			tags: tags.split(', '),
 			date: date,
 			text: text,
+			html: text,
 			imgFile: filteredImgsList,
 			cat_id: 1,
 			autor_id: userID.id,
@@ -185,6 +186,7 @@ const AdminPostSection = ({ newsId, data }) => {
 			tags: tags.split(', '),
 			date: date,
 			text: text,
+			html: text,
 			imgFile: filteredImgsList,
 			delimg: filteredDelImgsList,
 			cat_id: 1,
@@ -439,6 +441,7 @@ const AdminPostSection = ({ newsId, data }) => {
 										multiple
 										type="file"
 										name="myImage"
+										accept="image/*"
 										placeholder="Оберіть зображення"
 									/>
 									<button

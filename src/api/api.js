@@ -68,12 +68,13 @@ export const getNews = (setState, all = 0, categoryID = 1) => {
 			return result;
 		});
 };
-export const getNewsFromID = (postID, setState, setStateReactions) => {
+export const getNewsFromID = (postID, setState, setStateReactions, debug = 0) => {
 	let token = getCookie('_form_token');
 
 	let curretBody = {
 		id: postID,
 		token: token,
+		debug: debug,
 	};
 
 	return fetch('https://portal.softcom.ua/php/newsout.php', {
@@ -128,7 +129,7 @@ export const toggleLike = (newsID, userID, code) => {
 		return response;
 	});
 };
-export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, autor_id }) => {
+export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, autor_id, html }) => {
 	let token = await getCookie('_form_token');
 	console.log(token);
 
@@ -138,6 +139,7 @@ export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, 
 	data.append('tags', tags);
 	data.append('pub_date', date);
 	data.append('text', text);
+	html && data.append('html', html);
 	data.append('cat_id', cat_id);
 	data.append('autor_id', autor_id);
 	// data.append('img', imgFile);
@@ -154,7 +156,7 @@ export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, 
 	});
 };
 
-export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor_id, id, delimg }) => {
+export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor_id, id, delimg, html }) => {
 	let token = getCookie('_form_token');
 	console.log(token);
 	console.log(delimg);
@@ -166,6 +168,7 @@ export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor
 	data.append('tags', tags);
 	data.append('pub_date', date);
 	data.append('text', text);
+	html && data.append('html', html);
 	data.append('delimg', delimg);
 	data.append('cat_id', cat_id);
 	data.append('autor_id', autor_id);
