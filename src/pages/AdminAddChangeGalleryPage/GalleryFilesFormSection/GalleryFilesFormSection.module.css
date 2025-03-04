@@ -5,6 +5,11 @@
 	gap: 30px;
 }
 
+.files_fetching {
+	background-color: #faf9f8;
+	box-shadow: 0 0 6px #00000014;
+}
+
 .files_add_btn {
 	border: 3px solid #7d7d7d;
 }

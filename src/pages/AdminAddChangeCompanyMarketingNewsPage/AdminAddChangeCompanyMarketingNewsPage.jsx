@@ -19,7 +19,7 @@ const AdminAddChangeCompanyMarketingNewsPage = () => {
 	useEffect(() => {
 		if (newsId && statusAdmin) {
 			let getNews = async () => {
-				let result = await getHolidayFromID(newsId, type === 'marketing' ? 3 : 4);
+				let result = await getHolidayFromID(newsId, type === 'marketing' ? 3 : 4, 2);
 				setData(result[0]);
 				console.log(result);
 			};
