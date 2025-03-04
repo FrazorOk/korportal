@@ -131,7 +131,6 @@ export const toggleLike = (newsID, userID, code) => {
 };
 export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, autor_id, html }) => {
 	let token = await getCookie('_form_token');
-	console.log(token);
 
 	let data = await new FormData();
 	data.append('token', `${token}`);
@@ -158,8 +157,6 @@ export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, 
 
 export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor_id, id, delimg, html }) => {
 	let token = getCookie('_form_token');
-	console.log(token);
-	console.log(delimg);
 
 	let data = new FormData();
 	data.append('id', id);
@@ -241,13 +238,14 @@ export const updateHolidayPost = ({ title, date, cat_id, autor_id, id }) => {
 		return response;
 	});
 };
-export const getHolidayFromID = (postID, categoryID) => {
+export const getHolidayFromID = (postID, categoryID, debug = 0) => {
 	let token = getCookie('_form_token');
 
 	let curretBody = {
 		id: postID,
 		categoryID: categoryID,
 		token: token,
+		debug: debug,
 	};
 
 	return fetch('https://portal.softcom.ua/php/newsout.php', {
@@ -266,7 +264,6 @@ export const getHolidayFromID = (postID, categoryID) => {
 // Новини маркетингу та компанії
 export const createMarketingCompanyNewPost = async ({ title, date, text, imgFile, cat_id, autor_id, html }) => {
 	let token = await getCookie('_form_token');
-	console.log(token);
 
 	let data = await new FormData();
 	data.append('token', `${token}`);
@@ -291,8 +288,6 @@ export const createMarketingCompanyNewPost = async ({ title, date, text, imgFile
 };
 export const updateMarketingCompanyNewsPost = ({ title, html, date, text, imgFile, cat_id, autor_id, id, delimg }) => {
 	let token = getCookie('_form_token');
-	console.log(token);
-	console.log(delimg);
 
 	let data = new FormData();
 	data.append('id', id);
@@ -332,21 +327,14 @@ export const createNewCatalogGallery = ({ title, imgFile, date, autor_id }) => {
 		data.append('img[]', imgFile[i]);
 	}
 
-	console.log(title);
-	console.log(imgFile);
-	console.log(date);
-	console.log(autor_id);
-
 	return fetch('https://portal.softcom.ua/php/createcat.php', {
 		method: 'POST',
 		body: data,
 	})
 		.then((response) => {
-			console.log(response);
 			return response.json();
 		})
 		.then((result) => {
-			console.log(result);
 			return result;
 		});
 };
@@ -362,11 +350,9 @@ export const getGalleryCatalogs = () => {
 		body: data,
 	})
 		.then((response) => {
-			console.log(response);
 			return response.json();
 		})
 		.then((result) => {
-			console.log(result);
 			return result;
 		});
 };
@@ -382,11 +368,9 @@ export const getGalleryCatalogsByID = (catalog_id) => {
 		body: data,
 	})
 		.then((response) => {
-			console.log(response);
 			return response.json();
 		})
 		.then((result) => {
-			console.log(result);
 			return result;
 		});
 };
@@ -400,12 +384,6 @@ export const updateCatalogGallery = ({ title, id, imgFile, date, autor_id }) => 
 	data.append('create_date', date);
 	// data.append('autor_id', autor_id);
 
-	console.log(title);
-	console.log(id);
-	console.log(imgFile);
-	console.log(date);
-	console.log(autor_id);
-
 	if (imgFile) {
 		for (let i = 0; i < imgFile.length; i++) {
 			data.append('img[]', imgFile[i]);
@@ -416,7 +394,6 @@ export const updateCatalogGallery = ({ title, id, imgFile, date, autor_id }) => 
 		method: 'POST',
 		body: data,
 	}).then((response) => {
-		console.log(response);
 		return response;
 	});
 };
@@ -430,14 +407,10 @@ export const deleteGalleryCatalogsFiles = (id, target) => {
 	data.append('id', id);
 	data.append('target', target);
 
-	console.log(id);
-	console.log(target);
-
 	return fetch('https://portal.softcom.ua/php/delcatorfile.php', {
 		method: 'POST',
 		body: data,
 	}).then((response) => {
-		console.log(response);
 		return response;
 	});
 };
@@ -454,19 +427,14 @@ export const uploadFileInGallery = (id, imgFile) => {
 		}
 	}
 
-	console.log(id);
-	console.log(imgFile);
-
 	return fetch('https://portal.softcom.ua/php/upload.php', {
 		method: 'POST',
 		body: data,
 	})
 		.then((response) => {
-			console.log(response);
 			return response.json();
 		})
 		.then((result) => {
-			console.log(result);
 			return result;
 		});
 };
