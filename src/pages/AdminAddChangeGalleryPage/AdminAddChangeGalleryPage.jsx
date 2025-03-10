@@ -13,12 +13,13 @@ const AdminAddChangeGalleryPage = () => {
 
 	let [data, setData] = useState({});
 
+	let getCatalog = async () => {
+		let result = await getGalleryCatalogsByID(Id);
+		setData(result[0]);
+	};
+
 	useEffect(() => {
 		if (Id && statusAdmin) {
-			let getCatalog = async () => {
-				let result = await getGalleryCatalogsByID(Id);
-				setData(result[0]);
-			};
 			getCatalog();
 		}
 	}, [Id, statusAdmin]);
@@ -42,7 +43,7 @@ const AdminAddChangeGalleryPage = () => {
 								<h3>Файли галереї</h3>
 							</div>
 							<div className="row">
-								<GalleryFilesFormSection files={data.files} Id={Id} />
+								<GalleryFilesFormSection files={data.files} Id={Id} getCatalogFunction={getCatalog} />
 							</div>
 						</>
 					)}

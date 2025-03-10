@@ -3,93 +3,46 @@ import DeleteButton from '../../../components/UI/DeleteButton/DeleteButton';
 import s from './GalleryFilesFormSection.module.css';
 import { deleteGalleryCatalogsFiles, uploadFileInGallery } from '../../../api/api';
 import Loader from '../../../components/UI/Loader/Loader';
+import asseptIcon from '../../../assets/img/icons/assept-blue-icon.svg';
 
-const GalleryFilesFormSection = ({ files, Id }) => {
+const GalleryFilesFormSection = ({ files, Id, getCatalogFunction }) => {
 	let [filesList, setFilesList] = useState([]);
 	let [fetchingFiles, setFetchingFiles] = useState([]);
 	let [inputFiles, setInputFiles] = useState([]);
 	let [fetchingStatus, setFetchingStatus] = useState(true);
-	let [isIndexFetching, setIndexFetching] = useState(0);
 
 	async function processArray(array) {
-		console.log(fetchingFiles);
+		for (let index = 0; index < array.length; index++) {
+			let imgInArray = [array[index]];
 
-		// for (let index = 0; index < array.length; index++) {
-		// 	let imgInArray = [array[index]];
-		// 	console.log(array);
-		// 	console.log(imgInArray);
+			let result = await uploadFileInGallery(Id, imgInArray);
 
-		// 	setTimeout(() => {
-		// 		setFetchingFiles((list) => {
-		// 			let currentList = [...list];
+			if (result.id) {
+				setFetchingFiles((fetchingFilesList) => {
+					let currentItem = [...fetchingFilesList];
 
-		// 			console.log(list);
-		// 			console.log(currentList);
-		// 			console.log(currentList[index]);
-		// 			console.log(currentList[index].isFetching);
+					currentItem[index] = {
+						id: result.id,
+						url: result.url,
+						fetching: false,
+						type: result.file_type,
+					};
 
-		// 			currentList[index].isFetching = false;
-
-		// 			return currentList;
-		// 		});
-		// 	}, 500);
-
-		// let result = await uploadFileInGallery(Id, imgInArray);
-		// console.log(result);
-
-		// if (result.id) {
-		// 	setFetchingFiles((listFiles) => {
-		// 		let currentArray = [...listFiles];
-		// 		console.log(currentArray);
-		// 		console.log(index);
-		// 		console.log(currentArray[index]);
-
-		// 		if (currentArray[index]) {
-		// 			currentArray[index].fetching = false;
-		// 			currentArray[index].type = result.file_type;
-		// 			currentArray[index].id = result.id;
-		// 			currentArray[index].url = result.url;
-		// 			return currentArray;
-		// 		}
-		// 	});
-		// }
-		// }
-		console.log('Done!');
+					return currentItem;
+				});
+			}
+		}
 	}
-
-	// async function processArray(array) {
-	// 	for (const item of array) {
-	// 		let imgInArray = [item];
-
-	// 		let result = await uploadFileInGallery(Id, imgInArray);
-	// 		console.log(result);
-
-	// 		if (result.id) {
-	// 			setFetchingFiles((listFiles) => {
-	// 				indexFile += 1;
-	// 				let currentArray = [...listFiles];
-	// 				console.log(currentArray);
-	// 				console.log(indexFile);
-	// 				console.log(currentArray[indexFile]);
-
-	// 				if (currentArray[indexFile]) {
-	// 					currentArray[indexFile].fetching = false;
-	// 					currentArray[indexFile].type = result.file_type;
-	// 					currentArray[indexFile].id = result.id;
-	// 					currentArray[indexFile].url = result.url;
-	// 					return currentArray;
-	// 				}
-	// 			});
-	// 		}
-	// 	}
-	// 	console.log('Done!');
-	// }
-
+	const nullState = () => {
+		setFetchingFiles([]);
+		setInputFiles([]);
+		setFetchingStatus(true);
+	};
 	const onChangeInputFilesHandler = (e) => {
 		let filesListInput = e.target.files;
 
 		if (filesListInput.length > 0) {
-			let objectFetchingFile = { isFetching: true, url: '', id: null, type: null };
+			let objectFetchingFile = { fetching: true, url: '', id: null, type: null };
 
 			let currentArray = [];
 			for (let index = 0; index < filesListInput.length; index++) {
@@ -105,18 +58,41 @@ const GalleryFilesFormSection = ({ files, Id }) => {
 	}, [files]);
 
 	useEffect(() => {
-		console.log(fetchingFiles);
-	}, [fetchingFiles]);
-
-	useEffect(() => {
 		if (fetchingFiles.length > 0 && inputFiles.length > 0 && fetchingStatus) {
 			setFetchingStatus(false);
-			processArray(inputFiles);
+
+			setTimeout(() => {
+				processArray(inputFiles);
+			}, 300);
 		}
 	}, [fetchingFiles, inputFiles]);
 
+	useEffect(() => {
+		if (fetchingFiles && fetchingFiles.length > 0) {
+			let allFetchedStatus = fetchingFiles.find((findItem) => {
+				console.log(findItem.fetching);
+				console.log(findItem);
+
+				if (findItem.fetching == true) {
+					return true;
+				}
+			});
+
+			console.log(allFetchedStatus);
+
+			if (!allFetchedStatus) {
+				nullState();
+				getCatalogFunction();
+			}
+		}
+	}, [fetchingFiles]);
+
 	const onClickDeleteHandler = (id) => {
-		deleteGalleryCatalogsFiles(id, 'files');
+		const deleteGallery = async () => {
+			let result = await deleteGalleryCatalogsFiles(id, 'files');
+			getCatalogFunction();
+		};
+		deleteGallery();
 	};
 
 	return (
@@ -130,15 +106,36 @@ const GalleryFilesFormSection = ({ files, Id }) => {
 				{fetchingFiles &&
 					fetchingFiles.map((file, indexFile) => (
 						<div key={indexFile} className={`${s.files_item} ${s.files_fetching}`}>
-							{file.isFetching && <Loader />}
+							{file.fetching ? <Loader /> : <img className={s.assept_icon} src={asseptIcon} alt="" />}
 						</div>
 					))}
 
-				{files &&
-					files.length > 0 &&
-					files.map((file) => (
+				{filesList &&
+					filesList.length > 0 &&
+					filesList.map((file) => (
 						<div key={file.id} className={s.files_item}>
-							<img className={s.file_img} src={`${file.url}`} alt="" />
+							{file.file_type === 'image' && <img loading="lazy" className={s.file_img} src={`${file.url}`} alt="" />}
+							{file.file_type === 'video' && <video controls loading="lazy" className={s.file_img} src={`${file.url}`} alt="" />}
+							{file.file_type !== 'video' && file.file_type !== 'image' && (
+								<div
+									style={{
+										width: '100%',
+										height: '100%',
+										display: 'flex',
+										flexDirection: 'column',
+										alignItems: 'center',
+										justifyContent: 'center',
+										gap: '16px',
+										position: 'absolute',
+										top: 0,
+										left: 0,
+										padding: '20px',
+									}}>
+									<span style={{ textAlign: 'center', overflowWrap: 'break-word', width: '100%' }}>{file.file_type}</span>
+									<span style={{ textAlign: 'center', overflowWrap: 'break-word', width: '100%' }}>{file.url}</span>
+								</div>
+							)}
+
 							<DeleteButton onClickHandler={() => onClickDeleteHandler(file.id)} />
 						</div>
 					))}

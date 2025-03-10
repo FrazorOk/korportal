@@ -115,7 +115,6 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 			let currentText = kitcut(text, 150);
 
 			setCurrentText(currentText);
-			console.log(text);
 		}
 	}, [text]);
 
@@ -138,7 +137,6 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 			userSeenNews.forEach((element) => {
 				if (element == id) {
 					setSeenStatus(true);
-					console.log('yes');
 				}
 			});
 	}, [userSeenNews]);

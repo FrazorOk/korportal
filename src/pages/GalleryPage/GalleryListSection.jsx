@@ -7,8 +7,6 @@ const GalleryListSection = () => {
 
 	useEffect(() => {
 		getGalleryCatalogs().then((response) => {
-			console.log(response);
-
 			setData(response);
 		});
 	}, []);

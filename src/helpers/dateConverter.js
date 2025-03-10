@@ -18,8 +18,15 @@ const uaMonths = [
 	'листопада',
 	'грудня',
 ];
-
 const uaMonthsSliced = ['січ.', 'лют.', 'берез.', 'квіт.', 'трав.', 'черв.', 'лип.', 'серп.', 'верес.', 'жовт.', 'лист.', 'груд.'];
+
+export const reversDateWithoutTime = (date) => {
+	let day = date.slice(8, 10);
+	let month = date.slice(5, 7);
+	let year = date.slice(0, 4);
+
+	return `${day}-${month}-${year}`;
+};
 
 export const dateConverter = (date) => {
 	let day = date.slice(0, 2);

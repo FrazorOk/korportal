@@ -56,6 +56,8 @@
 	padding-top: 14%;
 	border-radius: 12px;
 	overflow: hidden;
+	background-color: white;
+	box-shadow: 0 0 6px #00000014;
 }
 
 .file_img {
@@ -65,4 +67,36 @@
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+.assept_icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50px;
+}
+
+@media (max-width: 1024px) {
+	.files_item {
+		width: calc(33% - 18px);
+	}
+}
+@media (max-width: 768px) {
+	.files_item {
+		width: calc(50% - 16px);
+		padding-top: 26%;
+	}
+	.files_list {
+		gap: 20px;
+	}
+}
+@media (max-width: 550px) {
+	.files_item {
+		width: 100%;
+		padding-top: 54%;
+	}
+	.files_list {
+		gap: 10px;
+	}
 }

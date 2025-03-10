@@ -1,0 +1,19 @@
+.add_button {
+	width: calc(25% - 15px);
+	height: 150px;
+}
+@media (max-width: 1200px) {
+	.add_button {
+		width: calc(33.33333% - 13.4px);
+	}
+}
+@media (max-width: 700px) {
+	.add_button {
+		width: calc(50% - 5px);
+	}
+}
+@media (max-width: 500px) {
+	.add_button {
+		width: 100%;
+	}
+}

@@ -4,6 +4,7 @@ import GalleryList from '../../components/GalleryList/GalleryList';
 import AddEventButton from '../../components/UI/AddEventButton/AddEventButton';
 import { useEffect, useState } from 'react';
 import { getGalleryCatalogs } from '../../api/api';
+import s from './AdminGalleryPage.module.css';
 
 const AdminGalleryPage = () => {
 	let { statusAdmin } = useRedirectAdmin();
@@ -21,7 +22,7 @@ const AdminGalleryPage = () => {
 			{statusAdmin && (
 				<div>
 					<h1>Налаштування галереї</h1>
-					<div className="row" style={{ width: 'calc(25% - 15px)', height: '150px' }}>
+					<div className={`row ${s.add_button}`}>
 						<AddEventButton path={'add-change-gallery'} />
 					</div>
 					<div className="row">

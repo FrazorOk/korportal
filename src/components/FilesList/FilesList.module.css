@@ -1,0 +1,99 @@
+.files {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+.files__item {
+	width: calc(25% - 15px);
+	border-radius: 10px;
+	box-shadow: 0 0 9px #00000021;
+	background-color: white;
+	overflow: hidden;
+	position: relative;
+	padding-top: 16%;
+}
+.file {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: all 0.3s ease 0s;
+}
+.file.video {
+	background-color: #7d7d7d;
+	border-radius: 10px;
+}
+.file.other_type {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	padding: 20px;
+}
+.file.other_type span {
+	text-align: center;
+	overflow-wrap: break-word;
+	width: 100%;
+}
+.zoom_btn {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	opacity: 0;
+	transition: all 0.4s ease 0s;
+}
+.zoom_btn img {
+	width: 70px;
+	height: 70px;
+	filter: brightness(0) invert(1);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.4);
+	opacity: 0.2;
+	transition: all 0.4s ease 0s;
+}
+
+@media (hover: hover) {
+	.files__item:hover .file {
+		transform: scale(1.1);
+	}
+
+	.zoom_btn:hover {
+		opacity: 1;
+	}
+	.zoom_btn:hover img {
+		transform: translate(-50%, -50%) scale(1);
+		opacity: 0.8;
+	}
+}
+
+@media (max-width: 1024px) {
+	.files__item {
+		width: calc(33% - 12px);
+		padding-top: 20%;
+	}
+}
+@media (max-width: 670px) {
+	.files__item {
+		width: calc(50% - 11px);
+		padding-top: 30%;
+	}
+}
+@media (max-width: 500px) {
+	.files {
+		gap: 10px;
+	}
+	.files__item {
+		width: 100%;
+		padding-top: 62%;
+	}
+}

@@ -4,6 +4,10 @@
 	flex-wrap: wrap;
 	gap: 20px;
 }
+.date_title {
+	font-size: 20px;
+	margin-top: 6px;
+}
 .item {
 	width: calc(100% / 4 - 15px);
 	border-radius: 10px;
