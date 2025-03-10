@@ -356,12 +356,13 @@ export const getGalleryCatalogs = () => {
 			return result;
 		});
 };
-export const getGalleryCatalogsByID = (catalog_id) => {
+export const getGalleryCatalogsByID = (catalog_id, file_type = null) => {
 	let token = getCookie('_form_token');
 
 	let data = new FormData();
 	data.append('token', `${token}`);
 	data.append('catalog_id', `${catalog_id}`);
+	file_type && data.append('file_type', file_type);
 
 	return fetch('https://portal.softcom.ua/php/catfilesout.php', {
 		method: 'POST',

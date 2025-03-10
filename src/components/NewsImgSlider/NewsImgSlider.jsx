@@ -5,9 +5,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { Navigation, Pagination } from 'swiper/modules';
+
 import s from './NewsImgSlider.module.css';
 
-import { Navigation, Pagination } from 'swiper/modules';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import ModalWidnow from '../UI/ModalWidnow/ModalWidnow';
 
@@ -36,7 +37,9 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 
 	useEffect(() => {
 		if (modalStatus && typeof img != 'string' && img.length > 1) {
-			setModalSliderHeight(sliderRef.current.getBoundingClientRect().height);
+			setTimeout(() => {
+				setModalSliderHeight(sliderRef.current.getBoundingClientRect().height);
+			}, 50);
 		}
 	}, [modalStatus]);
 
@@ -68,7 +71,7 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 											<button onClick={zoomOnClickHandler}>
 												<img src={searchIcon} />
 											</button>
-											<img src={item} alt="" />
+											<img className={s.main_img} src={item} alt="" />
 										</div>
 									</div>
 								</SwiperSlide>
@@ -88,7 +91,7 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 							<button onClick={zoomOnClickHandler}>
 								<img src={searchIcon} />
 							</button>
-							<img src={img[0]} alt="" />
+							<img className={s.main_img} src={img[0]} alt="" />
 						</div>
 					</div>
 				)}

@@ -8,7 +8,6 @@ const GalleryPage = () => {
 	return (
 		<div>
 			<h1>Галерея</h1>
-
 			<GalleryListSection />
 		</div>
 	);
