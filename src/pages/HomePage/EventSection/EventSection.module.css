@@ -50,16 +50,16 @@
 }
 
 .events_item:nth-child(1) {
-	background-color: #6a5fff;
+	background-color: #004795;
 }
 .events_item:nth-child(2) {
-	background-color: #07b3ee;
+	background-color: #6589b8;
 }
 .events_item:nth-child(3) {
-	background-color: #5182fe;
+	background-color: #b87f8f;
 }
 .events_item:nth-child(4) {
-	background-color: #ff888a;
+	background-color: #8a6098;
 }
 .events_bottom {
 	display: flex;

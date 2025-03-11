@@ -7,6 +7,12 @@ import FilesList from '../../components/FilesList/FilesList';
 import FilesFilter from '../../components/FilesFilter/FilesFilter';
 import ModalSliderFiles from '../../components/ModalSliderFiles/ModalSliderFiles';
 
+let btns = [
+	{ title: 'Усі', filterParametr: null },
+	{ title: 'Зображення', filterParametr: 'image' },
+	{ title: 'Відео', filterParametr: 'video' },
+];
+
 const GallerySeparatePage = () => {
 	useScrollToTop();
 
@@ -15,17 +21,25 @@ const GallerySeparatePage = () => {
 	let [isFilterParametr, setFilterParametr] = useState(null);
 	let [isModalWindowStatus, setModalWindowStatus] = useState(false);
 	let [isActiveSLide, setActiveSLide] = useState(0);
+	let [isFetched, setFetched] = useState(false);
 
 	useEffect(() => {
-		Id && getGalleryCatalogsByID(Id, isFilterParametr).then((response) => setData(...response));
+		if (Id) {
+			setFetched(true);
+			getGalleryCatalogsByID(Id, isFilterParametr).then((response) => {
+				setData(...response);
+				setFetched(false);
+				console.log(response);
+			});
+		}
 	}, [Id, isFilterParametr]);
 
 	return (
 		<div>
 			<h1>{data.title}</h1>
 			<GoBackButton toLink="/gallery" />
-			<FilesFilter changeFilter={setFilterParametr} />
-			<FilesList data={data.files} setModalWindowStatus={setModalWindowStatus} setActiveSLide={setActiveSLide} />
+			<FilesFilter changeFilter={setFilterParametr} btns={btns} />
+			<FilesList data={data.files} setModalWindowStatus={setModalWindowStatus} setActiveSLide={setActiveSLide} isFetched={isFetched} />
 			<ModalSliderFiles
 				isModalWindowStatus={isModalWindowStatus}
 				setModalWindowStatus={setModalWindowStatus}

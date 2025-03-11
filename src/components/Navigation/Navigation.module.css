@@ -140,4 +140,7 @@
 	.navigation {
 		max-width: calc(100% - 10px);
 	}
+	.navigation p {
+		padding: 0 15px;
+	}
 }

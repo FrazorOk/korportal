@@ -16,7 +16,7 @@ const dateToYMDArray = (date, year) => {
 };
 
 let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-let colors = ['#6a5fff', '#07b3ee', '#5182fe', '#ff888a', '#5da15d'];
+let colors = ['#004795', '#6589b8', '#b87f8f', '#8a6098', '#5da15d'];
 
 const HolidayCalendarList = () => {
 	let [data, setData] = useState(null);

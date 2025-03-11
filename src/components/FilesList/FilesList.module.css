@@ -76,13 +76,13 @@
 	}
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1540px) {
 	.files__item {
 		width: calc(33% - 12px);
 		padding-top: 20%;
 	}
 }
-@media (max-width: 670px) {
+@media (max-width: 1024px) {
 	.files__item {
 		width: calc(50% - 11px);
 		padding-top: 30%;

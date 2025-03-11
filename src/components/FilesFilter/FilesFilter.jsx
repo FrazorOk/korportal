@@ -1,13 +1,7 @@
 import { useState } from 'react';
 import s from './FilesFilter.module.css';
 
-let btns = [
-	{ title: 'Усі', filterParametr: null },
-	{ title: 'Зображення', filterParametr: 'image' },
-	{ title: 'Відео', filterParametr: 'video' },
-];
-
-const FilesFilter = ({ changeFilter }) => {
+const FilesFilter = ({ changeFilter, btns }) => {
 	let [isActiveBtn, setActiveBtn] = useState(0);
 
 	return (

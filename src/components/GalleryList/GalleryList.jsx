@@ -3,7 +3,6 @@ import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
 import clockIcon from '../../assets/img/icons/clock-icon.svg';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Loader from '../UI/Loader/Loader';
 import EditAdminButton from '../UI/EditAdminButton/EditAdminButton';
 import { reversDateWithoutTime } from '../../helpers/dateConverter';
 
@@ -57,7 +56,7 @@ const GalleryList = ({ galleryList, adminStatus = false }) => {
 										<h3 className={s.date_title}>{galleryItem.create_date.slice(0, 4)}</h3>
 									)}
 
-								{galleryIndex === 0 && <h3 className={s.date_title}>{galleryItem.create_date.slice(0, 4)}</h3>}
+								{galleryIndex === 0 && <h3 className={`${s.date_title} ${s.first}`}>{galleryItem.create_date.slice(0, 4)}</h3>}
 
 								<Link to={`/gallery/${galleryItem.id}`} className={s.item} key={`${galleryItem.id}gallery`}>
 									{galleryItem.cover && <img className={s.main_img} src={`${galleryItem.cover}`} />}
@@ -77,7 +76,7 @@ const GalleryList = ({ galleryList, adminStatus = false }) => {
 						)
 				)
 			) : (
-				<Loader />
+				<p style={{ fontSize: '16px', color: '#7d7d7d' }}>Немає файлів</p>
 			)}
 		</div>
 	);
