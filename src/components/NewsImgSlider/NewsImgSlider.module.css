@@ -52,7 +52,7 @@
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	object-position: center top;
+	object-position: center 20%;
 	transition: all 0.3s ease 0s;
 }
 .slider_slide.modal .slider_img_container img {

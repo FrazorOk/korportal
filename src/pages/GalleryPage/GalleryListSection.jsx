@@ -6,26 +6,48 @@ import FilesFilter from '../../components/FilesFilter/FilesFilter';
 
 const GalleryListSection = () => {
 	let [data, setData] = useState([]);
+	let [isFilteredData, setFilteredData] = useState([]);
 	let [isFetched, setFetched] = useState(false);
 	let [isFilterParametr, setFilterParametr] = useState(null);
-	let [isBtnsFilter, setBtnsFilter] = useState([{ title: 'Усі', filterParametr: null }]);
+	let [isFilterBtns, setFilterBtns] = useState([{ title: 'Усі', filterParametr: null }]);
+
+	const findYearsFilters = (catalogs) => {
+		let unicValues = [];
+
+		catalogs.forEach((element) => {
+			if (element) {
+				let currentYear = element.create_date.slice(0, 4);
+				!unicValues.find((el) => el === currentYear) && unicValues.push(currentYear);
+			}
+		});
+
+		let currentYearsParametrs = unicValues.map((item) => ({ title: item, filterParametr: item }));
+
+		setFilterBtns((btnsFilter) => [...btnsFilter, ...currentYearsParametrs]);
+	};
 
 	useEffect(() => {
 		setFetched(true);
 		getGalleryCatalogs().then((response) => {
 			setData(response);
+			findYearsFilters(response);
 			setFetched(false);
 		});
 	}, []);
 
 	useEffect(() => {
-		console.log(isFilterParametr);
-	}, [isFilterParametr]);
+		if (!isFilterParametr) {
+			setFilteredData(data);
+		} else {
+			const filteredArray = data.filter((catalog) => catalog && catalog.create_date.slice(0, 4) === isFilterParametr);
+			setFilteredData(filteredArray);
+		}
+	}, [isFilterParametr, data]);
 
 	return (
 		<>
-			<FilesFilter changeFilter={setFilterParametr} btns={isBtnsFilter} />
-			<div className="row">{isFetched ? <Loader /> : <GalleryList galleryList={data} />}</div>
+			<FilesFilter changeFilter={setFilterParametr} btns={isFilterBtns} />
+			<div className="row">{isFetched ? <Loader /> : <GalleryList galleryList={isFilteredData} />}</div>
 		</>
 	);
 };

@@ -29,9 +29,9 @@ const GalleryList = ({ galleryList, adminStatus = false }) => {
 		};
 	}, []);
 	useEffect(() => {
-		if (galleryList && galleryList.length > 0) {
-			setGalleryList(galleryList);
-		}
+		setPaginationIndex(1);
+		setTimeout(() => setCurrentGalleryList([]));
+		setTimeout(() => setGalleryList(galleryList), 2);
 	}, [galleryList]);
 	useEffect(() => {
 		if (isEndScroll > 0 && isGalleryList.length >= 20 && isCurrentGalleryList.length < isGalleryList.length) {
