@@ -100,8 +100,10 @@
 		margin-top: 15px;
 	}
 	nav {
-		max-width: 450px;
+		max-width: 500px;
 		margin: 0 auto;
+		padding-left: 25px;
+		padding-right: 25px;
 	}
 
 	.navigation {

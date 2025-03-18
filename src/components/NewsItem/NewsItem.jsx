@@ -232,9 +232,11 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 			<div className={s.left_column}>
 				<p className={s.title}>
 					<span>
-						<Link className={s.title_link} title="Перейти" to={`/feed-news/feed-separate-news/${id}`}>
-							{title && title}
-						</Link>
+						<Link
+							className={s.title_link}
+							title="Перейти"
+							to={`/feed-news/feed-separate-news/${id}`}
+							dangerouslySetInnerHTML={{ __html: title }}></Link>
 					</span>
 					<div
 						ref={useOutsideClick(() => selectorStatus && setSelectorStatus(false) && setCopyLinkStatus(false))}
