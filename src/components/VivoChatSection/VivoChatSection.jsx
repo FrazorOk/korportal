@@ -4,7 +4,9 @@ import NewsList from '../NewsList/NewsList';
 import { getNews } from '../../api/api';
 import NewsFilter from '../NewsFilter/NewsFilter';
 import arrowLinkIcon from '../../assets/img/icons/redirect-icon.svg';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../selectors/userSelectors';
 
 const VivoChatSection = ({ ref1, adminStatus, title, fullScreen }) => {
 	let [data, setData] = useState([]);
@@ -12,17 +14,30 @@ const VivoChatSection = ({ ref1, adminStatus, title, fullScreen }) => {
 	let [filterParams, setFilterParams] = useState({ params: 'Усі', tags: false });
 	let [todayPosts, setTodayPosts] = useState(0);
 	let [noSeenPotsLength, setNoSeenPotsLength] = useState(0);
+	let [isFirstLoad, setFirstLoad] = useState(false);
+
+	let userSeenNews = useSelector(userSelector.userSeenNews);
+
+	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
 		getNews(setData);
 		let interval = setInterval(() => {
 			getNews(setData);
 		}, 300000);
-
 		return () => {
 			clearInterval(interval);
 		};
 	}, []);
+
+	useEffect(() => {
+		let filterParam = searchParams.get('filter');
+
+		if (!isFirstLoad && filterParam && filterParam === 'noviews' && data && data.length > 0 && userSeenNews) {
+			setFirstLoad(true);
+			setFilterParams({ params: 'Не переглянуті', tags: false });
+		}
+	}, [data, searchParams, userSeenNews]);
 
 	return (
 		<div ref={ref1} className={`${s.chat} section-container ${fullScreen && s.full_screen}`}>

@@ -1,10 +1,19 @@
 import { useEffect, useState } from 'react';
 import s from './NewsFilter.module.css';
 import { getNews } from '../../api/api';
+import { useSearchParams } from 'react-router-dom';
 
 const NewsFilter = ({ tags, setFilterParams, todayPosts, setData, noSeenPotsLength, fullScreen }) => {
 	let [activeButton, setActiveButton] = useState(0);
 	let [disableStatus, setDisableStatus] = useState(false);
+	const [searchParams, setSearchParams] = useSearchParams();
+
+	useEffect(() => {
+		let filterParam = searchParams.get('filter');
+		if (filterParam === 'noviews') {
+			setActiveButton(3);
+		}
+	}, [searchParams]);
 
 	return (
 		<div className={`${s.filters} ${fullScreen && s.full_screen}`}>

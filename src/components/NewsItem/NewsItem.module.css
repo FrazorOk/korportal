@@ -51,6 +51,7 @@
 .title .title_link {
 	color: black;
 	transition: all 0.3s ease 0s;
+	white-space: pre-wrap;
 }
 .selector_list {
 	position: relative;
@@ -164,6 +165,7 @@
 .item.full_screen .date {
 	font-size: 16px;
 	line-height: 16px;
+	margin-top: 14px;
 }
 .date img {
 	width: 17px;
@@ -181,7 +183,7 @@
 }
 .text {
 	text-wrap: wrap;
-	margin-top: 14px;
+	margin-top: 21px;
 	line-height: 17px;
 	color: #383833;
 	/* -webkit-box-orient: vertical;
@@ -193,7 +195,7 @@
 .item.full_screen .text {
 	font-size: 16px;
 	line-height: 22px;
-	margin-top: 18px;
+	margin-top: 24px;
 }
 /* .item.active .text {
 	line-clamp: 200;
@@ -396,6 +398,7 @@
 	.item.full_screen .date {
 		font-size: 14px;
 		line-height: 14px;
+		margin-top: 7px;
 	}
 	.item.full_screen .title {
 		font-size: 18px;
