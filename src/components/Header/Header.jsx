@@ -4,7 +4,6 @@ import { useMsal } from '@azure/msal-react';
 import { callMe, callPhoto, getAdminGroup, getAdminMembers, getGroups, getStructureCompany } from '../../api/graph';
 import { loginRequest } from '../../authConfig';
 import settingIcon from '../../assets/img/icons/settings-icon.svg';
-import bellIcon from '../../assets/img/icons/bell-icon.svg';
 import searchIcon from '../../assets/img/icons/search-icon.svg';
 import logo from '../../assets/img/Frame 40.png';
 import { NavLink } from 'react-router-dom';
@@ -13,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { setAdmin, setUser } from '../../store/userSlice';
 import { fetchSeenNews } from '../../store/thunks';
 import Cookies from 'js-cookie';
+import NotificationModule from '../NotificationModule/NotificationModule';
 
 const Header = ({ toggleMobileMode, mobileMode }) => {
 	const dispatch = useDispatch();
@@ -122,15 +122,13 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 					</div> */}
 				</div>
 				<div className={s.header_column}>
-					{/* КНОПКИ НАЛАШТУВАННЯ ТА ОПОВІЩЕННЯ */}
-					{/* <div className={s.header_btns}>
-						<a href="">
+					{/* КНОПКА НАЛАШТУВАННЯ */}
+					<div className={s.header_btns}>
+						{/*	<a href="">
 							<img src={settingIcon} alt="setting icon" />
-						</a>
-						<a href="" className={s.active}>
-							<img src={bellIcon} alt="bell icon" />
-						</a>
-					</div> */}
+						</a>*/}
+						<NotificationModule toggleMobileMode={toggleMobileMode} mobileMode={mobileMode} />
+					</div>
 					<div className={s.header_profile}>
 						{urlImg && <img src={`${urlImg}`} alt="" />}
 						{graphData && (

@@ -83,9 +83,11 @@ const NewsList = ({ data, setTags, filterParams, setTodayPosts, setNoSeenPotsLen
 				}
 			}
 			if (filterParams.params === 'Не переглянуті') {
-				let filteredArray = getNotSeenPosts();
-				if (filteredArray && filteredArray.length > 0) {
-					return (filteredArray = [...filteredArray, null]);
+				if (news && news.length > 0) {
+					let filteredArray = getNotSeenPosts();
+					if (filteredArray && filteredArray.length > 0) {
+						return (filteredArray = [...filteredArray, null]);
+					}
 				}
 			}
 			if (filterParams.params === 'Популярне') {

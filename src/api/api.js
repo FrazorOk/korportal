@@ -34,11 +34,16 @@ export const addIdToSeenNews = (newsID, userID) => {
 		token: token,
 	};
 
+	console.log(newsID);
+	console.log(userID);
+
 	return fetch('https://portal.softcom.ua/php/newsviewadd.php', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
 	}).then((response) => {
+		console.log(response);
+
 		return response;
 	});
 };
