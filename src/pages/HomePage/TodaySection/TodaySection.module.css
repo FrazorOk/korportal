@@ -1,7 +1,6 @@
 .today_section {
 	position: relative;
-	width: 23%;
-	/* min-width: 200px; */
+	width: 100%;
 	min-height: 100%;
 	overflow: hidden;
 }
@@ -95,6 +94,9 @@
 	}
 }
 @media (max-width: 650px) {
+	.today_section {
+		padding: 15px;
+	}
 	.today_content p {
 		font-size: 12px;
 	}
@@ -109,11 +111,18 @@
 		font-size: 12px;
 	}
 }
+@media (max-width: 550px) {
+	.today_section {
+		padding: 15px;
+	}
+}
 @media (max-width: 500px) {
 	.today_section {
-		width: 20%;
+		width: 100%;
 		min-width: 100px;
+		min-height: 144px;
 		height: auto;
+		order: 0;
 	}
 	.today_content p {
 		font-size: 14px;
@@ -127,7 +136,8 @@
 		font-size: 14px;
 	}
 	.today_content p:nth-child(3) {
-		font-size: 12px;
+		font-size: 14px;
+		margin-top: 10px;
 	}
 }
 @media (max-width: 450px) {

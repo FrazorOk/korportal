@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import AdminPostSection from './AdminPostSection/AdminPostSection';
 import { getNewsFromID } from '../../api/api';
 import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
-import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
+import { useRedirectAdmin } from '../../hooks/useRedirectHook';
 import { useScrollToTop } from '../../hooks/scrollToTop';
 
 const AdminAddChangeNewsPage = () => {

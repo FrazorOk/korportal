@@ -87,7 +87,7 @@ const AdminPostSection = ({ newsId, data }) => {
 	};
 	const fetchingDeletePost = async () => {
 		await setFetching(true);
-		let result = await deleteNewsPost(newsId);
+		let result = await deleteNewsPost(newsId, userID.id);
 		await setFetching(false);
 		if (result.status == 200) {
 			nulledAllInputs();
@@ -110,7 +110,7 @@ const AdminPostSection = ({ newsId, data }) => {
 	};
 	const fetchingDeleteComment = async () => {
 		await setFetching(true);
-		let result = await deleteNewsPost(willDeleteComment, 'comments');
+		let result = await deleteNewsPost(willDeleteComment, userID.id, 'comments');
 		await setFetching(false);
 		if (result.status == 200) {
 			setFetchingStatus(true);

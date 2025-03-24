@@ -6,6 +6,7 @@ import TodaySection from './TodaySection/TodaySection';
 import VivoChatSection from '../../components/VivoChatSection/VivoChatSection';
 import { memo, useEffect, useRef, useState } from 'react';
 import { useScrollToTop } from '../../hooks/scrollToTop';
+import GallerySection from './GallerySection/GallerySection';
 
 const HomePage = () => {
 	let ref = useRef();
@@ -63,9 +64,22 @@ const HomePage = () => {
 	return (
 		<div>
 			<h1>Головна</h1>
-			<div className="row no-wrap">
-				<HeroSection />
-				<TodaySection />
+			<div className="row">
+				<div className="column-50">
+					<HeroSection />
+				</div>
+				<div className="column-50">
+					<div
+						className="row mobile-wrap"
+						style={{
+							marginTop: 0,
+							width: '100%',
+							height: '100%',
+						}}>
+						<GallerySection />
+						<TodaySection />
+					</div>
+				</div>
 			</div>
 			<div className="row">
 				<EventSection />

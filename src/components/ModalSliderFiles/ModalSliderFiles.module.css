@@ -4,9 +4,11 @@
 }
 .slider_in_modal {
 	width: 100%;
+	height: 100%;
 	max-width: 1360px;
-	padding: 0 80px;
 	max-height: 80vh;
+	padding: 0 80px;
+
 	position: relative;
 }
 .slider_slide {
@@ -18,11 +20,17 @@
 	top: 0;
 	left: 0;
 	width: 100%;
-	padding-top: 65%;
+	height: 100%;
+	/* padding-top: 65%; */
 	/* max-width: 340px; */
 	border-radius: 6px;
 	overflow: hidden;
 	margin: 0 auto;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 .slider_slide.full_screen .slider_img_container {
 	padding-top: 50%;
@@ -58,10 +66,12 @@
 .slider_slide.modal .slider_img_container .file {
 	position: relative;
 	height: 100%;
-	max-height: 80vh;
+	max-height: 100%;
 	min-width: 500px;
+	width: 100%;
 	object-fit: contain;
 	object-position: center;
+	border: none;
 }
 .slider_slide.modal .slider_img_container .file.video {
 	background-color: #7d7d7d;

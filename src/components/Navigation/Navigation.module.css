@@ -62,7 +62,7 @@
 }
 
 .navigation p {
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: 500;
 	/* white-space: nowrap; */
 	color: #7d7d7d;
@@ -70,7 +70,7 @@
 	left: 0px;
 	z-index: 2;
 	opacity: 0;
-
+	padding-right: 4px;
 	transition: all 0.2s ease 0s;
 }
 
@@ -109,6 +109,9 @@
 	.navigation {
 		max-width: calc(100% - 59px);
 	}
+	.navigation.active {
+		max-width: calc(100% - 59px);
+	}
 	.navigation a {
 		padding: 10px 20px;
 	}
@@ -140,6 +143,9 @@
 
 @media (max-width: 600px) {
 	.navigation {
+		max-width: calc(100% - 10px);
+	}
+	.navigation.active {
 		max-width: calc(100% - 10px);
 	}
 	.navigation p {

@@ -192,6 +192,11 @@
 	-webkit-line-clamp: 3;
 	overflow: hidden; */
 }
+.text a {
+	font-weight: 600;
+	text-decoration: underline;
+	color: rgb(0, 71, 149);
+}
 .item.full_screen .text {
 	font-size: 16px;
 	line-height: 22px;

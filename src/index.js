@@ -27,6 +27,8 @@ import GalleryPage from './pages/GalleryPage/GalleryPage';
 import AdminGalleryPage from './pages/AdminGalleryPage/AdminGalleryPage';
 import GallerySeparatePage from './pages/GallerySeparatePage/GallerySeparatePage';
 import AdminAddChangeGalleryPage from './pages/AdminAddChangeGalleryPage/AdminAddChangeGalleryPage';
+import AdminMailingListPage from './pages/AdminMailingListPage/AdminMailingListPage';
+import LogsPage from './pages/LogsPage/LogsPage';
 
 const router = createBrowserRouter([
 	{
@@ -131,6 +133,14 @@ const router = createBrowserRouter([
 			{
 				path: 'admin-gallery/add-change-gallery/:Id',
 				element: <AdminAddChangeGalleryPage />,
+			},
+			{
+				path: 'admin-mailing-list',
+				element: <AdminMailingListPage />,
+			},
+			{
+				path: 'logs',
+				element: <LogsPage />,
 			},
 		],
 	},

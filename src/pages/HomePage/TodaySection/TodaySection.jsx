@@ -24,7 +24,7 @@ const TodaySection = () => {
 			<img className={s.bg_img} src={date.img} alt="" />
 
 			<div className={s.today_content}>
-				<p>Сьогодні</p>
+				<h3 style={{ color: 'white', padding: 0 }}>Сьогодні</h3>
 				<h2>
 					<b>{date.day}</b> <span>{date.dayWeekk}</span>
 					<br />

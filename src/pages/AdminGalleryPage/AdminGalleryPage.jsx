@@ -1,4 +1,4 @@
-import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
+import { useRedirectAdmin } from '../../hooks/useRedirectHook';
 import { useScrollToTop } from '../../hooks/scrollToTop';
 import GalleryList from '../../components/GalleryList/GalleryList';
 import AddEventButton from '../../components/UI/AddEventButton/AddEventButton';

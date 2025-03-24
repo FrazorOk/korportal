@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
 import AdminHolidaysFormSection from './AdminHolidaysFormSection/AdminHolidaysFormSection';
 import { getHolidayFromID } from '../../api/api';
-import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
+import { useRedirectAdmin } from '../../hooks/useRedirectHook';
 import { useScrollToTop } from '../../hooks/scrollToTop';
 
 const AdminAddChangeHolidayCalendarPage = () => {

@@ -63,7 +63,7 @@ const FilesList = ({ data, setModalWindowStatus, setActiveSLide, isFetched }) =>
 							(fileItem, fileIndex) =>
 								fileItem && (
 									<div className={s.files__item}>
-										{fileItem.file_type === 'image' && <img loading="lazy" className={s.file} src={fileItem.url} alt="" />}
+										{fileItem.file_type === 'image' && <img loading="lazy" className={s.file} src={fileItem.thumb} alt="" />}
 										{fileItem.file_type === 'video' && (
 											<video controls loading="lazy" className={`${s.file} ${s.video}`} src={`${fileItem.url}`} alt="" />
 										)}
