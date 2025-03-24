@@ -2,7 +2,7 @@ import { memo, useEffect, useRef, useState } from 'react';
 import VivoChatSection from '../../components/VivoChatSection/VivoChatSection';
 import PlannedNewsSection from './PlannedNewsSection/PlannedNewsSection';
 import AddNewPostSection from './AddNewPostSection/AddNewPostSection';
-import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
+import { useRedirectAdmin } from '../../hooks/useRedirectHook';
 import { useScrollToTop } from '../../hooks/scrollToTop';
 
 const AdminNewsPage = () => {

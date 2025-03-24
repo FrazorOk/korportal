@@ -59,7 +59,7 @@ const GalleryList = ({ galleryList, adminStatus = false }) => {
 								{galleryIndex === 0 && <h3 className={`${s.date_title} ${s.first}`}>{galleryItem.create_date.slice(0, 4)}</h3>}
 
 								<Link to={`/gallery/${galleryItem.id}`} className={s.item} key={`${galleryItem.id}gallery`}>
-									{galleryItem.cover && <img className={s.main_img} src={`${galleryItem.cover}`} />}
+									{galleryItem.thumb && <img className={s.main_img} src={`${galleryItem.thumb}`} />}
 									<p className={s.item_title}>
 										<span className={s.item_date}>
 											<img src={clockIcon} alt="" /> {reversDateWithoutTime(galleryItem.create_date)}

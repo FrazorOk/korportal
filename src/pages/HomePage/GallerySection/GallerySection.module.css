@@ -1,0 +1,146 @@
+.gallery_section {
+	display: block;
+	position: relative;
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+}
+.bg_img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: all 0.3s ease 0s;
+}
+.gallery_section::after {
+	content: '';
+	position: absolute;
+	top: -50px;
+	left: 0;
+	width: 100%;
+	height: calc(100% + 50px);
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0) 100%);
+	transition: all 0.3s ease 0s;
+}
+.gallery_content {
+	position: relative;
+	min-height: 100%;
+	z-index: 2;
+	color: white;
+	padding-top: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.gallery_section h3 {
+	font-size: 18px;
+	font-weight: 500;
+	position: absolute;
+	z-index: 2;
+	bottom: 66px;
+	left: 22px;
+	color: #ffffff;
+	text-align: left;
+	transition: all 0.3s ease 0s;
+}
+.gallery_section h3 img {
+	width: 15px;
+	height: auto;
+	filter: brightness(0) invert(1);
+	margin-right: 7px;
+	margin-top: 1px;
+}
+
+.item_date {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	color: white;
+	font-size: 14px;
+	margin-bottom: 8px;
+}
+.gallery_btn {
+	position: absolute;
+	bottom: 16px;
+	left: 22px;
+	z-index: 2;
+	border-radius: 20px;
+	padding: 8px 16px;
+	background-color: #ffffff;
+	font-weight: 500;
+	color: #585858;
+	transition: all 0.3s ease 0.05s;
+	display: flex;
+	align-items: center;
+}
+.gallery_btn img {
+	width: 20px;
+	height: auto;
+	transform: rotate(-90deg);
+}
+
+@media (hover: hover) {
+	.gallery_section h3 {
+		bottom: 26px;
+	}
+	.gallery_section:hover h3 {
+		bottom: 66px;
+	}
+	.gallery_section:hover .bg_img {
+		transform: scale(1.1);
+	}
+	.gallery_btn {
+		bottom: -40px;
+	}
+	.gallery_btn:hover {
+		background-color: #ebebeb;
+	}
+	.gallery_section:hover .gallery_btn {
+		bottom: 16px;
+	}
+	.gallery_section::after {
+		top: 0;
+	}
+	.gallery_section:hover::after {
+		top: -50px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.gallery_section::after {
+		border-radius: 10px;
+	}
+}
+@media (max-width: 768px) {
+	.gallery_section::after {
+		border-radius: 8px;
+	}
+	.gallery_content {
+		padding-top: 0;
+	}
+	.gallery_btn {
+		padding: 6px 12px;
+	}
+}
+@media (max-width: 650px) {
+	.gallery_section {
+		padding: 15px;
+	}
+}
+@media (max-width: 550px) {
+	.gallery_section {
+		padding: 15px;
+	}
+}
+@media (max-width: 500px) {
+	.gallery_section {
+		width: 100%;
+		min-width: 100px;
+		min-height: 144px;
+		height: auto;
+		order: 1;
+	}
+}

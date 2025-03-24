@@ -1,6 +1,6 @@
 import HolidayCalendarList from '../../components/HolidayCalendarList/HolidayCalendarList';
 import { useScrollToTop } from '../../hooks/scrollToTop';
-import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
+import { useRedirectAdmin } from '../../hooks/useRedirectHook';
 
 const AdminHolidayCalendarPage = () => {
 	let { statusAdmin } = useRedirectAdmin();

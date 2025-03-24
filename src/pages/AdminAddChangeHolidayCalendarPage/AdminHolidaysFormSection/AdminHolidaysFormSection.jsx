@@ -55,7 +55,7 @@ const AdminHolidaysFormSection = ({ Id, data }) => {
 	};
 	const fetchingDeletePost = async () => {
 		await setFetching(true);
-		let result = await deleteNewsPost(Id);
+		let result = await deleteNewsPost(Id, userID.id);
 		await setFetching(false);
 		if (result.status == 200) {
 			nulledAllInputs();

@@ -186,13 +186,14 @@ export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor
 		return response;
 	});
 };
-export const deleteNewsPost = (newsID, action = 'news') => {
+export const deleteNewsPost = (newsID, userID, action = 'news') => {
 	// action може бути news або comments
 	let token = getCookie('_form_token');
 
 	let curretBody = {
 		id: newsID,
 		action: action,
+		userID: userID,
 		token: token,
 	};
 
@@ -434,6 +435,25 @@ export const uploadFileInGallery = (id, imgFile) => {
 	}
 
 	return fetch('https://portal.softcom.ua/php/upload.php', {
+		method: 'POST',
+		body: data,
+	})
+		.then((response) => {
+			return response.json();
+		})
+		.then((result) => {
+			return result;
+		});
+};
+
+
+export const getLogs = () => {
+	let token = getCookie('_form_token');
+
+	let data = new FormData();
+	data.append('token', `${token}`);
+
+	return fetch('https://portal.softcom.ua/php/logout.php', {
 		method: 'POST',
 		body: data,
 	})

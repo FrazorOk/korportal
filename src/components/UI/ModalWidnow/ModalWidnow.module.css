@@ -26,6 +26,9 @@
 .modal_container.background {
 	background-color: white;
 }
+.modal_container.fullScreen {
+	height: 100%;
+}
 .modal_close {
 	position: absolute;
 	top: 30px;

@@ -29,6 +29,7 @@ const GalleryListSection = () => {
 	useEffect(() => {
 		setFetched(true);
 		getGalleryCatalogs().then((response) => {
+			console.log(response);
 			setData(response);
 			findYearsFilters(response);
 			setFetched(false);

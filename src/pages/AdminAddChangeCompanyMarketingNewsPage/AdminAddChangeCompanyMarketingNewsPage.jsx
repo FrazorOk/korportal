@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { getHolidayFromID } from '../../api/api';
-import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
+import { useRedirectAdmin } from '../../hooks/useRedirectHook';
 import { useScrollToTop } from '../../hooks/scrollToTop';
 import GoBackButton from '../../components/UI/GoBackButton/GoBackButton';
 import AdminNewsSection from './AdminNewsSection/AdminNewsSection';

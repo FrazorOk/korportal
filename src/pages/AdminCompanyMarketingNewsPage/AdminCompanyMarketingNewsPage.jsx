@@ -5,8 +5,10 @@ import { useScrollToTop } from '../../hooks/scrollToTop';
 import { useEffect, useState } from 'react';
 import AddEventButton from '../../components/UI/AddEventButton/AddEventButton';
 import { getNews } from '../../api/api';
+import { useRedirectAdmin } from '../../hooks/useRedirectHook';
 
 const AdminCompanyMarketingNewsPage = () => {
+	let { statusAdmin } = useRedirectAdmin();
 	useScrollToTop();
 
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -34,6 +36,7 @@ const AdminCompanyMarketingNewsPage = () => {
 	useEffect(() => {
 		getNews(setMarketingData, 1, 3);
 		getNews(setCompanyData, 1, 4);
+
 		let interval = setInterval(() => {
 			getNews(setMarketingData, 1, 3);
 			getNews(setCompanyData, 1, 4);
@@ -51,40 +54,43 @@ const AdminCompanyMarketingNewsPage = () => {
 
 	return (
 		<>
-			{/* Mobile */}
-			<div className="mobile">
-				<h1>Налаштування новини маркетингу та компанії</h1>
-				<div className="row">
-					<div style={{ maxWidth: '580px', width: '100%' }}>
-						<Tabs titleTabs={tabsTitles} setIndex={setTabIndex} tabIndex={tabIndex} />
-					</div>
-					{tabsItems.map((tabItem, itemIndex) => {
-						if (itemIndex === tabIndex) {
-							return tabItem;
-						}
-					})}
-				</div>
-			</div>
-
-			{/* Desktop */}
-			<div className="desktop">
-				<div style={{ marginTop: '0' }} className="row">
-					<div className="column-50">
-						<h1>Налаштування новини маркетингу</h1>
-						<div title="Створити новину маркетингу" style={{ width: '100%', height: '60px' }}>
-							<AddEventButton path={'add-change-company-marketing-news?type=marketing'} />
+			{statusAdmin && (
+				<>
+					{/* Mobile */}
+					<div className="mobile">
+						<h1>Налаштування новини маркетингу та компанії</h1>
+						<div className="row">
+							<div style={{ maxWidth: '580px', width: '100%' }}>
+								<Tabs titleTabs={tabsTitles} setIndex={setTabIndex} tabIndex={tabIndex} />
+							</div>
+							{tabsItems.map((tabItem, itemIndex) => {
+								if (itemIndex === tabIndex) {
+									return tabItem;
+								}
+							})}
 						</div>
-						<CompanyMarketingList admin={true} newsList={marketingData} linkTo="marketing-separate-news" type="marketing" />
 					</div>
-					<div className="column-50">
-						<h1>Налаштування новини компанії</h1>
-						<div title="Створити новину компанії" style={{ width: '100%', height: '60px' }}>
-							<AddEventButton path={'add-change-company-marketing-news?type=company'} />
+					{/* Desktop */}
+					<div className="desktop">
+						<div style={{ marginTop: '0' }} className="row">
+							<div className="column-50">
+								<h1>Налаштування новини маркетингу</h1>
+								<div title="Створити новину маркетингу" style={{ width: '100%', height: '60px' }}>
+									<AddEventButton path={'add-change-company-marketing-news?type=marketing'} />
+								</div>
+								<CompanyMarketingList admin={true} newsList={marketingData} linkTo="marketing-separate-news" type="marketing" />
+							</div>
+							<div className="column-50">
+								<h1>Налаштування новини компанії</h1>
+								<div title="Створити новину компанії" style={{ width: '100%', height: '60px' }}>
+									<AddEventButton path={'add-change-company-marketing-news?type=company'} />
+								</div>
+								<CompanyMarketingList admin={true} newsList={companyData} linkTo="company-separate-news" type="company" />
+							</div>
 						</div>
-						<CompanyMarketingList admin={true} newsList={companyData} linkTo="company-separate-news" type="company" />
 					</div>
-				</div>
-			</div>
+				</>
+			)}
 		</>
 	);
 };

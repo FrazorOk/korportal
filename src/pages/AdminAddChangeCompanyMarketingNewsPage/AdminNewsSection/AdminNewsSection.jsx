@@ -86,7 +86,7 @@ const AdminNewsSection = ({ newsId, data, type }) => {
 	const fetchingDeletePost = async () => {
 		await setFetching(true);
 
-		let result = await deleteNewsPost(newsId);
+		let result = await deleteNewsPost(newsId, userID.id);
 		await setFetching(false);
 		if (result.status == 200) {
 			nulledAllInputs();

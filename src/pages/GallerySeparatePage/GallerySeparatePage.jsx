@@ -9,7 +9,7 @@ import ModalSliderFiles from '../../components/ModalSliderFiles/ModalSliderFiles
 
 let btns = [
 	{ title: 'Усі', filterParametr: null },
-	{ title: 'Зображення', filterParametr: 'image' },
+	{ title: 'Фото', filterParametr: 'image' },
 	{ title: 'Відео', filterParametr: 'video' },
 ];
 

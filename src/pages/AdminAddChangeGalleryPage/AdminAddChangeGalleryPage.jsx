@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import GoBackButton from '../../components/UI/GoBackButton/GoBackButton';
 import { useScrollToTop } from '../../hooks/scrollToTop';
-import { useRedirectAdmin } from '../../hooks/useRedirectHoook';
+import { useRedirectAdmin } from '../../hooks/useRedirectHook';
 import AdminAddGalleryFormSection from './AdminAddGalleryFormSection/AdminAddGalleryFormSection';
 import { useParams } from 'react-router-dom';
 import { getGalleryCatalogsByID } from '../../api/api';

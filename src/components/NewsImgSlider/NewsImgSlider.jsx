@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Keyboard, Navigation, Pagination } from 'swiper/modules';
 
 import s from './NewsImgSlider.module.css';
 
@@ -106,6 +106,10 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 									ref={sliderRef}
 									spaceBetween={50}
 									slidesPerView={1}
+									keyboard={{
+										enabled: true,
+									}}
+									modules={[Keyboard]}
 									initialSlide={activeSlide * 1}
 									loop={typeof img != 'string' && img.length > 1 ? true : false}>
 									{img.map((item) => (
