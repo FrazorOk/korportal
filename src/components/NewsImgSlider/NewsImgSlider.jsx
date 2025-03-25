@@ -98,7 +98,7 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 			</div>
 
 			{modalStatus && (
-				<ModalWidnow closeModal={zoomOnClickHandler} background={false}>
+				<ModalWidnow closeModal={zoomOnClickHandler} background={false} fullScreen={true}>
 					<div className={s.slider_in_modal}>
 						{typeof img != 'string' && img.length > 1 ? (
 							<>
@@ -111,12 +111,11 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 									}}
 									modules={[Keyboard]}
 									initialSlide={activeSlide * 1}
-									loop={typeof img != 'string' && img.length > 1 ? true : false}>
+									loop={typeof img != 'string' && img.length > 1 ? true : false}
+									style={{ height: '100%', minHeight: '100%' }}>
 									{img.map((item) => (
-										<SwiperSlide>
-											<div
-												style={{ height: `${modalStatus && modalSliderHeight ? modalSliderHeight + 'px' : '100%'}` }}
-												className={`${s.slider_slide} ${s.modal}`}>
+										<SwiperSlide style={{ height: '100%', minHeight: '100%' }}>
+											<div style={{ height: '100%', minHeight: '100%' }} className={`${s.slider_slide} ${s.modal}`}>
 												<div className={s.slider_img_container}>
 													<img src={item} alt="" />
 												</div>

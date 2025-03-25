@@ -29,12 +29,14 @@ import GallerySeparatePage from './pages/GallerySeparatePage/GallerySeparatePage
 import AdminAddChangeGalleryPage from './pages/AdminAddChangeGalleryPage/AdminAddChangeGalleryPage';
 import AdminMailingListPage from './pages/AdminMailingListPage/AdminMailingListPage';
 import LogsPage from './pages/LogsPage/LogsPage';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
+import LoginPage from './pages/LoginPage/LoginPage';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <App />,
-		errorElement: <p>Error</p>,
+		errorElement: <ErrorPage />,
 		children: [
 			{
 				path: '/',

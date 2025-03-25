@@ -48,7 +48,15 @@ const GalleryListSection = () => {
 	return (
 		<>
 			<FilesFilter changeFilter={setFilterParametr} btns={isFilterBtns} />
-			<div className="row">{isFetched ? <Loader /> : <GalleryList galleryList={isFilteredData} />}</div>
+			<div className="row">
+				{isFetched ? (
+					<div style={{ width: '100%', height: '100px', position: 'relative', marginTop: '30px' }}>
+						<Loader background={true} />
+					</div>
+				) : (
+					<GalleryList galleryList={isFilteredData} />
+				)}
+			</div>
 		</>
 	);
 };
