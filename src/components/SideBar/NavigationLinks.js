@@ -1,6 +1,6 @@
 import homeIcon from '../../assets/img/icons/home-icon.svg';
 import arrowIcon from '../../assets/img/icons/arrow-down-icon.svg';
-import imgIcon from '../../assets/img/icons/img-icon.svg';
+import imgIcon from '../../assets/img/icons/gallery-icon.svg';
 import teachIcon from '../../assets/img/icons/teach-icon.svg';
 import teamIcon from '../../assets/img/icons/team-icon.svg';
 import deshListIcon from '../../assets/img/icons/desh-list-icon.svg';

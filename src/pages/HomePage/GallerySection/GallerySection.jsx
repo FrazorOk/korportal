@@ -1,7 +1,7 @@
 import s from './GallerySection.module.css';
 import bgImage from '../../../assets/img/hero-img3.jpg';
 import arrowIcon from '../../../assets/img/icons/arrow-down-icon.svg';
-import imgIcon from '../../../assets/img/icons/img-icon.svg';
+import imgIcon from '../../../assets/img/icons/gallery-icon.svg';
 import { Link } from 'react-router-dom';
 
 const GallerySection = () => {

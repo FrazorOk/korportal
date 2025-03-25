@@ -7,6 +7,7 @@ import arrowLinkIcon from '../../assets/img/icons/redirect-icon.svg';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../selectors/userSelectors';
+import Loader from '../UI/Loader/Loader';
 
 const VivoChatSection = ({ ref1, adminStatus, title, fullScreen }) => {
 	let [data, setData] = useState([]);
@@ -15,13 +16,16 @@ const VivoChatSection = ({ ref1, adminStatus, title, fullScreen }) => {
 	let [todayPosts, setTodayPosts] = useState(0);
 	let [noSeenPotsLength, setNoSeenPotsLength] = useState(0);
 	let [isFirstLoad, setFirstLoad] = useState(false);
+	let [isFetching, setFetching] = useState(false);
 
 	let userSeenNews = useSelector(userSelector.userSeenNews);
 
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
-		getNews(setData);
+		setFetching(true);
+		getNews(setData).then((result) => result && setFetching(false));
+
 		let interval = setInterval(() => {
 			getNews(setData);
 		}, 300000);
@@ -56,15 +60,22 @@ const VivoChatSection = ({ ref1, adminStatus, title, fullScreen }) => {
 				setData={setData}
 				fullScreen={fullScreen}
 			/>
-			<NewsList
-				setNoSeenPotsLength={setNoSeenPotsLength}
-				adminStatus={adminStatus}
-				setTags={setTags}
-				data={data}
-				filterParams={filterParams}
-				setTodayPosts={setTodayPosts}
-				fullScreen={fullScreen}
-			/>
+
+			{isFetching ? (
+				<div style={{ width: '100%', height: '100px', position: 'relative', marginTop: '40px' }}>
+					<Loader />
+				</div>
+			) : (
+				<NewsList
+					setNoSeenPotsLength={setNoSeenPotsLength}
+					adminStatus={adminStatus}
+					setTags={setTags}
+					data={data}
+					filterParams={filterParams}
+					setTodayPosts={setTodayPosts}
+					fullScreen={fullScreen}
+				/>
+			)}
 		</div>
 	);
 };

@@ -55,7 +55,9 @@ const FilesList = ({ data, setModalWindowStatus, setActiveSLide, isFetched }) =>
 	return (
 		<div className="row">
 			{isFetched ? (
-				<Loader />
+				<div style={{ width: '100%', height: '100px', position: 'relative', marginTop: '30px' }}>
+					<Loader background={true} />
+				</div>
 			) : (
 				<div className={s.files}>
 					{isCurrentGalleryList.length > 0 ? (
