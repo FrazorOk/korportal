@@ -15,10 +15,10 @@ const SideBar = ({ status, toggleMobileMode }) => {
 	return (
 		<div className={`${s.side_bar} ${status && s.active}`}>
 			<div className={s.side_bar__logo}>
-				<Link to="/">
+				<a href="/">
 					<img src={logo} alt="logo" />
 					<p>СОФТКОМ</p>
-				</Link>
+				</a>
 			</div>
 			<div className={s.side_bar__menus}>
 				<Navigation data={navigationsLinks} titleName={'Меню'} status={status} toggleMobileMode={toggleMobileMode} />
