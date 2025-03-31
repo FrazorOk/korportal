@@ -13,6 +13,7 @@ import { setAdmin, setUser } from '../../store/userSlice';
 import { fetchSeenNews } from '../../store/thunks';
 import Cookies from 'js-cookie';
 import NotificationModule from '../NotificationModule/NotificationModule';
+import { msalInstance } from '../..';
 
 const Header = ({ toggleMobileMode, mobileMode }) => {
 	const dispatch = useDispatch();
@@ -37,17 +38,24 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 			});
 	}
 
-	function RequestProfileData() {
-		instance
-			.acquireTokenSilent({
+	async function RequestProfileData() {
+		const accounts1 = msalInstance.getAllAccounts();
+		if (!accounts1 || accounts1.length === 0) {
+			alert('No user account found');
+		}
+		try {
+			let response = await msalInstance.acquireTokenSilent({
 				...loginRequest,
-				account: accounts[0],
-			})
-			.then((response) => {
-				callMe(response.accessToken).then((response) => {
-					setGraphData(response);
-				});
+				account: accounts1[0],
 			});
+			let result = await callMe(response.accessToken);
+			setGraphData(result);
+		} catch (error) {
+			msalInstance.acquireTokenRedirect({
+				...loginRequest,
+				account: accounts1[0],
+			});
+		}
 	}
 
 	function RequestAdminsGroupData() {

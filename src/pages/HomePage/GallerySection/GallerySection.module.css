@@ -89,9 +89,7 @@
 	.gallery_section:hover h3 {
 		bottom: 66px;
 	}
-	.gallery_section:hover .bg_img {
-		transform: scale(1.1);
-	}
+
 	.gallery_btn {
 		bottom: -40px;
 	}

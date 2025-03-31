@@ -148,7 +148,7 @@ const router = createBrowserRouter([
 	},
 ]);
 
-const msalInstance = new PublicClientApplication(msalConfig);
+export const msalInstance = new PublicClientApplication(msalConfig);
 msalInstance.initialize();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
