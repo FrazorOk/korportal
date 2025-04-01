@@ -24,7 +24,16 @@ const VivoChatSection = ({ ref1, adminStatus, title, fullScreen }) => {
 
 	useEffect(() => {
 		setFetching(true);
-		getNews(setData).then((result) => result && setFetching(false));
+		getNews(setData)
+			.then((result) => result && setFetching(false))
+			.catch((error) => {
+				setFetching(false);
+				console.log(error);
+			});
+
+		setTimeout(() => {
+			isFetching && setFetching(false);
+		}, 12000);
 
 		let interval = setInterval(() => {
 			getNews(setData);

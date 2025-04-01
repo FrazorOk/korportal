@@ -83,6 +83,23 @@ export async function getAllUsers(accessToken) {
 		.then((response) => response)
 		.catch((error) => console.log(error));
 }
+export async function getUserById(accessToken, userId) {
+	const headers = new Headers();
+	const bearer = `Bearer ${accessToken}`;
+
+	headers.append('Authorization', bearer);
+	const options = {
+		method: 'GET',
+		headers: headers,
+	};
+
+	return fetch(
+		`https://graph.microsoft.com/v1.0/users/${userId}?$select=DisplayName,accountEnabled,userPrincipalName,jobTitle,onPremisesExtensionAttributes,id,mobilePhone,mail`,
+		options
+	)
+		.then((response) => response)
+		.catch((error) => console.log(error));
+}
 export async function getPhotoUser(accessToken, id) {
 	const headers = new Headers();
 	const bearer = `Bearer ${accessToken}`;

@@ -186,11 +186,6 @@
 	margin-top: 21px;
 	line-height: 18px;
 	color: #383833;
-	/* -webkit-box-orient: vertical;
-	display: -webkit-box;
-	line-clamp: 3;
-	-webkit-line-clamp: 3;
-	overflow: hidden; */
 }
 .text a {
 	font-weight: 600;
@@ -202,10 +197,6 @@
 	line-height: 22px;
 	margin-top: 24px;
 }
-/* .item.active .text {
-	line-clamp: 200;
-	-webkit-line-clamp: 200;
-} */
 .right_column {
 	flex: 1 0 100%;
 }

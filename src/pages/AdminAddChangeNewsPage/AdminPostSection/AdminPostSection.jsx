@@ -78,7 +78,8 @@ const AdminPostSection = ({ newsId, data }) => {
 		await setModalWidndovStatus(true);
 		let result = await createNewPost(data);
 		await setFetching(false);
-		if (result.status == 200) {
+
+		if (result.status === 'add ok') {
 			nulledAllInputs();
 			setFetchingStatus(true);
 		} else {
@@ -101,6 +102,7 @@ const AdminPostSection = ({ newsId, data }) => {
 		await setFetching(true);
 		let result = await updateNewsPost(data);
 		await setFetching(false);
+
 		if (result.status == 200) {
 			setFetchingStatus(true);
 		} else {
@@ -501,7 +503,7 @@ const AdminPostSection = ({ newsId, data }) => {
 
 				<div className={s.select_buttons}>
 					<Link to={'/admin-news-feed/'} className={s.cancel}>
-						Відмінити
+						Повернутися
 					</Link>
 					{data.id && (
 						<button className={s.delete} onClick={deleteOpenMoalHandler}>
@@ -521,7 +523,7 @@ const AdminPostSection = ({ newsId, data }) => {
 			</form>
 
 			{modalWidndovStatus && (
-				<ModalWidnow>
+				<ModalWidnow closeBtn={false}>
 					<div className={s.result_window}>
 						{isFetching ? (
 							<Loader />
@@ -529,13 +531,9 @@ const AdminPostSection = ({ newsId, data }) => {
 							<div className={s.result_container}>
 								{isFetchingStatus && isFetchingStatus !== 'error' && <p>Подія успішно створена!</p>}
 								{isFetchingStatus === 'error' && <p>Упс! Вийшла якась помилка!</p>}
-								<button
-									onClick={() => {
-										setModalWidndovStatus(false);
-										setFetchingStatus(false);
-									}}>
+								<a className={s.select} href="/admin-news-feed/">
 									Повернутися
-								</button>
+								</a>
 							</div>
 						)}
 					</div>

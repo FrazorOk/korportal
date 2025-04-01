@@ -1,5 +1,6 @@
 import s from './PlannedNewsItem.module.css';
 import changeIcon from '../../assets/img/icons/pencil-icon.svg';
+import eyeIcon from '../../assets/img/icons/eye-icons.svg';
 import { Link } from 'react-router-dom';
 
 const PlannedNewsItem = ({ data }) => {
@@ -34,6 +35,9 @@ const PlannedNewsItem = ({ data }) => {
 			<div className={s.buttons}>
 				<Link to={`./add-change-news/${id}`} title="Редагувати">
 					<img src={changeIcon} alt="" />
+				</Link>
+				<Link to={`/feed-news/feed-separate-news/${id}`} title="Переглянути">
+					<img src={eyeIcon} alt="" />
 				</Link>
 			</div>
 		</div>

@@ -18,19 +18,31 @@ const AlertModalWindow = ({ data }) => {
 						</p>
 						{!fetchingResult ? (
 							<div className={s.buttons}>
-								<button className="standart-btn cancel" onClick={cencelButton.handler}>
-									{cencelButton.text}
-								</button>
-								<button className={`standart-btn ${acceptButton.class}`} onClick={acceptButton.handler}>
-									{acceptButton.text}
-								</button>
+								{cencelButton.handler ? (
+									<button className="standart-btn cancel" onClick={cencelButton.handler}>
+										{cencelButton.text}
+									</button>
+								) : (
+									<a className={`standart-btn cancel`} href={cencelButton.link}>
+										{cencelButton.text}
+									</a>
+								)}
+								{acceptButton.handler ? (
+									<button className={`standart-btn ${acceptButton.class}`} onClick={acceptButton.handler}>
+										{acceptButton.text}
+									</button>
+								) : (
+									<a className={`standart-btn ${acceptButton.class}`} href={acceptButton.link}>
+										{acceptButton.text}
+									</a>
+								)}
 							</div>
 						) : (
 							<>
 								{closeButton.link ? (
-									<Link to={closeButton.link} className="standart-btn cancel">
+									<a href={closeButton.link} className="standart-btn cancel">
 										{closeButton.text}
-									</Link>
+									</a>
 								) : (
 									<button onClick={closeButton.handler} className="standart-btn cancel">
 										{closeButton.text}
