@@ -266,13 +266,9 @@ const AdminHolidaysFormSection = ({ Id, data }) => {
 							<div className={s.result_container}>
 								{isFetchingStatus && isFetchingStatus !== 'error' && <p>Подія успішно створена!</p>}
 								{isFetchingStatus === 'error' && <p>Упс! Вийшла якась помилка!</p>}
-								<button
-									onClick={() => {
-										setModalWidndovStatus(false);
-										setFetchingStatus(false);
-									}}>
+								<a className={s.select} href="/admin-holiday-calendar/">
 									Повернутися
-								</button>
+								</a>
 							</div>
 						)}
 					</div>

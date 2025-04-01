@@ -155,9 +155,13 @@ export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, 
 	return fetch('https://portal.softcom.ua/php/newsadd.php', {
 		method: 'POST',
 		body: data,
-	}).then((response) => {
-		return response;
-	});
+	})
+		.then((response) => {
+			return response.json();
+		})
+		.then((result) => {
+			return result;
+		});
 };
 
 export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor_id, id, delimg, html }) => {
@@ -445,7 +449,6 @@ export const uploadFileInGallery = (id, imgFile) => {
 			return result;
 		});
 };
-
 
 export const getLogs = () => {
 	let token = getCookie('_form_token');

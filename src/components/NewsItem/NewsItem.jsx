@@ -323,6 +323,7 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 						<button title={'Коментарі'} onClick={commentButtonOnClickHandler} className={s.coments_button}>
 							<img src={commentsIcon} alt="" />
 							<p>{commentsLength}</p>
+							<p>Коментарі</p>
 						</button>
 					</div>
 					<div>

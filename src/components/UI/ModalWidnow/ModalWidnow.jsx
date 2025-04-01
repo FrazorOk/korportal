@@ -1,7 +1,7 @@
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import s from './ModalWidnow.module.css';
 
-const ModalWidnow = ({ children, closeModal, background = true, fullScreen = false }) => {
+const ModalWidnow = ({ children, closeModal, background = true, fullScreen = false, closeBtn = true }) => {
 	return (
 		<div className={s.modal}>
 			<div
@@ -9,7 +9,7 @@ const ModalWidnow = ({ children, closeModal, background = true, fullScreen = fal
 				className={`${s.modal_container} ${background && s.background} ${fullScreen && s.fullScreen}`}>
 				{children}
 			</div>
-			<button onClick={() => closeModal()} className={s.modal_close}></button>
+			<button style={{ display: `${!closeBtn && 'none'}` }} onClick={() => closeModal()} className={s.modal_close}></button>
 		</div>
 	);
 };
