@@ -9,6 +9,7 @@ import { loginRequest } from '../../../authConfig';
 import { memo, useEffect, useRef, useState } from 'react';
 import { dateConverter } from '../../../helpers/dateConverter';
 import Loader from '../../../components/UI/Loader/Loader';
+import UserInfoModalBtn from '../../../components/UserInfoModalBtn/UserInfoModalBtn';
 
 const dateToYMD = (date, year) => {
 	let d = date.getDate();
@@ -250,16 +251,14 @@ const BirthdaySection = () => {
 					visibleUsers.map((user, index) => (
 						<li key={`birthday user ${index}`} className={`${s.birthday_item} ${user.index === 0 ? s.active : ''}`}>
 							<div className={s.birthday_item__user}>
-								<a title={'Відкрити Teams'} target="_blank" href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
+								<UserInfoModalBtn userId={user.id}>
 									<img src={user.urlImg ? user.urlImg : profileIcon} alt={profileIcon} />
-								</a>
+								</UserInfoModalBtn>
+
 								<div>
-									<a
-										title={'Відкрити Teams'}
-										target="_blank"
-										href={`https://teams.microsoft.com/l/chat/0/0?users=${user.userPrincipalName}`}>
-										{user.displayName}
-									</a>
+									<UserInfoModalBtn userId={user.id}>
+										<p style={{ color: 'black' }}>{user.displayName}</p>
+									</UserInfoModalBtn>
 									<p>{user.jobTitle}</p>
 								</div>
 							</div>

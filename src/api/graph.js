@@ -94,7 +94,7 @@ export async function getUserById(accessToken, userId) {
 	};
 
 	return fetch(
-		`https://graph.microsoft.com/v1.0/users/${userId}?$select=DisplayName,accountEnabled,userPrincipalName,jobTitle,onPremisesExtensionAttributes,id,mobilePhone,mail`,
+		`https://graph.microsoft.com/v1.0/users/${userId}?$select=DisplayName,accountEnabled,userPrincipalName,jobTitle,onPremisesExtensionAttributes,id,mobilePhone,mail,department`,
 		options
 	)
 		.then((response) => response)

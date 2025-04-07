@@ -39,7 +39,7 @@ export let useRedirectDevs = (redirectStatus) => {
 	};
 
 	useEffect(() => {
-		if (userID.id) {
+		if (userID && userID.id) {
 			let devStatus = findDevIds(devsID);
 
 			if (devStatus) {

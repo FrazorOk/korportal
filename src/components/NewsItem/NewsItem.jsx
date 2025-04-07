@@ -330,28 +330,30 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 						<p className={s.views}>Перегляди: {currentViews ? currentViews : '0'}</p>
 					</div>
 				</div>
-				<div className={s.commet_container}>
-					{fetchedComments && <CommentsList comment={fetchedComments} fullScreen={fullScreen} />}
-					<div className={s.coments_input}>
-						<textarea
-							value={textAreaComment}
-							onKeyDown={(e) => e.key === 'Enter' && sendCommetnButtonOnClickHandler(e)}
-							onChange={(e) => setTextAreaComment(e.target.value)}
-							ref={ref}
-							placeholder="Ваш коментар..."
-							name=""
-							id=""></textarea>
-						<div className={s.coments_input__btns}>
-							<button title={'Смайлики'} disabled={fetchingStatus} onClick={() => setSmileStatus((status) => !status)}>
-								<img src={smileIcon} alt="" />
-							</button>
-							<button title={'Додати коментар'} disabled={fetchingStatus} onClick={sendCommetnButtonOnClickHandler}>
-								<img src={mailIcon} alt="" />
-							</button>
+				{visibleStatus && (
+					<div className={s.commet_container}>
+						{fetchedComments && <CommentsList comment={fetchedComments} fullScreen={fullScreen} />}
+						<div className={s.coments_input}>
+							<textarea
+								value={textAreaComment}
+								onKeyDown={(e) => e.key === 'Enter' && sendCommetnButtonOnClickHandler(e)}
+								onChange={(e) => setTextAreaComment(e.target.value)}
+								ref={ref}
+								placeholder="Ваш коментар..."
+								name=""
+								id=""></textarea>
+							<div className={s.coments_input__btns}>
+								<button title={'Смайлики'} disabled={fetchingStatus} onClick={() => setSmileStatus((status) => !status)}>
+									<img src={smileIcon} alt="" />
+								</button>
+								<button title={'Додати коментар'} disabled={fetchingStatus} onClick={sendCommetnButtonOnClickHandler}>
+									<img src={mailIcon} alt="" />
+								</button>
+							</div>
 						</div>
+						<EmojiList visibleStatus={smileStatus} setSmile={setTextAreaComment} />
 					</div>
-					<EmojiList visibleStatus={smileStatus} setSmile={setTextAreaComment} />
-				</div>
+				)}
 			</div>
 			{!viewed && (
 				<button title={visibleStatus ? 'Згорнути' : 'Розгорнути'} className={s.open_button} onClick={onClickVisibleButtonHandler}>

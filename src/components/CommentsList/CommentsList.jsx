@@ -3,6 +3,7 @@ import s from './CommentsList.module.css';
 import { useMsal } from '@azure/msal-react';
 import { getPhotoUser } from '../../api/graph';
 import { loginRequest } from '../../authConfig';
+import UserInfoModalBtn from '../UserInfoModalBtn/UserInfoModalBtn';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
@@ -60,20 +61,22 @@ const CommentsList = ({ comment, fullScreen }) => {
 			<p className={s.commets_h}>Коментарі:</p>
 			<ul className={s.commets_list}>
 				{commentsList &&
-					commentsList.map(({ autor, post_date, comment_txt, urlImg }, index) => {
+					commentsList.map(({ autor, post_date, comment_txt, urlImg, usercode }, index) => {
 						return (
 							<li key={`comment${index}`} className={`${s.commets_item}`}>
-								<div className={s.comment_user}>
-									<img src={urlImg} alt="" />
-									<div>
-										<p className={s.commets_title}>{autor && autor}</p>
-										<p className={s.commets_date}>
-											{post_date && toDay === post_date.slice(0, 10)
-												? `Сьогодні ${post_date.slice(11, 16)}`
-												: `${post_date.slice(8, 10)}-${post_date.slice(5, 7)}-${post_date.slice(0, 4)} ${post_date.slice(11, 16)}`}
-										</p>
+								<UserInfoModalBtn userId={usercode}>
+									<div className={s.comment_user}>
+										<img src={urlImg} alt="" />
+										<div>
+											<p className={s.commets_title}>{autor && autor}</p>
+											<p className={s.commets_date}>
+												{post_date && toDay === post_date.slice(0, 10)
+													? `Сьогодні ${post_date.slice(11, 16)}`
+													: `${post_date.slice(8, 10)}-${post_date.slice(5, 7)}-${post_date.slice(0, 4)} ${post_date.slice(11, 16)}`}
+											</p>
+										</div>
 									</div>
-								</div>
+								</UserInfoModalBtn>
 								<p className={s.commets_text}>{comment_txt && comment_txt}</p>
 							</li>
 						);

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import s from './PageLayout.module.css';
 import SideBar from '../SideBar/SideBar';
 import Header from '../Header/Header';
+import UserInfoModalWindow from '../UserInfoModalWindow/UserInfoModalWindow';
 
 const PageLayout = (props) => {
 	let [sideBarStatus, setSideBarStatus] = useState(false);
@@ -21,6 +22,8 @@ const PageLayout = (props) => {
 					<div className="content-container">{props.children}</div>
 				</div>
 			</div>
+
+			<UserInfoModalWindow />
 		</div>
 	);
 };
