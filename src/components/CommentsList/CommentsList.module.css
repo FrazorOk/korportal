@@ -39,6 +39,7 @@
 	display: flex;
 	gap: 6px;
 	align-items: center;
+	text-align: start;
 }
 .comment_user img {
 	border: 1px solid white;
@@ -115,10 +116,10 @@
 		border: 1px solid white;
 		background-color: #cacaca;
 		border-radius: 50%;
-		height: 36px;
-		min-height: 36px;
-		min-width: 36px;
-		width: 36px;
+		height: 35px;
+		min-height: 35px;
+		min-width: 35px;
+		width: 35px;
 	}
 }
 @keyframes circle {

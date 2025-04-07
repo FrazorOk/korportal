@@ -186,9 +186,13 @@ export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor
 	return fetch('https://portal.softcom.ua/php/newsadd.php', {
 		method: 'POST',
 		body: data,
-	}).then((response) => {
-		return response;
-	});
+	})
+		.then((response) => {
+			return response.json();
+		})
+		.then((result) => {
+			return result;
+		});
 };
 export const deleteNewsPost = (newsID, userID, action = 'news') => {
 	// action може бути news або comments

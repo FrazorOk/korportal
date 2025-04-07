@@ -103,7 +103,7 @@ const AdminPostSection = ({ newsId, data }) => {
 		let result = await updateNewsPost(data);
 		await setFetching(false);
 
-		if (result.status == 200) {
+		if (result.status === 'add ok') {
 			setFetchingStatus(true);
 		} else {
 			console.log(`Помилка ${result.status}`);
@@ -257,11 +257,11 @@ const AdminPostSection = ({ newsId, data }) => {
 		},
 		closeButton: {
 			text: 'Повернутися',
-			handler: () => {
-				setModalWidndovStatusUpdate(false);
-				setFetchingStatus(false);
-			},
-			link: false,
+			// handler: () => {
+			// 	setModalWidndovStatusUpdate(false);
+			// 	setFetchingStatus(false);
+			// },
+			link: '/admin-news-feed',
 		},
 		isFetching: isFetching,
 		fetchingResult: isFetchingStatus,
