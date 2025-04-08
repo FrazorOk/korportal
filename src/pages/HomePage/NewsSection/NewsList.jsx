@@ -36,7 +36,7 @@ const NewsList = ({ listTitle, activetab, data, type }) => {
 								</a>
 							)
 					)}
-					{data && data.length < 3 && (
+					{data && data.length < 2 && (
 						<div
 							style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}
 							className={`${s.news_item} ${type === 'marketing' && s.yellow} ${s.none_item}`}>

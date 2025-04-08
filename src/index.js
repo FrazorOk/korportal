@@ -31,6 +31,7 @@ import AdminMailingListPage from './pages/AdminMailingListPage/AdminMailingListP
 import LogsPage from './pages/LogsPage/LogsPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import TestPage from './pages/TestPage/TestPage';
 
 const router = createBrowserRouter([
 	{
@@ -143,6 +144,10 @@ const router = createBrowserRouter([
 			{
 				path: 'logs',
 				element: <LogsPage />,
+			},
+			{
+				path: 'testpage',
+				element: <TestPage />,
 			},
 		],
 	},
