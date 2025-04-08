@@ -87,6 +87,10 @@ const UserInfoModalWindow = () => {
 	useEffect(() => {
 		userId && RequestUsersData(userId);
 		userId && RequestProfilePhoto(userId);
+		return () => {
+			setUserData(false);
+			setUserImg('');
+		};
 	}, [userId]);
 
 	return (

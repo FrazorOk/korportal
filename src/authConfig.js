@@ -4,6 +4,7 @@
  */
 
 import { LogLevel } from '@azure/msal-browser';
+import { domain } from './api/api';
 
 /**
  * Configuration object to be passed to MSAL instance on creation.
@@ -12,7 +13,9 @@ import { LogLevel } from '@azure/msal-browser';
  */
 
 export const msalConfig = {
-	auth: {},
+	auth: {
+		redirectUri: `${domain}/`,
+	},
 	cache: {
 		cacheLocation: 'localStorage', // This configures where your cache will be stored
 		storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge

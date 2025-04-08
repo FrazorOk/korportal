@@ -2,6 +2,15 @@
 
 import { getCookie } from '../helpers/cookieMetods';
 
+let devMode = false;
+
+export let domain = '';
+if (devMode) {
+	domain = 'https://devportal.softcom.ua';
+} else {
+	domain = 'https://portal.softcom.ua';
+}
+
 // ---------------------------------
 export const sendUserProfile = (data) => {
 	let token = getCookie('_form_token');
@@ -18,7 +27,7 @@ export const sendUserProfile = (data) => {
 		token: token,
 	};
 
-	fetch('https://portal.softcom.ua/php/userreg.php', {
+	fetch(`${domain}/php/userreg.php`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
@@ -37,7 +46,7 @@ export const addIdToSeenNews = (newsID, userID) => {
 	console.log(newsID);
 	console.log(userID);
 
-	return fetch('https://portal.softcom.ua/php/newsviewadd.php', {
+	return fetch(`${domain}/php/newsviewadd.php`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
@@ -60,7 +69,7 @@ export const getNews = (setState, all = 0, categoryID = 1) => {
 		categoryID: categoryID,
 		token: token,
 	};
-	return fetch('https://portal.softcom.ua/php/newsout.php', {
+	return fetch(`${domain}/php/newsout.php`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
@@ -82,7 +91,7 @@ export const getNewsFromID = (postID, setState, setStateReactions, debug = 0) =>
 		debug: debug,
 	};
 
-	return fetch('https://portal.softcom.ua/php/newsout.php', {
+	return fetch(`${domain}/php/newsout.php`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
@@ -106,7 +115,7 @@ export const sendCommentNews = (newsID, userID, text, setFetchingStatus) => {
 		token: token,
 	};
 
-	return fetch('https://portal.softcom.ua/php/commentadd.php', {
+	return fetch(`${domain}/php/commentadd.php`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
@@ -126,7 +135,7 @@ export const toggleLike = (newsID, userID, code) => {
 		token: token,
 	};
 
-	return fetch('https://portal.softcom.ua/php/reactionsadd.php', {
+	return fetch(`${domain}/php/reactionsadd.php`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
@@ -152,7 +161,7 @@ export const createNewPost = async ({ title, tags, date, text, imgFile, cat_id, 
 		data.append('img[]', imgFile[i]);
 	}
 
-	return fetch('https://portal.softcom.ua/php/newsadd.php', {
+	return fetch(`${domain}/php/newsadd.php`, {
 		method: 'POST',
 		body: data,
 	})
@@ -183,7 +192,7 @@ export const updateNewsPost = ({ title, tags, date, text, imgFile, cat_id, autor
 		data.append('img[]', imgFile[i]);
 	}
 
-	return fetch('https://portal.softcom.ua/php/newsadd.php', {
+	return fetch(`${domain}/php/newsadd.php`, {
 		method: 'POST',
 		body: data,
 	})
@@ -205,7 +214,7 @@ export const deleteNewsPost = (newsID, userID, action = 'news') => {
 		token: token,
 	};
 
-	return fetch('https://portal.softcom.ua/php/delete.php', {
+	return fetch(`${domain}/php/delete.php`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
@@ -227,7 +236,7 @@ export const createNewHolidayDate = ({ title, date, cat_id, autor_id }) => {
 	data.append('cat_id', cat_id);
 	data.append('autor_id', autor_id);
 
-	return fetch('https://portal.softcom.ua/php/newsadd.php', {
+	return fetch(`${domain}/php/newsadd.php`, {
 		method: 'POST',
 		body: data,
 	}).then((response) => {
@@ -245,7 +254,7 @@ export const updateHolidayPost = ({ title, date, cat_id, autor_id, id }) => {
 	data.append('cat_id', cat_id);
 	data.append('autor_id', autor_id);
 
-	return fetch('https://portal.softcom.ua/php/newsadd.php', {
+	return fetch(`${domain}/php/newsadd.php`, {
 		method: 'POST',
 		body: data,
 	}).then((response) => {
@@ -262,7 +271,7 @@ export const getHolidayFromID = (postID, categoryID, debug = 0) => {
 		debug: debug,
 	};
 
-	return fetch('https://portal.softcom.ua/php/newsout.php', {
+	return fetch(`${domain}/php/newsout.php`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(curretBody),
@@ -293,7 +302,7 @@ export const createMarketingCompanyNewPost = async ({ title, date, text, imgFile
 		data.append('img[]', imgFile[i]);
 	}
 
-	return fetch('https://portal.softcom.ua/php/newsadd.php', {
+	return fetch(`${domain}/php/newsadd.php`, {
 		method: 'POST',
 		body: data,
 	}).then((response) => {
@@ -318,7 +327,7 @@ export const updateMarketingCompanyNewsPost = ({ title, html, date, text, imgFil
 		data.append('img[]', imgFile[i]);
 	}
 
-	return fetch('https://portal.softcom.ua/php/newsadd.php', {
+	return fetch(`${domain}/php/newsadd.php`, {
 		method: 'POST',
 		body: data,
 	}).then((response) => {
@@ -341,7 +350,7 @@ export const createNewCatalogGallery = ({ title, imgFile, date, autor_id }) => {
 		data.append('img[]', imgFile[i]);
 	}
 
-	return fetch('https://portal.softcom.ua/php/createcat.php', {
+	return fetch(`${domain}/php/createcat.php`, {
 		method: 'POST',
 		body: data,
 	})
@@ -359,7 +368,7 @@ export const getGalleryCatalogs = () => {
 	data.append('token', `${token}`);
 	data.append('out', 'yes');
 
-	return fetch('https://portal.softcom.ua/php/createcat.php', {
+	return fetch(`${domain}/php/createcat.php`, {
 		method: 'POST',
 		body: data,
 	})
@@ -378,7 +387,7 @@ export const getGalleryCatalogsByID = (catalog_id, file_type = null) => {
 	data.append('catalog_id', `${catalog_id}`);
 	file_type && data.append('file_type', file_type);
 
-	return fetch('https://portal.softcom.ua/php/catfilesout.php', {
+	return fetch(`${domain}/php/catfilesout.php`, {
 		method: 'POST',
 		body: data,
 	})
@@ -405,7 +414,7 @@ export const updateCatalogGallery = ({ title, id, imgFile, date, autor_id }) => 
 		}
 	}
 
-	return fetch('https://portal.softcom.ua/php/editcat.php', {
+	return fetch(`${domain}/php/editcat.php`, {
 		method: 'POST',
 		body: data,
 	}).then((response) => {
@@ -422,7 +431,7 @@ export const deleteGalleryCatalogsFiles = (id, target) => {
 	data.append('id', id);
 	data.append('target', target);
 
-	return fetch('https://portal.softcom.ua/php/delcatorfile.php', {
+	return fetch(`${domain}/php/delcatorfile.php`, {
 		method: 'POST',
 		body: data,
 	}).then((response) => {
@@ -442,7 +451,7 @@ export const uploadFileInGallery = (id, imgFile) => {
 		}
 	}
 
-	return fetch('https://portal.softcom.ua/php/upload.php', {
+	return fetch(`${domain}/php/upload.php`, {
 		method: 'POST',
 		body: data,
 	})
@@ -460,7 +469,7 @@ export const getLogs = () => {
 	let data = new FormData();
 	data.append('token', `${token}`);
 
-	return fetch('https://portal.softcom.ua/php/logout.php', {
+	return fetch(`${domain}/php/logout.php`, {
 		method: 'POST',
 		body: data,
 	})

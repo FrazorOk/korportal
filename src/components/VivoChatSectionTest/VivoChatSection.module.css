@@ -1,0 +1,96 @@
+.chat {
+	width: 580px;
+	min-height: 400px;
+	flex: 0 1 calc(50% - 15px);
+	/* padding-right: 10px !important ; */
+}
+.chat.full_screen {
+	width: 100%;
+	flex: 0 1 calc(100%);
+	padding: 30px 130px 30px;
+	/* padding-right: 10px !important ; */
+}
+
+@media (max-width: 1550px) {
+	.chat {
+		width: 580px;
+	}
+	.chat.full_screen {
+		flex-basis: 100% !important;
+		width: 100%;
+		flex: 0 1 calc(50% - 15px);
+		padding: 30px 90px 30px;
+		/* padding-right: 10px !important ; */
+	}
+
+	.chat iframe {
+		width: 520px;
+	}
+}
+@media (max-width: 1400px) {
+	.chat {
+		width: 500px;
+	}
+	.chat.full_screen {
+		flex-basis: 100% !important;
+		width: 100%;
+		/* padding-right: 10px !important ; */
+	}
+
+	.chat iframe {
+		width: 440px;
+	}
+}
+
+@media (max-width: 1300px) {
+	.chat {
+		width: 400px;
+	}
+	.chat.full_screen {
+		width: 100%;
+		flex-basis: 100% !important;
+		/* padding-right: 10px !important ; */
+	}
+
+	.chat iframe {
+		width: 340px;
+	}
+}
+@media (max-width: 1200px) {
+	.chat {
+		width: 100%;
+	}
+	.chat.full_screen {
+		width: 100%;
+		flex: 0 1 calc(50% - 15px);
+		padding: 20px 60px 20px;
+
+		/* padding-right: 10px !important ; */
+	}
+
+	.chat iframe {
+		width: 500px;
+	}
+}
+
+@media (max-width: 768px) {
+	.chat {
+		flex: 1 1;
+	}
+	.chat.full_screen {
+		width: 100%;
+		flex: 0 1 calc(50% - 15px);
+		padding: 15px;
+		/* padding-right: 10px !important ; */
+	}
+	.chat iframe {
+		width: 100%;
+		height: 370px;
+		min-height: 370px;
+	}
+}
+@media (max-width: 550px) {
+	.chat.full_screen {
+		padding: 15px 6px;
+	}
+}

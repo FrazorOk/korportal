@@ -1,4 +1,5 @@
 import { getCookie } from '../helpers/cookieMetods';
+import { domain } from './api';
 
 export const sendTestMail = (emails) => {
 	let token = getCookie('_form_token');
@@ -7,7 +8,7 @@ export const sendTestMail = (emails) => {
 	data.append('token', `${token}`);
 	data.append('emails', emails);
 
-	return fetch('https://portal.softcom.ua/php/sendmail.php?action=test', {
+	return fetch(`${domain}/php/sendmail.php?action=test`, {
 		method: 'POST',
 		body: data,
 	}).then((response) => {
@@ -21,7 +22,7 @@ export const getMailingTime = () => {
 	let data = new FormData();
 	data.append('token', `${token}`);
 
-	return fetch('https://portal.softcom.ua/php/sendmail.php?action=gettime', {
+	return fetch(`${domain}/php/sendmail.php?action=gettime`, {
 		method: 'POST',
 		body: data,
 	})
@@ -40,7 +41,7 @@ export const updateMailingTime = (time) => {
 	data.append('token', `${token}`);
 	data.append('time', time);
 
-	return fetch('https://portal.softcom.ua/php/sendmail.php?action=settime', {
+	return fetch(`${domain}/php/sendmail.php?action=settime`, {
 		method: 'POST',
 		body: data,
 	}).then((response) => {
