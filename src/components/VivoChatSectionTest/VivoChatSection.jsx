@@ -12,58 +12,154 @@ import { getNewsList } from '../../api/apiNews';
 
 const VivoChatSection = ({ ref1, adminStatus, title, fullScreen }) => {
 	let user = useSelector(userSelector.userData);
+	const [searchParams, setSearchParams] = useSearchParams();
+
+	const step = 5;
 
 	let [data, setData] = useState(false);
+
 	let [isFetching, setFetching] = useState(false);
+	let [isFetchingDisable, setFetchingDisable] = useState(false);
+	let [isNullStatus, setNullStatus] = useState(false);
+	let [isFirstLoad, setFirstLoad] = useState(false);
 
 	let [filterParams, setFilterParams] = useState({ params: 'Усі', tags: false });
-	let [fromToNumbers, setFromToNumbers] = useState({ from: 0, to: 20 });
+	let [fromToNumbers, setFromToNumbers] = useState({ from: 0, to: step });
 
-	const fetchingNewNewsList = async (getDataParams) => {
+	let [isEndScroll, setEndScroll] = useState(0);
+
+	const fetchingNewNewsList = async (getDataParams, push = false) => {
+		console.log(isEndScroll);
+
 		setFetching(true);
+
 		let result = await getNewsList(getDataParams);
 		if (result) {
-			setData(result);
+			if (push) {
+				console.log(result);
+				if (result.error) {
+					setData((dataCur) => [...dataCur, result]);
+				} else {
+					setData((dataCur) => [...dataCur, ...result]);
+				}
+			} else {
+				setData(result);
+			}
 			setFetching(false);
+			let promise = new Promise((resolve, reject) => {
+				setTimeout(() => {
+					console.log('heare +');
+					setFetchingDisable(false);
+					return resolve('готово!');
+				}, 500);
+			});
+			let result2 = await promise;
 		} else {
 			setFetching(false);
+			let promise = new Promise((resolve, reject) => {
+				setTimeout(() => {
+					console.log('heare -');
+					setFetchingDisable(false);
+					return resolve('готово!');
+				}, 500);
+			});
+			let result2 = await promise;
 			console.log(`error ${result}`);
 		}
 	};
+	const handleScroll = (e) => {
+		console.log();
+
+		if (!isFetchingDisable) {
+			console.log('yes');
+
+			let block = e.currentTarget;
+			// Відступ до кінця блоку
+			let y = 0;
+			if (Math.ceil(block.scrollTop + block.clientHeight) >= Math.ceil(block.scrollHeight) - y) {
+				setFetchingDisable(true);
+			}
+		} else {
+			console.log('no');
+		}
+	};
+
+	let getDataParams = {
+		userID: user.id,
+		fromNumber: fromToNumbers.from,
+		limitNumber: fromToNumbers.to,
+		filterType: filterParams.params,
+		tagsStatus: filterParams.tags,
+		all: 0,
+		categoryID: 1,
+	};
 
 	useEffect(() => {
-		let getDataParams = {
-			userID: user.id,
-			fromNumber: fromToNumbers.from,
-			limitNumber: fromToNumbers.to,
-			filterType: filterParams.params,
-			all: 0,
-			categoryID: 1,
+		let el = document.querySelector('.main-scroll-block');
+		el.addEventListener('scroll', (e) => handleScroll(e));
+		return () => {
+			el.removeEventListener('scroll', (e) => handleScroll(e));
 		};
+	}, []);
 
-		if (user && user.id) {
+	useEffect(() => {
+		let filterParam = searchParams.get('filter');
+
+		if (user && user.id && !filterParam) {
 			setData(false);
 			fetchingNewNewsList(getDataParams);
 		}
+	}, [user]);
 
-		// let interval = setInterval(() => {
-		// 	getNews(setData);
-		// }, 300000);
-		// return () => {
-		// 	clearInterval(interval);
-		// };
-	}, [user, filterParams]);
+	useEffect(() => {
+		if (user && user.id) {
+			console.log('im heare');
 
-	useEffect(() => {}, []);
+			setNullStatus(true);
+			setFetchingDisable(false);
+			setData(false);
+			setEndScroll(0);
+			setFromToNumbers({ from: 0, to: step });
+		}
+	}, [filterParams]);
 
-	// const [searchParams, setSearchParams] = useSearchParams();
-	// useEffect(() => {
-	// 	let filterParam = searchParams.get('filter');
-	// 	if (!isFirstLoad && filterParam && filterParam === 'noviews' && data && data.length > 0 && userSeenNews) {
-	// 		setFirstLoad(true);
-	// 		setFilterParams({ params: 'Не переглянуті', tags: false });
-	// 	}
-	// }, [data, searchParams, userSeenNews]);
+	useEffect(() => {
+		if (isNullStatus && !data && isEndScroll === 0 && fromToNumbers.from === 0) {
+			setNullStatus(false);
+			fetchingNewNewsList(getDataParams);
+		}
+	}, [isNullStatus, data, isEndScroll, fromToNumbers]);
+
+	useEffect(() => {
+		if (isFetchingDisable) {
+			setEndScroll((endScroll) => endScroll + 1);
+		}
+	}, [isFetchingDisable]);
+
+	useEffect(() => {
+		if (isEndScroll > 0 && data && !isNullStatus) {
+			setFromToNumbers({ from: isEndScroll * step, to: step });
+		}
+	}, [isEndScroll]);
+
+	useEffect(() => {
+		if (isEndScroll > 0 && data && user && user.id && !isNullStatus && data[data.length - 1] && !data[data.length - 1].error) {
+			fetchingNewNewsList(getDataParams, true);
+		}
+	}, [fromToNumbers]);
+
+	useEffect(() => {
+		let filterParam = searchParams.get('filter');
+
+		console.log(filterParam);
+
+		if (!isFirstLoad && filterParam && filterParam === 'noviews' && user && user.id) {
+			console.log(isFirstLoad);
+
+			setFirstLoad(true);
+			setFilterParams({ params: 'Не переглянуті', tags: false });
+		}
+	}, [searchParams, user]);
 
 	return (
 		<div ref={ref1} className={`${s.chat} section-container ${fullScreen && s.full_screen}`}>

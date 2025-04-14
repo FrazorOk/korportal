@@ -4,7 +4,7 @@ import VivoChatSection from '../../components/VivoChatSectionTest/VivoChatSectio
 const TestPage = () => {
 	return (
 		<div>
-			<VivoChatSection adminStatus={false} title={true} fullScreen={false} />
+			<VivoChatSection adminStatus={false} title={true} fullScreen={true} />
 		</div>
 	);
 };

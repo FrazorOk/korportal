@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import VivoChatSection from '../../components/VivoChatSection/VivoChatSection';
+import VivoChatSection from '../../components/VivoChatSectionTest/VivoChatSection';
 
 const FeedNewsPage = () => {
 	let ref = useRef();

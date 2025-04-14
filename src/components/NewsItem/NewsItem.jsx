@@ -336,7 +336,7 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 						<div className={s.coments_input}>
 							<textarea
 								value={textAreaComment}
-								onKeyDown={(e) => e.key === 'Enter' && sendCommetnButtonOnClickHandler(e)}
+								// onKeyDown={(e) => e.key === 'Enter' && sendCommetnButtonOnClickHandler(e)}
 								onChange={(e) => setTextAreaComment(e.target.value)}
 								ref={ref}
 								placeholder="Ваш коментар..."

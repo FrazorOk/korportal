@@ -128,6 +128,9 @@
 .birthday_item.active .birthday_item__user img {
 	border: 1px solid white;
 }
+.birthday_item__user div p:nth-child(1) {
+	color: black;
+}
 .birthday_item__user div p:nth-child(2) {
 	font-size: 12px;
 	font-weight: 300;
@@ -139,6 +142,7 @@
 	color: white;
 }
 .birthday_item.active .birthday_item__user div p:nth-child(1) {
+	color: white;
 	font-weight: 600;
 }
 
