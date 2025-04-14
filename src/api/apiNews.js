@@ -1,7 +1,7 @@
 import { getCookie } from '../helpers/cookieMetods';
 import { domain } from './api';
 
-export const getNewsList = ({ userID, fromNumber, limitNumber, filterType, all, categoryID = 1 }) => {
+export const getNewsList = ({ userID, fromNumber, limitNumber, filterType, all, categoryID = 1, tagsStatus, qt = false }) => {
 	let token = getCookie('_form_token');
 
 	let curretBody = {
@@ -16,6 +16,9 @@ export const getNewsList = ({ userID, fromNumber, limitNumber, filterType, all, 
 	if (filterType === 'Популярне') curretBody.order = 'views';
 	if (filterType === 'Сьогодні') curretBody.istoday = 'yes';
 	if (filterType === 'Не переглянуті') curretBody.isview = 'no';
+	if (tagsStatus) curretBody.tagNAME = filterType;
+
+	if (qt) curretBody.qt = 'only';
 
 	console.log(curretBody);
 

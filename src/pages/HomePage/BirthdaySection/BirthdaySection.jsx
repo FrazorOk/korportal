@@ -257,7 +257,7 @@ const BirthdaySection = () => {
 
 								<div>
 									<UserInfoModalBtn userId={user.id}>
-										<p style={{ color: 'black' }}>{user.displayName}</p>
+										<p>{user.displayName}</p>
 									</UserInfoModalBtn>
 									<p>{user.jobTitle}</p>
 								</div>

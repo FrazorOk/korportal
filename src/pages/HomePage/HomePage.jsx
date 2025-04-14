@@ -3,7 +3,7 @@ import EventSection from './EventSection/EventSection';
 import NewsSection from './NewsSection/NewsSection';
 import HeroSection from './HeroSection/HeroSection';
 import TodaySection from './TodaySection/TodaySection';
-import VivoChatSection from '../../components/VivoChatSection/VivoChatSection';
+import VivoChatSection from '../../components/VivoChatSectionTest/VivoChatSection';
 import { memo, useEffect, useRef, useState } from 'react';
 import { useScrollToTop } from '../../hooks/scrollToTop';
 import GallerySection from './GallerySection/GallerySection';
