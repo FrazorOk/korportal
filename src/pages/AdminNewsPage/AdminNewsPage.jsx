@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef, useState } from 'react';
-import VivoChatSection from '../../components/VivoChatSection/VivoChatSection';
+import VivoChatSection from '../../components/VivoChatSectionTest/VivoChatSection';
 import PlannedNewsSection from './PlannedNewsSection/PlannedNewsSection';
 import AddNewPostSection from './AddNewPostSection/AddNewPostSection';
 import { useRedirectAdmin } from '../../hooks/useRedirectHook';

@@ -2,8 +2,13 @@ import s from './NewsSection.module.css';
 import arrowLinkIcon from '../../../assets/img/icons/redirect-icon.svg';
 import { Link } from 'react-router-dom';
 import { dateConverterFromYMDFullMonth } from '../../../helpers/dateConverter';
+import { useEffect } from 'react';
 
 const NewsList = ({ listTitle, activetab, data, type }) => {
+	useEffect(() => {
+		console.log(data);
+	}, [data]);
+
 	return (
 		<div className={s.news_container}>
 			<Link className="title_link" title="Перейти" to={`company-marketing-news?activetab=${activetab}`}>
@@ -22,9 +27,7 @@ const NewsList = ({ listTitle, activetab, data, type }) => {
 										newsItem.id
 									}`}
 									className={`${s.news_item} ${type === 'marketing' && s.yellow}`}>
-									<div className={s.item_img_container}>
-										<img src={newsItem.img} alt="" />
-									</div>
+									<div className={s.item_img_container}>{newsItem.img[0].type === 'image' && <img src={newsItem.img[0].url} alt="" />}</div>
 									<div className={s.news_item_content}>
 										<p className={s.date}>
 											{dateConverterFromYMDFullMonth(newsItem.pub_date).day} {dateConverterFromYMDFullMonth(newsItem.pub_date).month}{' '}

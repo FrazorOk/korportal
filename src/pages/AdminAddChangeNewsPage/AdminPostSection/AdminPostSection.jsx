@@ -3,13 +3,14 @@ import smileIcon from '../../../assets/img/icons/smile-icon.svg';
 import deleteIcon from '../../../assets/img/icons/delete-icon.svg';
 import EmojiList from '../../../components/EmojiList/EmojiList';
 import { createNewPost, deleteNewsPost, updateNewsPost } from '../../../api/api.js';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../../selectors/userSelectors.js';
 import ModalWidnow from '../../../components/UI/ModalWidnow/ModalWidnow.jsx';
 import Loader from '../../../components/UI/Loader/Loader.jsx';
 import { Link } from 'react-router-dom';
 import AlertModalWindow from '../../../components/AlertModalWindow/AlertModalWindow.jsx';
+import FormTextBlock from './FormTextBlock.jsx';
 
 let now = new Date(Date.now()).toLocaleString();
 let formatedNow = `${now.slice(6, 10)}-${now.slice(3, 5)}-${now.slice(0, 2)}T${now.slice(12, now.length)}`;
@@ -18,7 +19,6 @@ const AdminPostSection = ({ newsId, data }) => {
 	let userID = useSelector(userSelector.userData);
 
 	let [visibleStatus, setVisibleStatus] = useState(false);
-	let [visibleStatus2, setVisibleStatus2] = useState(false);
 
 	let [modalWidndovStatus, setModalWidndovStatus] = useState(false);
 	let [modalWidndovStatusDelete, setModalWidndovStatusDelete] = useState(false);
@@ -40,6 +40,8 @@ const AdminPostSection = ({ newsId, data }) => {
 	let [fileIndex, setFilesIndex] = useState(['']);
 
 	let [validationErrors, setValidationErrors] = useState({ title: false, date: false, text: false, images: false });
+
+	//
 
 	// Functions
 	const nulledAllInputs = () => {
@@ -172,7 +174,7 @@ const AdminPostSection = ({ newsId, data }) => {
 		let filteredDelImgsList = [];
 		filesList.forEach((itemDelImg, indexDelIndex) => {
 			if (`${itemDelImg}` == 'delimg') {
-				filteredDelImgsList.push(data.img[indexDelIndex]);
+				filteredDelImgsList.push(data.img[indexDelIndex].url);
 			}
 		});
 
@@ -373,8 +375,8 @@ const AdminPostSection = ({ newsId, data }) => {
 					<p>Теги:</p>
 					<input placeholder="Теги, Теги, ..." type="text" value={tags} onChange={(e) => setTags(e.target.value)} />
 				</div>
-
-				<div className={s.post_item}>
+				<FormTextBlock text={text} setText={setText} validationErrors={validationErrors} />
+				{/* <div className={s.post_item}>
 					<p>
 						Текст події:
 						<span style={{ fontSize: '20px', color: 'red' }} title="Обов`язкове">
@@ -383,7 +385,14 @@ const AdminPostSection = ({ newsId, data }) => {
 					</p>
 					<textarea
 						value={text}
-						onChange={(e) => setText(e.target.value)}
+						onSelect={(e) => {
+							console.log(e);
+							console.log(e.target.selectionStart);
+							console.log(e.target.selectionEnd);
+						}}
+						onChange={(e) => {
+							setText(e.target.value);
+						}}
 						placeholder="Текст події"
 						className={`${s.text} ${validationErrors.text ? s.validated : ''}`}></textarea>
 					<button
@@ -396,11 +405,11 @@ const AdminPostSection = ({ newsId, data }) => {
 						<img src={smileIcon} alt="" />
 					</button>
 					<EmojiList visibleStatus={visibleStatus2} setSmile={setText} />
-				</div>
+				</div> */}
 
 				<div className={s.post_item}>
 					<p>
-						Зображення:
+						Фото/відео:
 						<span style={{ fontSize: '20px', color: 'red' }} title="Обов`язкове">
 							*
 						</span>
@@ -414,7 +423,10 @@ const AdminPostSection = ({ newsId, data }) => {
 							className={`${s.image_container} ${filesList[indexImg] === false || filesList[indexImg] === 'delimg' ? s.hidden : ''}`}>
 							{filesList[indexImg] && !filesList[indexImg].name && filesList[indexImg] != 'delimg' ? (
 								<div className={s.image_now_container}>
-									<img className={s.image_now} src={filesList[indexImg]} alt="" />
+									{filesList[indexImg].type === 'image' && <img className={s.image_now} src={filesList[indexImg].url} alt="" />}
+									{filesList[indexImg].type === 'video' && (
+										<video className={s.image_now} src={filesList[indexImg].url} alt="" controls></video>
+									)}
 									<button
 										onClick={(e) => {
 											e.preventDefault();
@@ -443,8 +455,8 @@ const AdminPostSection = ({ newsId, data }) => {
 										multiple
 										type="file"
 										name="myImage"
-										accept="image/*"
-										placeholder="Оберіть зображення"
+										accept="image/*,video/*"
+										placeholder="Оберіть фото/відео"
 									/>
 									<button
 										onClick={(e) => {
@@ -468,7 +480,7 @@ const AdminPostSection = ({ newsId, data }) => {
 							e.preventDefault();
 							setFilesIndex((i) => [...i, '']);
 						}}>
-						Додати ще зображення
+						Додати ще фото/відео
 					</button>
 				</div>
 
@@ -486,7 +498,6 @@ const AdminPostSection = ({ newsId, data }) => {
 									<button
 										onClick={(e) => {
 											e.preventDefault();
-
 											setWillDeleteComment(item.id);
 											setModalWidndovStatusDeleteComment(true);
 										}}

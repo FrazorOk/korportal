@@ -4,11 +4,16 @@ import { useMsal } from '@azure/msal-react';
 import { getPhotoUser } from '../../api/graph';
 import { loginRequest } from '../../authConfig';
 import UserInfoModalBtn from '../UserInfoModalBtn/UserInfoModalBtn';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../selectors/userSelectors';
+import delteIcon from '../../assets/img/icons/delete-icon.svg';
+import { deleteNewsPost } from '../../api/api';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
-const CommentsList = ({ comment, fullScreen }) => {
+const CommentsList = ({ comment, fullScreen, uploadComments }) => {
 	const { instance, accounts } = useMsal();
+	let user = useSelector(userSelector.userData);
 	let [commentsList, setCommentsList] = useState([]);
 
 	function RequestProfilePhoto(id) {
@@ -52,18 +57,30 @@ const CommentsList = ({ comment, fullScreen }) => {
 	};
 
 	useEffect(() => {
-		console.log(comment);
 		comment && findVisibleUsers(comment);
 	}, [comment]);
+
+	const onClickDeleteHandler = (newsID) => {
+		const deleteComment = async () => {
+			let result = await deleteNewsPost(newsID, user.id, 'comments');
+			if (result) uploadComments();
+		};
+		deleteComment();
+	};
 
 	return (
 		<div className={`${s.commets_container} ${fullScreen && s.full_screen}`}>
 			<p className={s.commets_h}>Коментарі:</p>
 			<ul className={s.commets_list}>
 				{commentsList &&
-					commentsList.map(({ autor, post_date, comment_txt, urlImg, usercode }, index) => {
+					commentsList.map(({ autor, post_date, comment_txt, urlImg, usercode, id }, index) => {
 						return (
 							<li key={`comment${index}`} className={`${s.commets_item}`}>
+								{user && user.id === usercode && (
+									<button className={s.delete_btn} onClick={() => onClickDeleteHandler(id)} title="Видили коментар">
+										<img src={delteIcon} alt="" />
+									</button>
+								)}
 								<UserInfoModalBtn userId={usercode}>
 									<div className={s.comment_user}>
 										<img src={urlImg} alt="" />

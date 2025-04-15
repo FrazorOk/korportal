@@ -71,8 +71,6 @@ const VivoChatSection = ({ ref1, adminStatus, title, fullScreen }) => {
 		console.log();
 
 		if (!isFetchingDisable) {
-			console.log('yes');
-
 			let block = e.currentTarget;
 			// Відступ до кінця блоку
 			let y = 0;

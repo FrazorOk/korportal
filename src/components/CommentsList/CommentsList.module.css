@@ -26,6 +26,7 @@
 	border-radius: 4px;
 	background-color: #faf9f8;
 	transition: all 0.3s ease 0s;
+	position: relative;
 }
 .commets_item.active {
 	animation-name: circle;
@@ -83,6 +84,18 @@
 }
 .commets_container.full_screen {
 	font-size: 16px;
+}
+.delete_btn {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	width: 16px;
+	height: 16px;
+	z-index: 2;
+}
+.delete_btn img {
+	width: 100%;
+	object-fit: contain;
 }
 @media (hover: hover) {
 	.commets_list:hover {

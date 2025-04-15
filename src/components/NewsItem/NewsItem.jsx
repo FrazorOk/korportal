@@ -76,6 +76,13 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 		let relustItem = await getNewsFromID(id, setFetchedComments, setReacionState);
 		setCurrentViews(relustItem[0].views);
 	};
+	const uploadComments = async () => {
+		setFetchingStatus(true);
+		await getNewsFromID(id, setFetchedComments, setReacionState);
+		setFetchingStatus(false);
+		setTextAreaComment('');
+		setSmileStatus(false);
+	};
 
 	useEffect(() => {
 		if (viewed) {
@@ -158,6 +165,7 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 	}, [comment]);
 	useEffect(() => {
 		fetchedComments && setCommentsLenth(fetchedComments.length);
+		fetchedComments === null && setCommentsLenth(0);
 	}, [fetchedComments]);
 
 	useEffect(() => {
@@ -332,7 +340,7 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 				</div>
 				{visibleStatus && (
 					<div className={s.commet_container}>
-						{fetchedComments && <CommentsList comment={fetchedComments} fullScreen={fullScreen} />}
+						{fetchedComments && <CommentsList comment={fetchedComments} fullScreen={fullScreen} uploadComments={uploadComments} />}
 						<div className={s.coments_input}>
 							<textarea
 								value={textAreaComment}
