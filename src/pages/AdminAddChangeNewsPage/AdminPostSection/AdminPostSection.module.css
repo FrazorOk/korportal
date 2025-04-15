@@ -56,7 +56,19 @@
 	cursor: pointer;
 	padding-right: 10px;
 }
-
+.row_btns {
+	display: flex;
+	gap: 8px;
+}
+.row_btns button {
+	display: block;
+	text-align: center;
+	padding: 4px;
+	min-width: 20px;
+	border-radius: 2px;
+	border: 1px solid #e3e3e3;
+	transition: all 0.3s ease 0s;
+}
 .text {
 	line-height: 16px;
 	height: 300px;
@@ -220,6 +232,9 @@
 	}
 	.comment button:hover {
 		background-color: rgb(225, 225, 225);
+	}
+	.row_btns button:hover {
+		background-color: rgb(192, 192, 192);
 	}
 	.select_buttons input:hover,
 	.select_buttons button:hover {

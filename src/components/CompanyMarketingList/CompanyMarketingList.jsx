@@ -17,7 +17,7 @@ const CompanyMarketingList = ({ newsList, linkTo, admin, type }) => {
 											<EditAdminButton link={`/admin-company-marketing-news/add-change-company-marketing-news/${news.id}?type=${type}`} />
 										)}
 										<div className={s.image_container}>
-											<img className={s.image} src={news.img} alt="" />
+											{(news.img[0].type = 'image' && <img className={s.image} src={news.img[0].url} alt="" />)}
 										</div>
 										<div className={s.text_container}>
 											<p className={s.date}>

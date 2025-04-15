@@ -2,7 +2,7 @@
 
 import { getCookie } from '../helpers/cookieMetods';
 
-let devMode = false;
+let devMode = true;
 
 export let domain = '';
 if (devMode) {
@@ -100,7 +100,10 @@ export const getNewsFromID = (postID, setState, setStateReactions, debug = 0) =>
 			return response.json();
 		})
 		.then((result) => {
+			console.log(result);
+
 			result[0].comment && setState && setState(result[0].comment);
+			result[0].comment === null && setState && setState(result[0].comment);
 			result[0].reaction && setStateReactions && setStateReactions(result[0].reaction);
 			return result;
 		});

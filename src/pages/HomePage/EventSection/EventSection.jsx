@@ -3,6 +3,7 @@ import calendarIcon from '../../../assets/img/icons/calendar-icon.svg';
 import { memo, useEffect, useState } from 'react';
 import { getNews } from '../../../api/api';
 import { dateConverterFromYMD } from '../../../helpers/dateConverter';
+import { getNewsList } from '../../../api/apiNews';
 
 const dateToYMD = (date, year) => {
 	let d = date.getDate();
@@ -20,7 +21,8 @@ const EventSection = () => {
 	let [formatedData, setFormatedData] = useState(null);
 
 	useEffect(() => {
-		getNews(setData, 1, 2);
+		// getNews(setData, 1, 2);
+		getNewsList({ limitNumber: 4, all: 1, categoryID: 2 }).then((result) => setData(result));
 	}, []);
 	useEffect(() => {
 		if (data && data.length > 1) {

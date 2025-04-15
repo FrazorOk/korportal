@@ -71,7 +71,8 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 											<button onClick={zoomOnClickHandler}>
 												<img src={searchIcon} />
 											</button>
-											<img className={s.main_img} src={item} alt="" />
+											{item.type === 'image' && <img className={s.main_img} src={item.url} alt="" />}
+											{item.type === 'video' && <video className={s.main_img} src={item.url} controls></video>}
 										</div>
 									</div>
 								</SwiperSlide>
@@ -91,7 +92,8 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 							<button onClick={zoomOnClickHandler}>
 								<img src={searchIcon} />
 							</button>
-							<img className={s.main_img} src={img[0]} alt="" />
+							{img[0].type === 'image' && <img className={s.main_img} src={img[0].url} alt="" />}
+							{img[0].type === 'video' && <video className={s.main_img} src={img[0].url} controls></video>}
 						</div>
 					</div>
 				)}
@@ -117,7 +119,8 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 										<SwiperSlide style={{ height: '100%', minHeight: '100%' }}>
 											<div style={{ height: '100%', minHeight: '100%' }} className={`${s.slider_slide} ${s.modal}`}>
 												<div className={s.slider_img_container}>
-													<img src={item} alt="" />
+													{item.type === 'image' && <img src={item.url} alt="" />}
+													{item.type === 'video' && <video src={item.url} controls></video>}
 												</div>
 											</div>
 										</SwiperSlide>
@@ -133,7 +136,8 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 						) : (
 							<div className={`${s.slider_slide} ${s.modal}`}>
 								<div className={s.slider_img_container}>
-									<img src={img[0]} alt="" />
+									{img[0].type === 'image' && <img src={img[0].url} alt="" />}
+									{img[0].type === 'video' && <video src={img[0].url} controls></video>}
 								</div>
 							</div>
 						)}
