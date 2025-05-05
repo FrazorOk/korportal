@@ -77,7 +77,7 @@ const CommentsList = ({ comment, fullScreen, uploadComments }) => {
 						return (
 							<li key={`comment${index}`} className={`${s.commets_item}`}>
 								{user && user.id === usercode && (
-									<button className={s.delete_btn} onClick={() => onClickDeleteHandler(id)} title="Видили коментар">
+									<button className={s.delete_btn} onClick={() => onClickDeleteHandler(id)} title="Видалити коментар">
 										<img src={delteIcon} alt="" />
 									</button>
 								)}

@@ -14,6 +14,9 @@ import { domain } from './api/api';
 
 export const msalConfig = {
 	auth: {
+		clientId: '9d43453d-bd68-4236-8daf-f98e1b4d4bb7',
+		authority: 'https://login.microsoftonline.com/d9d76ed5-5244-48cb-9206-288e80b06a84',
+		postLogoutRedirectUri: 'https://portal.softcom.ua/',
 		redirectUri: `${domain}/`,
 	},
 	cache: {
