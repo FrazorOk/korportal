@@ -2,7 +2,7 @@
 
 import { getCookie } from '../helpers/cookieMetods';
 
-let devMode = true;
+let devMode = false;
 
 export let domain = '';
 if (devMode) {
