@@ -228,7 +228,7 @@ const AdminPostSection = ({ newsId, data }) => {
 		data.title && setTitle(data.title);
 		data.pub_date && setDate(data.pub_date);
 		data.tags && data.tags.length > 0 && setTags(data.tags.join(', '));
-		data.text && setText(data.text);
+		data.text && setText(data.text.replace(/\r\n/g, '\n'));
 		data.comment && setComment(data.comment);
 		data.img && setFilesList(data.img);
 		data.img &&
@@ -358,7 +358,6 @@ const AdminPostSection = ({ newsId, data }) => {
 					</button>
 					<EmojiList visibleStatus={visibleStatus} setSmile={setTitle} />
 				</div>
-
 				<div className={`${s.post_item} ${s.row}`}>
 					<p>
 						Дата публікації:
@@ -370,11 +369,11 @@ const AdminPostSection = ({ newsId, data }) => {
 						<input type="datetime-local" step="1" onChange={(e) => setDate(e.target.value)} value={date} />
 					</p>
 				</div>
-
 				<div className={s.post_item}>
 					<p>Теги:</p>
 					<input placeholder="Теги, Теги, ..." type="text" value={tags} onChange={(e) => setTags(e.target.value)} />
 				</div>
+
 				<FormTextBlock text={text} setText={setText} validationErrors={validationErrors} />
 				{/* <div className={s.post_item}>
 					<p>
@@ -406,7 +405,6 @@ const AdminPostSection = ({ newsId, data }) => {
 					</button>
 					<EmojiList visibleStatus={visibleStatus2} setSmile={setText} />
 				</div> */}
-
 				<div className={s.post_item}>
 					<p>
 						Фото/відео:
@@ -483,7 +481,6 @@ const AdminPostSection = ({ newsId, data }) => {
 						Додати ще фото/відео
 					</button>
 				</div>
-
 				{comment && comment.length > 0 ? (
 					<div className={s.post_item}>
 						<p>Коментарі:</p>
@@ -511,7 +508,6 @@ const AdminPostSection = ({ newsId, data }) => {
 				) : (
 					''
 				)}
-
 				<div className={s.select_buttons}>
 					<Link to={'/admin-news-feed/'} className={s.cancel}>
 						Повернутися

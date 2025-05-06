@@ -24,7 +24,7 @@ const btsArray = [
 	},
 ];
 
-const tags = ["Кар'єрний шлях", 'Життєві віхи', 'Яскраві миті', 'Святковий календар', 'Досягнення'];
+const tags = ["Кар'єрний шлях", 'Життєві віхи', 'Яскраві миті', 'Святковий календар', 'Досягнення', 'Розвиток'];
 
 const NewsFilter = ({ setFilterParams, fullScreen, isFetching }) => {
 	let user = useSelector(userSelector.userData);
