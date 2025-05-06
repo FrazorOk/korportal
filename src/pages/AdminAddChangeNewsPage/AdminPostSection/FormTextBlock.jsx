@@ -8,8 +8,6 @@ const FormTextBlock = ({ text, setText, validationErrors }) => {
 	let [selectionStart, setSelectionStart] = useState(null);
 	let [selectionEnd, setSelectionEnd] = useState(null);
 
-	const swiftInsert = (original, index, insert) => original.substring(0, index) + insert + original.substring(index);
-
 	const boldBtnOnClickHandler = (e) => {
 		e.preventDefault();
 
@@ -32,13 +30,15 @@ const FormTextBlock = ({ text, setText, validationErrors }) => {
 			tagEnd = '</span>';
 		}
 		if (target === 'link') {
-			tagStart = '<a href="ПОСИЛАННЯ">';
+			const result = prompt('Введіть посилання');
+			tagStart = `<a href="${result}">`;
 			tagEnd = '</a>';
 		}
 
 		setText((currentText) => {
-			let firstSubtext = swiftInsert(currentText, selectionStart, tagStart);
-			return swiftInsert(firstSubtext, selectionEnd + tagStart.length, tagEnd);
+			const selectedText = currentText.slice(selectionStart, selectionEnd);
+			const newText = currentText.slice(0, selectionStart) + tagStart + selectedText + tagEnd + currentText.slice(selectionEnd);
+			return newText;
 		});
 	};
 

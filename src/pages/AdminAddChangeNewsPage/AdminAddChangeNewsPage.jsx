@@ -17,6 +17,7 @@ const AdminAddChangeNewsPage = () => {
 			let getNews = async () => {
 				let result = await getNewsFromID(newsId, null, null, 2);
 				setData(result[0]);
+				console.log(result[0]);
 			};
 			getNews();
 		}
