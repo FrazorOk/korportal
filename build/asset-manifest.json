@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.b8097d6f.css",
-    "main.js": "/static/js/main.c1f6e432.js",
+    "main.css": "/static/css/main.6511554e.css",
+    "main.js": "/static/js/main.efaedd11.js",
     "static/media/error_2.jpg": "/static/media/error_2.4912b942c586ef4b96d4.jpg",
     "static/media/hero-img3.jpg": "/static/media/hero-img3.c56a877f99ecdc21e777.jpg",
     "static/media/winter.jpg": "/static/media/winter.c5182e36be3d8c612bb1.jpg",
@@ -34,7 +34,6 @@
     "static/media/m-k-feed-icon.svg": "/static/media/m-k-feed-icon.b956d5ea30a01a8fa5fa3927e2cc4e4f.svg",
     "static/media/teach-icon.svg": "/static/media/teach-icon.19d3b721b4c7a6d92ed3e827cc5aec1d.svg",
     "static/media/redirect-icon.svg": "/static/media/redirect-icon.a19e89a23ab4dba1384c9250c8f831f8.svg",
-    "static/media/circle-arrow-icon.svg": "/static/media/circle-arrow-icon.bc9225c7a601622003c6c5c3aa6b280c.svg",
     "static/media/desh-list-icon.svg": "/static/media/desh-list-icon.2fdddfefb93e607adc98da0deac9b514.svg",
     "static/media/news-feed.svg": "/static/media/news-feed.02e0a054e0225ad2158b7441c64c3b83.svg",
     "static/media/mail-icon-grey.svg": "/static/media/mail-icon-grey.60e6f9e3e2fad44faf9ce78cf8f56b77.svg",
@@ -48,11 +47,11 @@
     "static/media/assept-blue-icon.svg": "/static/media/assept-blue-icon.d6d34020f5a7091014e28c723ae8a77f.svg",
     "static/media/arrow-down-icon.svg": "/static/media/arrow-down-icon.31b0fb1ad901e56016eaf99104475a29.svg",
     "static/media/ms_icon.svg": "/static/media/ms_icon.19e09ddba9279d36a645d135f78be2d0.svg",
-    "main.b8097d6f.css.map": "/static/css/main.b8097d6f.css.map",
-    "main.c1f6e432.js.map": "/static/js/main.c1f6e432.js.map"
+    "main.6511554e.css.map": "/static/css/main.6511554e.css.map",
+    "main.efaedd11.js.map": "/static/js/main.efaedd11.js.map"
   },
   "entrypoints": [
-    "static/css/main.b8097d6f.css",
-    "static/js/main.c1f6e432.js"
+    "static/css/main.6511554e.css",
+    "static/js/main.efaedd11.js"
   ]
 }

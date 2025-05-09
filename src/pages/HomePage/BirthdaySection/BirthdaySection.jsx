@@ -174,9 +174,6 @@ const BirthdaySection = () => {
 			let found = users.filter((el) => {
 				let elText = el.displayName.toUpperCase();
 
-				// if (elText.slice(0, inputValue.length) === inputValue) {
-				// 	return el;
-				// }
 				if (elText.indexOf(inputValue) > -1) {
 					return el;
 				}

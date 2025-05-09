@@ -1,0 +1,17 @@
+.users {
+	max-width: 320px;
+	height: 100%;
+	padding: 20px 15px;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	border-radius: 12px;
+}
+
+.users button {
+	cursor: pointer;
+}
+.users button p {
+	cursor: pointer;
+}

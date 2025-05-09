@@ -4,6 +4,7 @@ import NewsItem from '../NewsItem/NewsItem';
 import circleArrowIcon from '../../assets/img/icons/circle-arrow-icon.svg';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../selectors/userSelectors';
+import NewsItemLow from '../NewsItemLow/NewsItemLow';
 
 const toDay = new Date().toJSON().slice(0, 10);
 

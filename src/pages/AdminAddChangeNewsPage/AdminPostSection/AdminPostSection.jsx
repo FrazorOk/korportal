@@ -347,7 +347,7 @@ const AdminPostSection = ({ newsId, data }) => {
 						onChange={(e) => setTitle(e.target.value)}
 						placeholder="Заголовок"
 						className={`${s.title} ${validationErrors.title ? s.validated : ''}`}></textarea>
-					<button
+					{/* <button
 						title="Смайлики"
 						onClick={(e) => {
 							e.preventDefault();
@@ -356,7 +356,7 @@ const AdminPostSection = ({ newsId, data }) => {
 						className={s.smile_button}>
 						<img src={smileIcon} alt="" />
 					</button>
-					<EmojiList visibleStatus={visibleStatus} setSmile={setTitle} />
+					<EmojiList visibleStatus={visibleStatus} setSmile={setTitle} /> */}
 				</div>
 				<div className={`${s.post_item} ${s.row}`}>
 					<p>
@@ -375,36 +375,7 @@ const AdminPostSection = ({ newsId, data }) => {
 				</div>
 
 				<FormTextBlock text={text} setText={setText} validationErrors={validationErrors} />
-				{/* <div className={s.post_item}>
-					<p>
-						Текст події:
-						<span style={{ fontSize: '20px', color: 'red' }} title="Обов`язкове">
-							*
-						</span>
-					</p>
-					<textarea
-						value={text}
-						onSelect={(e) => {
-							console.log(e);
-							console.log(e.target.selectionStart);
-							console.log(e.target.selectionEnd);
-						}}
-						onChange={(e) => {
-							setText(e.target.value);
-						}}
-						placeholder="Текст події"
-						className={`${s.text} ${validationErrors.text ? s.validated : ''}`}></textarea>
-					<button
-						title="Смайлики"
-						onClick={(e) => {
-							e.preventDefault();
-							setVisibleStatus2((status) => !status);
-						}}
-						className={s.smile_button}>
-						<img src={smileIcon} alt="" />
-					</button>
-					<EmojiList visibleStatus={visibleStatus2} setSmile={setText} />
-				</div> */}
+
 				<div className={s.post_item}>
 					<p>
 						Фото/відео:

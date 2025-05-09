@@ -4,6 +4,7 @@ import { getNewsFromID } from '../../api/api';
 import { useScrollToTop } from '../../hooks/scrollToTop';
 import NewsItem from '../../components/NewsItem/NewsItem';
 import GoBackButton from '../../components/UI/GoBackButton/GoBackButton';
+import NewsItemLow from '../../components/NewsItemLow/NewsItemLow';
 
 const FeedSeparateNewsPage = () => {
 	let { newsId } = useParams();
@@ -30,7 +31,7 @@ const FeedSeparateNewsPage = () => {
 
 			<div className="row">
 				{data ? (
-					<NewsItem item={data} filterParams={true} adminStatus={false} fullScreen={true} viewed={true} />
+					<NewsItemLow item={data} filterParams={true} adminStatus={false} fullScreen={true} viewed={true} />
 				) : (
 					<p style={{ color: '#7d7d7d' }}>Подію не знайдено</p>
 				)}

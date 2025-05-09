@@ -1,7 +1,7 @@
 import { getCookie } from '../helpers/cookieMetods';
 import { domain } from './api';
 
-export const getNewsList = ({ userID, fromNumber, limitNumber, filterType, all, categoryID = 1, tagsStatus, qt = false }) => {
+export const getNewsList = ({ userID, fromNumber, limitNumber, filterType, all, categoryID = 1, tagsStatus, qt = false, edit }) => {
 	let token = getCookie('_form_token');
 
 	let curretBody = {
@@ -19,6 +19,9 @@ export const getNewsList = ({ userID, fromNumber, limitNumber, filterType, all, 
 	if (tagsStatus) curretBody.tagNAME = filterType;
 
 	if (qt) curretBody.qt = 'only';
+	if (edit) curretBody.edit = edit;
+
+	console.log(edit);
 
 	console.log(curretBody);
 

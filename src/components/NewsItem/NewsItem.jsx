@@ -83,6 +83,32 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 		setTextAreaComment('');
 		setSmileStatus(false);
 	};
+	const changeUserLinksToButtons = () => {
+		setTimeout(() => {
+			const linksInText = document.querySelectorAll(`._userLink`);
+			console.log(linksInText);
+
+			linksInText &&
+				linksInText.length > 0 &&
+				linksInText.forEach((linkInText) => {
+					const exampleAttr1 = linkInText.getAttribute('title');
+					const exampleAttr2 = linkInText.getAttribute('href');
+
+					const container = document.createElement('span');
+					linkInText.replaceWith(container);
+
+					if (container) {
+						const root = ReactDOM.createRoot(container);
+
+						root.render(
+							<Provider store={store}>
+								<UserInfoModalBtn userId={exampleAttr2}>{exampleAttr1}</UserInfoModalBtn>
+							</Provider>
+						);
+					}
+				});
+		}, 0);
+	};
 
 	useEffect(() => {
 		if (viewed) {
@@ -124,6 +150,9 @@ const NewsItem = ({ item, filterParams, adminStatus, fullScreen, viewed = false 
 			setCurrentText(currentText);
 		}
 	}, [text]);
+	useEffect(() => {
+		if (currentText) changeUserLinksToButtons();
+	}, [currentText, visibleStatus]);
 
 	// for close tab
 	useEffect(() => {

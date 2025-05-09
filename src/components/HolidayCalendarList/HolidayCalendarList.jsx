@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import HolidayCalendarItem from '../HolidayCalendarItem/HolidayCalendarItem';
 import AddEventButton from '../UI/AddEventButton/AddEventButton';
 import s from './HolidayCalendarList.module.css';
-import { getNews } from '../../api/api';
+import { getNewsList } from '../../api/apiNews';
 
 const dateToYMD = (date, year) => {
 	let d = date.getDate();
@@ -23,7 +23,7 @@ const HolidayCalendarList = () => {
 	let [formatedData, setFormatedData] = useState(null);
 
 	useEffect(() => {
-		getNews(setData, 1, 2);
+		getNewsList({ limitNumber: 100, all: 1, categoryID: 2, edit: 1 }).then((result) => setData(result));
 	}, []);
 	useEffect(() => {
 		if (data && data.length > 1) {

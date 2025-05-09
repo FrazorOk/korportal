@@ -73,7 +73,7 @@ const VivoChatSection = ({ ref1, adminStatus, title, fullScreen }) => {
 		if (!isFetchingDisable) {
 			let block = e.currentTarget;
 			// Відступ до кінця блоку
-			let y = 0;
+			let y = 10;
 			if (Math.ceil(block.scrollTop + block.clientHeight) >= Math.ceil(block.scrollHeight) - y) {
 				setFetchingDisable(true);
 			}
