@@ -58,6 +58,7 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 								swiper.navigation.nextEl = navigationNextRef.current;
 								swiper.navigation.prevEl = navigationPrevRef.current;
 							}}
+							initialSlide={0}
 							spaceBetween={50}
 							slidesPerView={1}
 							loop={false}
