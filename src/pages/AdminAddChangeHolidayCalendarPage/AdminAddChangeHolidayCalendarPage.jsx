@@ -16,6 +16,7 @@ const AdminAddChangeHolidayCalendarPage = () => {
 		if (Id && statusAdmin) {
 			let getNews = async () => {
 				let result = await getHolidayFromID(Id, 2);
+				console.log(result);
 				setData(result[0]);
 			};
 			getNews();

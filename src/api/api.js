@@ -79,6 +79,7 @@ export const getNews = (setState, all = 0, categoryID = 1) => {
 		})
 		.then((result) => {
 			setState(result);
+			console.log(result);
 			return result;
 		});
 };
@@ -273,6 +274,8 @@ export const getHolidayFromID = (postID, categoryID, debug = 0) => {
 		token: token,
 		debug: debug,
 	};
+
+	console.log(curretBody);
 
 	return fetch(`${domain}/php/newsout.php`, {
 		method: 'POST',

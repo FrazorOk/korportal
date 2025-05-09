@@ -4,7 +4,8 @@ import { setUserInformationModalWindowIdUser, toggleUserInformationModalWindowSt
 const UserInfoModalBtn = ({ children, userId }) => {
 	let dispatch = useDispatch();
 
-	const visibleHandler = () => {
+	const visibleHandler = (e) => {
+		e.preventDefault();
 		dispatch(toggleUserInformationModalWindowStatus(true));
 		dispatch(setUserInformationModalWindowIdUser(userId));
 	};
