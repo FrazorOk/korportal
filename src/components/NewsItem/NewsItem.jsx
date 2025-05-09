@@ -8,7 +8,7 @@ import clockIcon from '../../assets/img/icons/clock-icon.svg';
 import mailIcon from '../../assets/img/icons/paper-plane-icon.svg';
 import CommentsList from '../CommentsList/CommentsList';
 import { addIdToSeenNews, getNewsFromID, sendCommentNews, toggleLike } from '../../api/api';
-import { useDispatch, useSelector } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { userSelector } from '../../selectors/userSelectors';
 import EmojiList from '../EmojiList/EmojiList';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,9 @@ import { fetchSeenNews } from '../../store/thunks';
 import NewsImgSlider from '../NewsImgSlider/NewsImgSlider';
 import { useOutsideClick } from '../../hooks/useOutsideClick';
 import EditAdminButton from '../UI/EditAdminButton/EditAdminButton';
+import UserInfoModalBtn from '../UserInfoModalBtn/UserInfoModalBtn';
+import ReactDOM from 'react-dom/client';
+import store from '../../store/store';
 
 const toDay = new Date().toJSON().slice(0, 10);
 
