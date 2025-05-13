@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import DeleteButton from '../../../components/UI/DeleteButton/DeleteButton';
 import s from './GalleryFilesFormSection.module.css';
-import { deleteGalleryCatalogsFiles, uploadFileInGallery } from '../../../api/api';
+import { deleteGalleryCatalogsFiles, domain, uploadFileInGallery } from '../../../api/api';
 import Loader from '../../../components/UI/Loader/Loader';
 import asseptIcon from '../../../assets/img/icons/assept-blue-icon.svg';
+import axios from 'axios';
+import { getCookie } from '../../../helpers/cookieMetods';
 
 const GalleryFilesFormSection = ({ files, Id, getCatalogFunction }) => {
 	let [filesList, setFilesList] = useState([]);
@@ -15,9 +17,47 @@ const GalleryFilesFormSection = ({ files, Id, getCatalogFunction }) => {
 		for (let index = 0; index < array.length; index++) {
 			let imgInArray = [array[index]];
 
-			let result = await uploadFileInGallery(Id, imgInArray);
+			const handleUpload = async () => {
+				// ← зробили async
+				let token = getCookie('_form_token');
 
-			if (result.id) {
+				let data = new FormData();
+				data.append('token', `${token}`);
+				data.append('catalog_id', Id);
+
+				if (imgInArray) {
+					for (let i = 0; i < imgInArray.length; i++) {
+						data.append('img[]', imgInArray[i]);
+					}
+				}
+
+				try {
+					const response = await axios.post(`${domain}/php/upload.php`, data, {
+						onUploadProgress: (event) => {
+							const percent = Math.round((event.loaded * 100) / event.total);
+							console.log(`main percent: ${percent}`);
+
+							setFetchingFiles((fetchingFilesList) => {
+								let currentItem = [...fetchingFilesList];
+								currentItem[index] = {
+									...currentItem[index],
+									percent: percent,
+								};
+								return currentItem;
+							});
+						},
+					});
+
+					return response.data; // ← важливо повернути результат
+				} catch (error) {
+					console.error('error ' + error);
+					return null;
+				}
+			};
+
+			let result = await handleUpload(); // тепер await працює правильно
+
+			if (result?.id) {
 				setFetchingFiles((fetchingFilesList) => {
 					let currentItem = [...fetchingFilesList];
 
@@ -106,7 +146,16 @@ const GalleryFilesFormSection = ({ files, Id, getCatalogFunction }) => {
 				{fetchingFiles &&
 					fetchingFiles.map((file, indexFile) => (
 						<div key={indexFile} className={`${s.files_item} ${s.files_fetching}`}>
-							{file.fetching ? <Loader /> : <img className={s.assept_icon} src={asseptIcon} alt="" />}
+							{file.fetching ? (
+								<>
+									<Loader />
+									{file && file.percent && (
+										<p style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>{file.percent}%</p>
+									)}
+								</>
+							) : (
+								<img className={s.assept_icon} src={asseptIcon} alt="" />
+							)}
 						</div>
 					))}
 
