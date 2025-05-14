@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import DeleteButton from '../../../components/UI/DeleteButton/DeleteButton';
 import s from './GalleryFilesFormSection.module.css';
-import { deleteGalleryCatalogsFiles, domain, uploadFileInGallery } from '../../../api/api';
+import { deleteGalleryCatalogsFiles, domain } from '../../../api/api';
 import Loader from '../../../components/UI/Loader/Loader';
 import asseptIcon from '../../../assets/img/icons/assept-blue-icon.svg';
 import axios from 'axios';
@@ -18,7 +18,6 @@ const GalleryFilesFormSection = ({ files, Id, getCatalogFunction }) => {
 			let imgInArray = [array[index]];
 
 			const handleUpload = async () => {
-				// ← зробили async
 				let token = getCookie('_form_token');
 
 				let data = new FormData();
@@ -48,14 +47,14 @@ const GalleryFilesFormSection = ({ files, Id, getCatalogFunction }) => {
 						},
 					});
 
-					return response.data; // ← важливо повернути результат
+					return response.data;
 				} catch (error) {
 					console.error('error ' + error);
 					return null;
 				}
 			};
 
-			let result = await handleUpload(); // тепер await працює правильно
+			let result = await handleUpload();
 
 			if (result?.id) {
 				setFetchingFiles((fetchingFilesList) => {

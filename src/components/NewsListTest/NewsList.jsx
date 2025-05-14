@@ -1,6 +1,7 @@
 import { memo, useEffect } from 'react';
 import s from './NewsList.module.css';
 import NewsItemLow from '../NewsItemLow/NewsItemLow';
+import NewsItem from '../NewsItem/NewsItem';
 
 const NewsList = ({ data, filterParams, adminStatus, fullScreen }) => {
 	useEffect(() => {
