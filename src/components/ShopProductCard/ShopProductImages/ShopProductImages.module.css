@@ -1,0 +1,13 @@
+.images {
+	width: 45%;
+	padding: 10px 60px 30px;
+}
+
+@media (max-width: 769px) {
+	.images {
+		width: 100%;
+		max-width: 450px;
+		padding: 0px;
+		margin: 0 auto;
+	}
+}

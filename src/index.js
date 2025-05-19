@@ -32,6 +32,8 @@ import LogsPage from './pages/LogsPage/LogsPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import TestPage from './pages/TestPage/TestPage';
+import ShopPage from './pages/ShopPage/ShopPage';
+import ShopProductPage from './pages/ShopProductPage/ShopProductPage';
 
 const router = createBrowserRouter([
 	{
@@ -80,6 +82,14 @@ const router = createBrowserRouter([
 			{
 				path: 'gallery/:Id',
 				element: <GallerySeparatePage />,
+			},
+			{
+				path: 'shop/',
+				element: <ShopPage />,
+			},
+			{
+				path: 'product/:Id',
+				element: <ShopProductPage />,
 			},
 			{
 				path: 'movies/',

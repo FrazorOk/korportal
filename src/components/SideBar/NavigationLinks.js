@@ -78,6 +78,11 @@ export const navigationsAdminLinks = [
 
 export const navigationsDevLinks = [
 	{
+		name: 'Магазин',
+		path: 'shop',
+		icon: balloonsIcon,
+	},
+	{
 		name: 'Розсилка',
 		path: 'admin-mailing-list',
 		icon: mailIcon,

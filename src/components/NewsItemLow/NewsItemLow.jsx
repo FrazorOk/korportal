@@ -323,7 +323,7 @@ const NewsItemLow = ({ item, filterParams, adminStatus, fullScreen, viewed = fal
 			<div className={s.right_column}>
 				{img && visibleStatus && (
 					<div className={s.images_container}>
-						<NewsImgSlider img={img} fullScreen={fullScreen} />
+						<NewsImgSlider img={img} fullScreen={fullScreen} visibleStatus={visibleStatus} />
 					</div>
 				)}
 

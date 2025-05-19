@@ -1,6 +1,9 @@
 .birthday {
 	width: 100%;
 }
+.birthday_tabs {
+	margin-top: 30px;
+}
 .birthday_filters {
 	display: flex;
 	gap: 10px;
@@ -244,7 +247,8 @@
 	}
 }
 @media (max-width: 768px) {
-	.birthday_filters {
+	.birthday_filters,
+	.birthday_tabs {
 		margin-top: 20px;
 	}
 	.birthday_search input {
@@ -284,8 +288,10 @@
 		width: 100%;
 		flex-wrap: wrap;
 		padding: 7px;
-		padding-right: 7px;
-		padding-left: 7px;
+	}
+	.birthday_tabs {
+		padding: 7px;
+		margin-top: 0px;
 	}
 	.birthday_search {
 		width: 100%;

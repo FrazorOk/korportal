@@ -1,0 +1,17 @@
+.product {
+	width: 100%;
+}
+.product_row {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 90px;
+}
+
+@media (max-width: 769px) {
+	.product_row {
+		flex-direction: column;
+		gap: 20px;
+	}
+}

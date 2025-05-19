@@ -12,8 +12,9 @@ import s from './NewsImgSlider.module.css';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import ModalWidnow from '../UI/ModalWidnow/ModalWidnow';
 
-const NewsImgSlider = ({ img, fullScreen }) => {
+const NewsImgSlider = ({ img, fullScreen, visibleStatus, shop = false }) => {
 	const sliderRef = useRef();
+	const sliderMainRef = useRef();
 	const navigationNextRef = useRef(null);
 	const navigationPrevRef = useRef(null);
 
@@ -25,15 +26,23 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 		setModalStatus(!modalStatus);
 	};
 
+	const handleMainPrev = useCallback(() => {
+		if (!sliderMainRef.current) return;
+		sliderMainRef.current.swiper.slidePrev();
+	}, [visibleStatus]);
+	const handleMainNext = useCallback(() => {
+		if (!sliderMainRef.current) return;
+		sliderMainRef.current.swiper.slideNext();
+	}, [visibleStatus]);
+
 	const handlePrev = useCallback(() => {
 		if (!sliderRef.current) return;
 		sliderRef.current.swiper.slidePrev();
-	}, []);
-
+	}, [visibleStatus]);
 	const handleNext = useCallback(() => {
 		if (!sliderRef.current) return;
 		sliderRef.current.swiper.slideNext();
-	}, []);
+	}, [visibleStatus]);
 
 	useEffect(() => {
 		if (modalStatus && typeof img != 'string' && img.length > 1) {
@@ -49,15 +58,7 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 				{typeof img != 'string' && img.length > 1 ? (
 					<>
 						<Swiper
-							modules={[Navigation, Pagination]}
-							navigation={{
-								prevEl: navigationPrevRef.current,
-								nextEl: navigationNextRef.current,
-							}}
-							onBeforeInit={(swiper) => {
-								swiper.navigation.nextEl = navigationNextRef.current;
-								swiper.navigation.prevEl = navigationPrevRef.current;
-							}}
+							ref={sliderMainRef}
 							initialSlide={0}
 							spaceBetween={50}
 							slidesPerView={1}
@@ -67,7 +68,7 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 							}}>
 							{img.map((item) => (
 								<SwiperSlide>
-									<div className={`${s.slider_slide} ${fullScreen && s.full_screen}`}>
+									<div className={`${s.slider_slide} ${fullScreen && s.full_screen} ${shop && s.shop}`}>
 										<div className={s.slider_img_container}>
 											<button onClick={zoomOnClickHandler}>
 												<img src={searchIcon} />
@@ -79,16 +80,16 @@ const NewsImgSlider = ({ img, fullScreen }) => {
 								</SwiperSlide>
 							))}
 						</Swiper>
-						<button className={s.slider_prev_btn} ref={navigationPrevRef}>
+						<button className={`${s.slider_modal_prev_btn} ${activeSlide <= 0 && s.disabled}`} onClick={handleMainPrev}>
 							<img src={arrowIcon} alt="" />
 						</button>
-						<button className={s.slider_next_btn} ref={navigationNextRef}>
+						<button className={`${s.slider_modal_next_btn} ${activeSlide >= img.length - 1 && s.disabled}`} onClick={handleMainNext}>
 							<img src={arrowIcon} alt="" />
 						</button>
 						<div className="swiper-pagination"></div>
 					</>
 				) : (
-					<div className={`${s.slider_slide} ${fullScreen && s.full_screen}`}>
+					<div className={`${s.slider_slide} ${fullScreen && s.full_screen} ${shop && s.shop}`}>
 						<div className={s.slider_img_container}>
 							<button onClick={zoomOnClickHandler}>
 								<img src={searchIcon} />

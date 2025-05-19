@@ -1,0 +1,11 @@
+.shop_list {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+@media (max-width: 500px) {
+	.shop_list {
+		gap: 10px;
+	}
+}

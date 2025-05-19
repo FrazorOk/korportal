@@ -11,6 +11,7 @@ import phoneIcon from '../../assets/img/icons/call-outgoing-icon.svg';
 import cakeIcon from '../../assets/img/icons/cake-birthday-icon.svg';
 import userIcon from '../../assets/img/icons/fi-rs-user.svg';
 import chartIcon from '../../assets/img/icons/chart-tree-icon.svg';
+import profileIcon from '../../assets/img/icons/profile-icon.svg';
 import { monthFullConverter } from '../../helpers/dateConverter';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserInformationModalWindowIdUser, toggleUserInformationModalWindowStatus } from '../../store/interfaceSlice';
@@ -104,7 +105,7 @@ const UserInfoModalWindow = () => {
 							{userData && (
 								<div className={s.info_container}>
 									<div className={s.user_row}>
-										<img className={s.user_img} src={userImg} alt="" />
+										<img className={s.user_img} src={userImg ? userImg : profileIcon} alt="" />
 										<div>
 											<p className={s.user_title}>{userData.displayName}</p>
 											<p className={s.user_job}>{userData.jobTitle}</p>

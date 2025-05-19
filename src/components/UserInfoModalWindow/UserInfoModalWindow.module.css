@@ -16,6 +16,7 @@
 	object-fit: cover;
 	object-position: center;
 	border: 2px solid #d3d3d3;
+	background-color: #cacaca;
 }
 .user_title {
 	font-size: 24px;

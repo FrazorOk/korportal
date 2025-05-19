@@ -22,7 +22,12 @@ export let useRedirectAdmin = () => {
 };
 
 export let useRedirectDevs = (redirectStatus) => {
-	const devsID = ['dba91e41-d7cf-4b9e-bcc8-b1202822bbb7', '34655084-81b7-48d1-8393-c82ff3841d06', 'a2241277-148b-4e7f-b749-8e8cd7750ee6'];
+	const devsID = [
+		'dba91e41-d7cf-4b9e-bcc8-b1202822bbb7',
+		'34655084-81b7-48d1-8393-c82ff3841d06',
+		'a2241277-148b-4e7f-b749-8e8cd7750ee6',
+		'4af0fe36-d384-4634-a344-f706b61c1158', // Сергій
+	];
 	let [statusDev, setStatusDev] = useState(false);
 
 	let userID = useSelector(userSelector.userData);
