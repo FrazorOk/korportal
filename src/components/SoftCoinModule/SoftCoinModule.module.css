@@ -1,0 +1,19 @@
+.softcoint {
+	display: block;
+	width: 70px;
+}
+.softcoint.mobile {
+	display: none;
+}
+.softcoint.desctop {
+	display: block;
+}
+
+@media (max-width: 600px) {
+	.softcoint.mobile {
+		display: block;
+	}
+	.softcoint.desctop {
+		display: none;
+	}
+}

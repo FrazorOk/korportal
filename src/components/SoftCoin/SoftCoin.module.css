@@ -1,0 +1,13 @@
+.coin {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #f0c41b;
+	text-transform: uppercase;
+	cursor: default;
+}
+.coin img {
+	width: 16px;
+}

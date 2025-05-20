@@ -7,13 +7,15 @@ import settingIcon from '../../assets/img/icons/settings-icon.svg';
 import searchIcon from '../../assets/img/icons/search-icon.svg';
 import logo from '../../assets/img/Frame 40.png';
 import { NavLink } from 'react-router-dom';
-import { sendUserProfile } from '../../api/api';
+import { devMode, sendUserProfile } from '../../api/api';
 import { useDispatch } from 'react-redux';
 import { setAdmin, setUser } from '../../store/userSlice';
 import { fetchSeenNews } from '../../store/thunks';
 import Cookies from 'js-cookie';
 import NotificationModule from '../NotificationModule/NotificationModule';
 import { msalInstance } from '../..';
+import ShoppingCartModule from '../ShoppingCartModule/ShoppingCartModule';
+import SoftCoinModule from '../SoftCoinModule/SoftCoinModule';
 
 const Header = ({ toggleMobileMode, mobileMode }) => {
 	const dispatch = useDispatch();
@@ -135,6 +137,8 @@ const Header = ({ toggleMobileMode, mobileMode }) => {
 						{/*	<a href="">
 							<img src={settingIcon} alt="setting icon" />
 						</a>*/}
+						{devMode && <SoftCoinModule desctop={true} />}
+						{devMode && <ShoppingCartModule toggleMobileMode={toggleMobileMode} mobileMode={mobileMode} />}
 						<NotificationModule toggleMobileMode={toggleMobileMode} mobileMode={mobileMode} />
 					</div>
 					<div className={s.header_profile}>

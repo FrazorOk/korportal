@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.0aac5f53.css",
-    "main.js": "/static/js/main.4ad41e5d.js",
+    "main.css": "/static/css/main.5a4cdcc5.css",
+    "main.js": "/static/js/main.1a7caa3d.js",
     "static/media/error_2.jpg": "/static/media/error_2.4912b942c586ef4b96d4.jpg",
     "static/media/hero-img3.jpg": "/static/media/hero-img3.c56a877f99ecdc21e777.jpg",
     "static/media/winter.jpg": "/static/media/winter.c5182e36be3d8c612bb1.jpg",
@@ -25,6 +25,7 @@
     "static/media/gallery-icon.svg": "/static/media/gallery-icon.9932f42c8adf07adf93309a9f57e1910.svg",
     "static/media/cake-birthday-icon.svg": "/static/media/cake-birthday-icon.3955a0411362b7f722e8c6854633d2d2.svg",
     "static/media/heart-icon.svg": "/static/media/heart-icon.91cb9d6bd247225ed145147d05915b5c.svg",
+    "static/media/shopping-cart.svg": "/static/media/shopping-cart.99de531db190bd86df3ba66c763103fb.svg",
     "static/media/shopping-cart-add.svg": "/static/media/shopping-cart-add.072c7f2e66c0921abbfb5765fd5c90da.svg",
     "static/media/call-outgoing-icon.svg": "/static/media/call-outgoing-icon.8ef0a3bc178e77f0aa2add3b57bbe236.svg",
     "static/media/calendar-icon.svg": "/static/media/calendar-icon.a30ccdcc54e757a9d3a70f72bea413d5.svg",
@@ -50,11 +51,11 @@
     "static/media/arrow-down-icon.svg": "/static/media/arrow-down-icon.31b0fb1ad901e56016eaf99104475a29.svg",
     "static/media/ms_icon.svg": "/static/media/ms_icon.19e09ddba9279d36a645d135f78be2d0.svg",
     "static/media/fi-rs-cross-small.svg": "/static/media/fi-rs-cross-small.5950d8e997bd85f010eca2681b3526cd.svg",
-    "main.0aac5f53.css.map": "/static/css/main.0aac5f53.css.map",
-    "main.4ad41e5d.js.map": "/static/js/main.4ad41e5d.js.map"
+    "main.5a4cdcc5.css.map": "/static/css/main.5a4cdcc5.css.map",
+    "main.1a7caa3d.js.map": "/static/js/main.1a7caa3d.js.map"
   },
   "entrypoints": [
-    "static/css/main.0aac5f53.css",
-    "static/js/main.4ad41e5d.js"
+    "static/css/main.5a4cdcc5.css",
+    "static/js/main.1a7caa3d.js"
   ]
 }

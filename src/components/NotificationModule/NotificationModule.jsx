@@ -2,7 +2,6 @@ import s from './NotificationModule.module.css';
 import bellIcon from '../../assets/img/icons/bell-icon.svg';
 import newsIcon from '../../assets/img/icons/fi-rs-apps.svg';
 import { useEffect, useState } from 'react';
-import { getNews } from '../../api/api';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../selectors/userSelectors';
 import { useOutsideClick } from '../../hooks/useOutsideClick';

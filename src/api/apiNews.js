@@ -21,10 +21,6 @@ export const getNewsList = ({ userID, fromNumber, limitNumber, filterType, all, 
 	if (qt) curretBody.qt = 'only';
 	if (edit) curretBody.edit = edit;
 
-	console.log(edit);
-
-	console.log(curretBody);
-
 	return fetch(`${domain}/php/newsout.php`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -34,8 +30,6 @@ export const getNewsList = ({ userID, fromNumber, limitNumber, filterType, all, 
 			return response.json();
 		})
 		.then((result) => {
-			console.log(result);
-
 			return result;
 		});
 };

@@ -88,7 +88,7 @@ const router = createBrowserRouter([
 				element: <ShopPage />,
 			},
 			{
-				path: 'product/:Id',
+				path: 'shop/:Id',
 				element: <ShopProductPage />,
 			},
 			{
